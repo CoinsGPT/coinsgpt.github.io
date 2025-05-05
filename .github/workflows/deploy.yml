@@ -33,7 +33,7 @@ jobs:
       - name: Build all project
         working-directory: website
         run: |
-          yarn docusaurus docs:version 3.0.1
+          yarn docusaurus docs:version 3.7.1
           yarn workspace website build
       - name: Deploy to gh-pages branch
         uses: peaceiris/actions-gh-pages@v3
