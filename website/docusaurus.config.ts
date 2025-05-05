@@ -636,7 +636,7 @@ export default async function createConfigAsync() {
             type: 'doc',
             position: 'left',
             docId: 'introduction',
-            label: 'Docs',
+            label: 'Docusaurus',
           },
           {
             type: 'docSidebar',
