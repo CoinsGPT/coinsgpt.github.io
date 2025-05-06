@@ -2,11 +2,10 @@ name: Build Hash Router
 
 on:
   push:
-    branches: [main]
+    branches: [abc]
   pull_request:
     branches:
-      - main
-      - docusaurus-v**
+      - abc
     paths:
       - packages/**
       - .github/workflows/build-hash-router.yml
