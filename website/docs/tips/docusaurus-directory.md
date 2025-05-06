@@ -11,7 +11,7 @@ The main idea is to copy the previously created directory and content, and then 
 
 ⚡️ [`website/sidebars.ts`](https://github.com/TheBestOrNothing/thebestornothing.github.io/edit/main/website/sidebars.ts)
 
-⚡️ [`website/docs/rocketchat`](https://github.com/TheBestOrNothing/thebestornothing.github.io/tree/main/website/docs/rocketchat)
+⚡️ [`website/docs/rocketchat`](https://github.com/TheBestOrNothing/thebestornothing.github.io/tree/main/website/docs/tips)
 
 :::
 
@@ -31,15 +31,16 @@ So in the webpage the 'Chat Messaging' items are same as 'RocketChat Oauth'.
 ```js title="sidebars.ts"
    {
       type: 'category',
-      label: 'RocketChat Oauth',
+      label: 'Tips',
       link: {
         type: 'generated-index',
       },
       items: [
-        'rocketchat/publishing-android-libraries-nexus',
-        'rocketchat/publishing-android-libraries-jitpack',
-        'rocketchat/debugging-with-ngrok',
-        'rocketchat/stream-feeds',
+        'tips/docusaurus-quickstart',
+        'tips/docusaurus-homepage',
+        'tips/docusaurus-directory',
+        'tips/docusaurus-addimage',
+        'tips/docusaurus-diagrams',
       ],
    },
    {
