@@ -154,6 +154,20 @@ const sidebars: SidebarsConfig = {
         },
       ],
     },
+    {
+      type: 'category',
+      label: 'Tips',
+      link: {
+        type: 'generated-index',
+      },
+      items: [
+        'tips/docusaurus-quickstart',
+        'tips/docusaurus-homepage',
+        'tips/docusaurus-directory',
+        'tips/docusaurus-addimage',
+        'tips/docusaurus-diagrams',
+      ],
+   },
   ],
   api: [
     'cli',
