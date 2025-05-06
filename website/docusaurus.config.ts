@@ -623,7 +623,7 @@ export default async function createConfigAsync() {
       },
       navbar: {
         hideOnScroll: true,
-        title: 'Docusaurus',
+        title: 'CoinsGPT',
         logo: {
           alt: '',
           src: 'img/docusaurus.svg',
