@@ -633,6 +633,12 @@ export default async function createConfigAsync() {
         },
         items: [
           {
+            type: 'docSidebar',
+            position: 'left',
+            sidebarId: 'bitcoin',
+            label: 'Bitcoin',
+          },
+          {
             type: 'doc',
             position: 'left',
             docId: 'introduction',
