@@ -179,6 +179,10 @@ const sidebars: SidebarsConfig = {
       dirName: 'api',
     },
   ],
+  bitcoin: [
+    'bitcoin/bitcoin-fullnode',
+    'bitcoin/bitcoin-etl',
+  ],
 };
 
 export default sidebars;
