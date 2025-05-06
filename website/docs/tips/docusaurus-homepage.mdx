@@ -1,0 +1,191 @@
+---
+description: How to adapt home page quickly.
+---
+
+# Docusaurus HomePage Configration
+
+How to configure the home page which loaded when `https://thebestornothing.github.io/` open?
+There are navbar, TopBanner, HeroBanner, and FeaturesContainer from top to the bottom in the home page.
+
+## SideBar
+The **SideBar** is in the top of home page. You can adapt the navbar content according to the following code in the [website/sidebars.ts](https://github.com/thebestornothing/thebestornothing.github.io/blob/main/website/sidebars.ts)
+
+```js title="SideBar"
+const sidebars: SidebarsConfig = {
+  woofwoof: [
+    'introduction',
+    {
+      type: 'category',
+      label: 'Getting Started',
+      link: {
+        type: 'generated-index',
+      },
+      collapsed: false,
+      items: [
+        'installation',
+        'tokengeneration',
+        'kafkaclients',
+        'restapis',
+        'streamclients',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Guides',
+      link: {
+        type: 'generated-index',
+        title: 'Docusaurus Guides',
+        description:
+          "Let's learn about the most important Docusaurus concepts!",
+        keywords: ['guides'],
+        image: '/img/docusaurus.png',
+      },
+      items: [
+        'guides/docs/guides-kafkasecurity',
+        'guides/docs/guides-kafkaclientsecurity',
+        'guides/docs/guides-kafkarestproxy',
+        'guides/docs/guides-kafkarestapis-tokengen',
+        'guides/docs/guides-kafkarestapis-authentication',
+        'guides/docs/guides-kafkarestapis-authorization',
+        'guides/docs/guides-kafkarestapis-producer',
+        'guides/docs/guides-kafkarestapis-comsumer',
+     ],
+   },
+   {
+      type: 'category',
+      label: 'Chat Messaging',
+      link: {
+        type: 'doc',
+        id: 'stream/stream-getstreamio',
+      },
+      items: [
+        'stream/publishing-android-libraries-nexus',
+        'stream/publishing-android-libraries-jitpack',
+        'stream/debugging-with-ngrok',
+        'stream/stream-feeds',
+      ],
+   },
+```
+
+## NavBar
+The **navBar** is in the top of home page. You can adapt the navbar content according to the following code in the [website/docusaurus.config.ts](https://github.com/vulnsystem/vulnsystem.github.io/blob/main/website/docusaurus.config.ts)
+```js title="NavBar"
+      navbar: {
+        hideOnScroll: true,
+        // highlight-next-line
+        title: 'WoofWoof',
+        logo: {
+          alt: '',
+          src: 'img/docusaurus.svg',
+          srcDark: 'img/docusaurus_keytar.svg',
+          width: 32,
+          height: 32,
+        },
+        items: [
+          {
+            type: 'doc',
+            position: 'left',
+            docId: 'quickstart',
+            // highlight-next-line
+            label: 'Docus',
+          },
+          {
+            type: 'docSidebar',
+            position: 'left',
+            sidebarId: 'api',
+            // highlight-next-line
+            label: 'API',
+          },
+          {to: 'blog', label: 'Blog', position: 'left'},
+          {to: 'showcase', label: 'Showcase', position: 'left'},
+          {
+            to: '/community/support',
+            // highlight-next-line
+            label: 'Community',
+            position: 'left',
+            activeBaseRegex: `/community/`,
+          },
+          // highlight-next-line
+          ......
+        ]
+```
+
+## TopBanner
+The **TopBanner** is next to the **navbar** and **HeroBanner** next to the TopBanner. You can adapt the TopBanner and HeroBanner content in the home page according to the following code in the [website/src/pages/index.tsx](https://github.com/vulnsystem/vulnsystem.github.io/blob/main/website/src/pages/index.tsx).
+
+```js title="TopBanner"
+function TopBanner() {
+  return (
+    <div className={styles.topBanner}>
+      <div className={styles.topBannerTitle}>
+        {'🎉\xa0'}
+        <Link to="/blog/releases/3.0" className={styles.topBannerTitleText}>
+          <Translate id="homepage.banner.launch.3.0">
+            // highlight-next-line
+            {'Docusaurus\xa03.0 is\xa0out!️'}
+          </Translate>
+        </Link>
+        {'\xa0🥳'}
+      </div>
+```
+
+## HeroBanner
+**HeroBanner** next to the TopBanner. You can adapt the TopBanner and HeroBanner content in the home page according to the following code in the [website/src/pages/index.tsx](https://github.com/vulnsystem/vulnsystem.github.io/blob/main/website/src/pages/index.tsx).
+
+```js title="HeroBanner"
+function HeroBanner() {
+  return (
+    <div className={styles.hero} data-theme="dark">
+      <div className={styles.heroInner}>
+        <Heading as="h1" className={styles.heroProjectTagline}>
+          <img
+            alt={translate({message: 'Docusaurus with Keytar'})}
+            className={styles.heroLogo}
+            src={useBaseUrl('/img/docusaurus_keytar.svg')}
+            width="200"
+            height="200"
+          />
+          <span
+            className={styles.heroTitleTextHtml}
+            // eslint-disable-next-line react/no-danger
+            dangerouslySetInnerHTML={{
+              __html: translate({
+                id: 'homepage.hero.title',
+                message:
+                  // highlight-next-line
+                  '<b>Anonymous</b>, <b>end-to-end cryptography</b> distributed event streaming platform',
+                description:
+                  'Home page hero title, can contain simple html tags',
+              }),
+            }}
+          />
+        </Heading>
+```
+
+## FeaturesContainer
+The **FeaturesContainer** is next to the HeroBanner. You can adapt the FeaturesContainer content in the home page according to the following code in the [website/src/data/features.tsx](https://github.com/vulnsystem/vulnsystem.github.io/blob/main/website/src/data/features.tsx).
+
+```js title="Features"
+const FEATURES: FeatureItem[] = [
+  {
+    title: translate({
+      message: 'Based on Kafka',
+      id: 'homepage.features.powered-by-mdx.title',
+    }),
+    image: {
+      src: '/img/undraw_typewriter.svg',
+      width: 1009.54,
+      height: 717.96,
+    },
+    text: (
+      <Translate id="homepage.features.powered-by-mdx.text">
+        // highlight-next-line
+        Apache Kafka is an open-source distributed event streaming platform 
+        // highlight-next-line
+        used for high-performance data pipelines, streaming analytics, 
+        // highlight-next-line
+        data integration, and mission-critical applications.
+      </Translate>
+    ),
+  },
+```
