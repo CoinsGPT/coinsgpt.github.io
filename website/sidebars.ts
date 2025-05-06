@@ -166,6 +166,8 @@ const sidebars: SidebarsConfig = {
         'tips/docusaurus-directory',
         'tips/docusaurus-addimage',
         'tips/docusaurus-diagrams',
+        'tips/docusaurus-removeVersions',
+        'tips/docusaurus-removeLanguageTranslation',
       ],
    },
   ],
