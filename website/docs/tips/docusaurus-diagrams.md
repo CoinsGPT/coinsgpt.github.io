@@ -20,7 +20,7 @@ I need to create one Sequence diagram like following, but do not know how to sta
 Thanks to [`Mermaid Chart GPTs`](https://chatgpt.com/g/g-1IRFKwq4G-mermaid-chart-diagrams-and-charts). It can convert the authorization code flow picture to pieces of Mermaid codes, then make simple adaption of codes quickly, you will have the sequence diagram you oneself.
 How to ask questions to this GPTs?
 
-![](/img/rocketchat/Microsoft-authorization-code-flow.svg)
+Upload the picture to chatGPT Microsoft-authorization-code-flow.svg
 
 ## Question: 
 
