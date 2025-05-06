@@ -1,0 +1,188 @@
+---
+description: How to get started Docus quickly.
+---
+
+# Quick Start
+
+[`Docusaurus Docusaurus Docusaurus`](https://docusaurus.io/) is most quick, easy, and effect way to build an knowledge sharing website. [packages](https://github.com/facebook/docusaurus/).
+
+:::tip[Useful Links]
+
+⚡️ [`website/docusaurus.config.ts`](https://github.com/thebestornothing/thebestornothing.github.io/edit/main/website/docusaurus.config.ts)
+
+⚡️ [`website/sidebars.ts`](https://github.com/thebestornothing/thebestornothing.github.io/edit/main/website/sidebars.ts)
+
+⚡️ [`Actions`](https://github.com/thebestornothing/thebestornothing.github.io/actions)
+
+⚡️ [`website/docs`](https://github.com/thebestornothing/thebestornothing.github.io/tree/main/website/docs)
+
+:::
+
+
+## Fork the Docusaurs repository 
+The docusaurus.io is one of repositories in Facebook, So the [repository](https://github.com/facebook/docusaurus) can be forked to your orgniaztion.
+
+## Rename the Repository on Github
+The name of the repository should adapte to **vulnsystem.github.io** in the settings page. vulnsystem is your orgniaztion name.
+Change the branch in the settings > pages to **main with docs dir**. To open the vulnsystem.github.io in broswer, the readme will be loaded.
+
+## Adapt the page branch of website
+To open the cloned repository in broswer, change the branch in the settings > pages to **gh-pages with root dir**.
+If there is no gh-pages branch in the repository, create the new branch manully.
+
+## Configure docusaurus.config.ts
+Docusaurus gives us the ability to declare its configuration in various **ways**.  Please click **[docusaurus.config.ts](https://github.com/thebestornothing/thebestornothing.github.io/blob/main/website/docusaurus.config.ts)** to adapt the configuration. 
+
+```js title="docusaurus.config.ts"
+export default async function createConfigAsync() {
+  return {
+    title: 'WoofWoof',
+    tagline: getLocalizedConfigValue('tagline'),
+    organizationName: 'vulnsystem',
+    projectName: 'vulnsystem.github.io',
+    baseUrl,
+    baseUrlIssueBanner: true,
+    url: 'https://vulnsystem.github.io',
+    // Dogfood both settings:
+    // - force trailing slashes for deploy previews
+    // - avoid trailing slashes in prod
+    trailingSlash: isDeployPreview
+   }
+}
+```
+
+And change all the github links to **https://github.com/thebestornothing/thebestornothing.github.io**
+
+## To Deploy Automatically
+We will use a popular third-party deployment action: [peaceiris/actions-gh-pages](https://github.com/peaceiris/actions-gh-pages#%EF%B8%8F-docusaurus).
+
+Add this workflow file in [`.github/workflows/deploy.yml`](https://github.com/thebestornothing/thebestornothing.github.io/blob/main/.github/workflows/deploy.yml) derictory:
+
+```yml title=".github/workflows/deploy.yml"
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+    paths: 
+      - website/**
+
+  pull_request:
+    branches: [main]
+    paths: 
+      - packages/**
+      - website/**
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4.1.1
+      - name: Set up Node
+        uses: actions/setup-node@8f152de45cc393bb48ce5d89d36b731f54556e65 # v4.0.0
+        with:
+          node-version: '18'
+          cache: yarn
+      - name: Installation
+        run: yarn
+      - name: Build blog-only
+        working-directory: website
+        run: |
+          yarn docusaurus docs:version 3.0.1
+          yarn workspace website build
+      - name: Deploy to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # Build output to publish to the `gh-pages` branch:
+          publish_dir: ./website/build
+          # Assign commit authorship to the official GH-Actions bot for deploys to `gh-pages` branch:
+          # https://github.com/actions/checkout/issues/13#issuecomment-724415212
+          # The GH actions bot is used by default if you didn't specify the two fields.
+          # You can swap them out with your own user credentials.
+          user_name: github-actions[bot]
+          user_email: 41898282+github-actions[bot]@users.noreply.github.com
+```
+
+:::tip
+
+If the following error occur:
+Conversion error: Jekyll::Converters::Scss encountered an error while converting 'assets/css/style.scss':
+No such file or directory @ dir_chdir - /github/workspace/docs
+
+Please read the **[the solution](https://github.com/orgs/community/discussions/32805)** online.
+🎯 As to this project, add the docs directory in the root of gh-pages branch.
+:::
+
+## Add new files
+
+### Creae an new mdx file {#createfile}
+Add or adapt the files in the [`website/docs`](https://github.com/thebestornothing/thebestornothing.github.io/tree/main/website/docs) dir
+
+### Adapte the sidebar {#adpatesidebar}
+Adappte the sidebar configration in the [`website/sidebars.ts`](https://github.com/thebestornothing/thebestornothing.github.io/blob/main/website/sidebars.ts) file
+
+### Adapte the navbar optional {#adpatenavbar}
+In [`website/docusaurus.config.ts`](https://github.com/thebestornothing/thebestornothing.github.io/blob/main/website/docusaurus.config.ts) file, please adpate the **docId** to make which doc will be loaded default when click the label in the navbar.
+
+```js title="docusaurus.config.ts"
+      navbar: {
+        hideOnScroll: true,
+        title: 'WoofWoof',
+        logo: {
+          alt: '',
+          src: 'img/docusaurus.svg',
+          srcDark: 'img/docusaurus_keytar.svg',
+          width: 32,
+          height: 32,
+        },
+        items: [
+          {
+            type: 'doc',
+            position: 'left',
+            docId: 'quickstart',
+            label: 'Docus',
+          },
+          {
+            type: 'docSidebar',
+            position: 'left',
+            sidebarId: 'api',
+            label: 'API',
+          },
+```
+:::tip
+
+🎯 The docId in the items have been adapted from **introduction** to **quickstart**, so when I click the Docus in the navbar, the quickstart.mdx file will be loaded defaultly.
+
+🎯 The label in the items have been adapted from **Doc** to **Dous**, so when home page loaded the navbar info changed to Docus.
+:::
+
+## Tagging a new version {#tagging-a-new-version}
+
+1. Make sure the current docs version in the [`website/docs`](https://github.com/thebestornothing/thebestornothing.github.io/tree/main/website/docs) is ready to be frozen.
+2. Pickup a new version number (3.0.1) which is higher than the latest version (3.0.0) and issue the following command with the new version number to tag a new project version.
+
+```bash
+yarn docusaurus docs:version 3.0.1
+```
+
+After tagging a new version 3.0.1, the document versioning mechanism will:
+
+- Copy the full `website/docs/` folder contents into a new `website/versioned_docs/version-3.0.1/` folder.
+- Create a versioned sidebars file based from `website/sidebars.ts` - saved as `website/versioned_sidebars/version-3.0.1-sidebars.json`.
+- Append the new version number 3.0.1 to `website/versions.json`.
+
+:::tip
+
+[Versioning](https://vulnsystem.github.io/docs/versionin) is very important conception in the docus.
+
+If you do not know when to create a new version , please read [versioning behavior](https://thebestornothing.github.io/docs/versioning#configuring-versioning-behavior). 
+
+How to tag a new version, please following the command.
+:::
