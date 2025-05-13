@@ -811,7 +811,7 @@ export default async function createConfigAsync() {
           {
             title: 'Legal',
             className: 'footer-column-legal',
-            // Don't remove the privacy and terms, it's a legal requirement.
+            // Don't remove the privacy and terms, it's a legal requirement .
             items: [
               {
                 label: 'Privacy',
