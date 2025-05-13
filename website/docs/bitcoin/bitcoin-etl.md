@@ -80,6 +80,7 @@ Install Python dependencies:
 
 ```bash
 pip install pyzmq
+pip install pyzmq
 ```
 
 Test listener:
