@@ -182,6 +182,7 @@ const sidebars: SidebarsConfig = {
   bitcoin: [
     'bitcoin/bitcoin-fullnode',
     'bitcoin/bitcoin-etl',
+    'bitcoin/kafka-table-engine'
   ],
 };
 

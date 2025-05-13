@@ -260,7 +260,7 @@ ATTACH TABLE blocks_queue;
 
 ##### Adding Kafka Metadata {#adding-kafka-metadata}
 
-It can be useful to keep track of the metadata from the original Kafka messages after it's been ingested into ClickHouse. For example, we may want to know how much of a specific topic or partition we have consumed. For this purpose, the Kafka table engine exposes several [virtual columns](../../../engines/table-engines/index.md#table_engines-virtual_columns). These can be persisted as columns in our target table by modifying our schema and materialized view's select statement.
+It can be useful to keep track of the metadata from the original Kafka messages after it's been ingested into ClickHouse. For example, we may want to know how much of a specific topic or partition we have consumed. For this purpose, the Kafka table engine exposes several virtual columns. These can be persisted as columns in our target table by modifying our schema and materialized view's select statement.
 
 First, we perform the stop operation described above before adding columns to our target table.
 
