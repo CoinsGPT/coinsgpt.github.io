@@ -97,4 +97,3 @@ while True:
     msg = socket.recv()
     print(f"Received: {msg.hex()}")
 ```
-
