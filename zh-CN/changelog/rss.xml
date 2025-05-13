@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
         <title>Docusaurus changelog</title>
-        <link>https://thebestornothing.github.io/zh-CN/changelog</link>
+        <link>https://coinsgpt.github.io/zh-CN/changelog</link>
         <description>Keep yourself up-to-date about new features in every release</description>
         <lastBuildDate>Fri, 03 Jan 2025 20:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
@@ -11,11 +11,11 @@
         <copyright>Copyright © 2025 Facebook, Inc.</copyright>
         <item>
             <title><![CDATA[3.7.0]]></title>
-            <link>https://thebestornothing.github.io/zh-CN/changelog/3.7.0</link>
-            <guid>https://thebestornothing.github.io/zh-CN/changelog/3.7.0</guid>
+            <link>https://coinsgpt.github.io/zh-CN/changelog/3.7.0</link>
+            <guid>https://coinsgpt.github.io/zh-CN/changelog/3.7.0</guid>
             <pubDate>Fri, 03 Jan 2025 20:00:00 GMT</pubDate>
             <description><![CDATA[New Feature]]></description>
-            <content:encoded><![CDATA[<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="rocket-new-feature">🚀 New Feature<a href="https://thebestornothing.github.io/zh-CN/changelog/3.7.0#rocket-new-feature" class="hash-link" aria-label="🚀 New Feature的直接链接" title="🚀 New Feature的直接链接">​</a></h2>
+            <content:encoded><![CDATA[<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="rocket-new-feature">🚀 New Feature<a href="https://coinsgpt.github.io/zh-CN/changelog/3.7.0#rocket-new-feature" class="hash-link" aria-label="🚀 New Feature的直接链接" title="🚀 New Feature的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus-faster</code>, <code>docusaurus</code>
 <ul>
@@ -43,7 +43,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="bug-bug-fix">🐛 Bug Fix<a href="https://thebestornothing.github.io/zh-CN/changelog/3.7.0#bug-bug-fix" class="hash-link" aria-label="🐛 Bug Fix的直接链接" title="🐛 Bug Fix的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="bug-bug-fix">🐛 Bug Fix<a href="https://coinsgpt.github.io/zh-CN/changelog/3.7.0#bug-bug-fix" class="hash-link" aria-label="🐛 Bug Fix的直接链接" title="🐛 Bug Fix的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus-remark-plugin-npm2yarn</code>
 <ul>
@@ -87,16 +87,16 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="memo-documentation">📝 Documentation<a href="https://thebestornothing.github.io/zh-CN/changelog/3.7.0#memo-documentation" class="hash-link" aria-label="📝 Documentation的直接链接" title="📝 Documentation的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="memo-documentation">📝 Documentation<a href="https://coinsgpt.github.io/zh-CN/changelog/3.7.0#memo-documentation" class="hash-link" aria-label="📝 Documentation的直接链接" title="📝 Documentation的直接链接">​</a></h2>
 <ul>
 <li><a href="https://github.com/facebook/docusaurus/pull/10740" target="_blank" rel="noopener noreferrer">#10740</a> docs: Link initialization docs together (<a href="https://github.com/waldyrious" target="_blank" rel="noopener noreferrer">@waldyrious</a>)</li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="robot-dependencies">🤖 Dependencies<a href="https://thebestornothing.github.io/zh-CN/changelog/3.7.0#robot-dependencies" class="hash-link" aria-label="🤖 Dependencies的直接链接" title="🤖 Dependencies的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="robot-dependencies">🤖 Dependencies<a href="https://coinsgpt.github.io/zh-CN/changelog/3.7.0#robot-dependencies" class="hash-link" aria-label="🤖 Dependencies的直接链接" title="🤖 Dependencies的直接链接">​</a></h2>
 <ul>
 <li><a href="https://github.com/facebook/docusaurus/pull/10771" target="_blank" rel="noopener noreferrer">#10771</a> chore(deps): bump nanoid from 3.3.7 to 3.3.8 (<a href="https://github.com/apps/dependabot" target="_blank" rel="noopener noreferrer">@dependabot[bot]</a>)</li>
 <li><a href="https://github.com/facebook/docusaurus/pull/10721" target="_blank" rel="noopener noreferrer">#10721</a> chore(deps): bump actions/dependency-review-action from 4.4.0 to 4.5.0 (<a href="https://github.com/apps/dependabot" target="_blank" rel="noopener noreferrer">@dependabot[bot]</a>)</li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="wrench-maintenance">🔧 Maintenance<a href="https://thebestornothing.github.io/zh-CN/changelog/3.7.0#wrench-maintenance" class="hash-link" aria-label="🔧 Maintenance的直接链接" title="🔧 Maintenance的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="wrench-maintenance">🔧 Maintenance<a href="https://coinsgpt.github.io/zh-CN/changelog/3.7.0#wrench-maintenance" class="hash-link" aria-label="🔧 Maintenance的直接链接" title="🔧 Maintenance的直接链接">​</a></h2>
 <ul>
 <li>Other
 <ul>
@@ -126,7 +126,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="committers-14">Committers: 14<a href="https://thebestornothing.github.io/zh-CN/changelog/3.7.0#committers-14" class="hash-link" aria-label="Committers: 14的直接链接" title="Committers: 14的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="committers-14">Committers: 14<a href="https://coinsgpt.github.io/zh-CN/changelog/3.7.0#committers-14" class="hash-link" aria-label="Committers: 14的直接链接" title="Committers: 14的直接链接">​</a></h2>
 <ul>
 <li>Alvin Bryan (<a href="https://github.com/alvinometric" target="_blank" rel="noopener noreferrer">@alvinometric</a>)</li>
 <li>Hichem Fantar (<a href="https://github.com/hichemfantar" target="_blank" rel="noopener noreferrer">@hichemfantar</a>)</li>
@@ -146,11 +146,11 @@
         </item>
         <item>
             <title><![CDATA[3.6.3]]></title>
-            <link>https://thebestornothing.github.io/zh-CN/changelog/3.6.3</link>
-            <guid>https://thebestornothing.github.io/zh-CN/changelog/3.6.3</guid>
+            <link>https://coinsgpt.github.io/zh-CN/changelog/3.6.3</link>
+            <guid>https://coinsgpt.github.io/zh-CN/changelog/3.6.3</guid>
             <pubDate>Fri, 22 Nov 2024 20:00:00 GMT</pubDate>
             <description><![CDATA[Bug Fix]]></description>
-            <content:encoded><![CDATA[<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="bug-bug-fix">🐛 Bug Fix<a href="https://thebestornothing.github.io/zh-CN/changelog/3.6.3#bug-bug-fix" class="hash-link" aria-label="🐛 Bug Fix的直接链接" title="🐛 Bug Fix的直接链接">​</a></h2>
+            <content:encoded><![CDATA[<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="bug-bug-fix">🐛 Bug Fix<a href="https://coinsgpt.github.io/zh-CN/changelog/3.6.3#bug-bug-fix" class="hash-link" aria-label="🐛 Bug Fix的直接链接" title="🐛 Bug Fix的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus</code>
 <ul>
@@ -158,18 +158,18 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="committers-1">Committers: 1<a href="https://thebestornothing.github.io/zh-CN/changelog/3.6.3#committers-1" class="hash-link" aria-label="Committers: 1的直接链接" title="Committers: 1的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="committers-1">Committers: 1<a href="https://coinsgpt.github.io/zh-CN/changelog/3.6.3#committers-1" class="hash-link" aria-label="Committers: 1的直接链接" title="Committers: 1的直接链接">​</a></h2>
 <ul>
 <li>Sébastien Lorber (<a href="https://github.com/slorber" target="_blank" rel="noopener noreferrer">@slorber</a>)</li>
 </ul>]]></content:encoded>
         </item>
         <item>
             <title><![CDATA[3.6.2]]></title>
-            <link>https://thebestornothing.github.io/zh-CN/changelog/3.6.2</link>
-            <guid>https://thebestornothing.github.io/zh-CN/changelog/3.6.2</guid>
+            <link>https://coinsgpt.github.io/zh-CN/changelog/3.6.2</link>
+            <guid>https://coinsgpt.github.io/zh-CN/changelog/3.6.2</guid>
             <pubDate>Tue, 19 Nov 2024 20:00:00 GMT</pubDate>
             <description><![CDATA[Bug Fix]]></description>
-            <content:encoded><![CDATA[<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="bug-bug-fix">🐛 Bug Fix<a href="https://thebestornothing.github.io/zh-CN/changelog/3.6.2#bug-bug-fix" class="hash-link" aria-label="🐛 Bug Fix的直接链接" title="🐛 Bug Fix的直接链接">​</a></h2>
+            <content:encoded><![CDATA[<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="bug-bug-fix">🐛 Bug Fix<a href="https://coinsgpt.github.io/zh-CN/changelog/3.6.2#bug-bug-fix" class="hash-link" aria-label="🐛 Bug Fix的直接链接" title="🐛 Bug Fix的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus-module-type-aliases</code>
 <ul>
@@ -202,11 +202,11 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="wrench-maintenance">🔧 Maintenance<a href="https://thebestornothing.github.io/zh-CN/changelog/3.6.2#wrench-maintenance" class="hash-link" aria-label="🔧 Maintenance的直接链接" title="🔧 Maintenance的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="wrench-maintenance">🔧 Maintenance<a href="https://coinsgpt.github.io/zh-CN/changelog/3.6.2#wrench-maintenance" class="hash-link" aria-label="🔧 Maintenance的直接链接" title="🔧 Maintenance的直接链接">​</a></h2>
 <ul>
 <li><a href="https://github.com/facebook/docusaurus/pull/10691" target="_blank" rel="noopener noreferrer">#10691</a> chore(ci): retry <code>yarn install</code> to ignore temporary network errors (<a href="https://github.com/slorber" target="_blank" rel="noopener noreferrer">@slorber</a>)</li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="committers-5">Committers: 5<a href="https://thebestornothing.github.io/zh-CN/changelog/3.6.2#committers-5" class="hash-link" aria-label="Committers: 5的直接链接" title="Committers: 5的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="committers-5">Committers: 5<a href="https://coinsgpt.github.io/zh-CN/changelog/3.6.2#committers-5" class="hash-link" aria-label="Committers: 5的直接链接" title="Committers: 5的直接链接">​</a></h2>
 <ul>
 <li>Junior_Gx (<a href="https://github.com/goffxnca" target="_blank" rel="noopener noreferrer">@goffxnca</a>)</li>
 <li>Kyle Tsang (<a href="https://github.com/kyletsang" target="_blank" rel="noopener noreferrer">@kyletsang</a>)</li>
@@ -217,11 +217,11 @@
         </item>
         <item>
             <title><![CDATA[3.6.1]]></title>
-            <link>https://thebestornothing.github.io/zh-CN/changelog/3.6.1</link>
-            <guid>https://thebestornothing.github.io/zh-CN/changelog/3.6.1</guid>
+            <link>https://coinsgpt.github.io/zh-CN/changelog/3.6.1</link>
+            <guid>https://coinsgpt.github.io/zh-CN/changelog/3.6.1</guid>
             <pubDate>Fri, 08 Nov 2024 20:00:00 GMT</pubDate>
             <description><![CDATA[Bug Fix]]></description>
-            <content:encoded><![CDATA[<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="bug-bug-fix">🐛 Bug Fix<a href="https://thebestornothing.github.io/zh-CN/changelog/3.6.1#bug-bug-fix" class="hash-link" aria-label="🐛 Bug Fix的直接链接" title="🐛 Bug Fix的直接链接">​</a></h2>
+            <content:encoded><![CDATA[<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="bug-bug-fix">🐛 Bug Fix<a href="https://coinsgpt.github.io/zh-CN/changelog/3.6.1#bug-bug-fix" class="hash-link" aria-label="🐛 Bug Fix的直接链接" title="🐛 Bug Fix的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus</code>
 <ul>
@@ -234,7 +234,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="nail_care-polish">💅 Polish<a href="https://thebestornothing.github.io/zh-CN/changelog/3.6.1#nail_care-polish" class="hash-link" aria-label="💅 Polish的直接链接" title="💅 Polish的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="nail_care-polish">💅 Polish<a href="https://coinsgpt.github.io/zh-CN/changelog/3.6.1#nail_care-polish" class="hash-link" aria-label="💅 Polish的直接链接" title="💅 Polish的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus-bundler</code>, <code>docusaurus-types</code>, <code>docusaurus</code>
 <ul>
@@ -242,11 +242,11 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="memo-documentation">📝 Documentation<a href="https://thebestornothing.github.io/zh-CN/changelog/3.6.1#memo-documentation" class="hash-link" aria-label="📝 Documentation的直接链接" title="📝 Documentation的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="memo-documentation">📝 Documentation<a href="https://coinsgpt.github.io/zh-CN/changelog/3.6.1#memo-documentation" class="hash-link" aria-label="📝 Documentation的直接链接" title="📝 Documentation的直接链接">​</a></h2>
 <ul>
 <li><a href="https://github.com/facebook/docusaurus/pull/10657" target="_blank" rel="noopener noreferrer">#10657</a> docs: fix old base ts config ref (<a href="https://github.com/slorber" target="_blank" rel="noopener noreferrer">@slorber</a>)</li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="wrench-maintenance">🔧 Maintenance<a href="https://thebestornothing.github.io/zh-CN/changelog/3.6.1#wrench-maintenance" class="hash-link" aria-label="🔧 Maintenance的直接链接" title="🔧 Maintenance的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="wrench-maintenance">🔧 Maintenance<a href="https://coinsgpt.github.io/zh-CN/changelog/3.6.1#wrench-maintenance" class="hash-link" aria-label="🔧 Maintenance的直接链接" title="🔧 Maintenance的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus-mdx-loader</code>
 <ul>
@@ -259,7 +259,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="committers-2">Committers: 2<a href="https://thebestornothing.github.io/zh-CN/changelog/3.6.1#committers-2" class="hash-link" aria-label="Committers: 2的直接链接" title="Committers: 2的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="committers-2">Committers: 2<a href="https://coinsgpt.github.io/zh-CN/changelog/3.6.1#committers-2" class="hash-link" aria-label="Committers: 2的直接链接" title="Committers: 2的直接链接">​</a></h2>
 <ul>
 <li>Balthasar Hofer (<a href="https://github.com/lebalz" target="_blank" rel="noopener noreferrer">@lebalz</a>)</li>
 <li>Sébastien Lorber (<a href="https://github.com/slorber" target="_blank" rel="noopener noreferrer">@slorber</a>)</li>
@@ -267,11 +267,11 @@
         </item>
         <item>
             <title><![CDATA[3.6.0]]></title>
-            <link>https://thebestornothing.github.io/zh-CN/changelog/3.6.0</link>
-            <guid>https://thebestornothing.github.io/zh-CN/changelog/3.6.0</guid>
+            <link>https://coinsgpt.github.io/zh-CN/changelog/3.6.0</link>
+            <guid>https://coinsgpt.github.io/zh-CN/changelog/3.6.0</guid>
             <pubDate>Mon, 04 Nov 2024 20:00:00 GMT</pubDate>
             <description><![CDATA[New Feature]]></description>
-            <content:encoded><![CDATA[<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="rocket-new-feature">🚀 New Feature<a href="https://thebestornothing.github.io/zh-CN/changelog/3.6.0#rocket-new-feature" class="hash-link" aria-label="🚀 New Feature的直接链接" title="🚀 New Feature的直接链接">​</a></h2>
+            <content:encoded><![CDATA[<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="rocket-new-feature">🚀 New Feature<a href="https://coinsgpt.github.io/zh-CN/changelog/3.6.0#rocket-new-feature" class="hash-link" aria-label="🚀 New Feature的直接链接" title="🚀 New Feature的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus-plugin-content-blog</code>, <code>docusaurus-theme-classic</code>
 <ul>
@@ -325,7 +325,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="bug-bug-fix">🐛 Bug Fix<a href="https://thebestornothing.github.io/zh-CN/changelog/3.6.0#bug-bug-fix" class="hash-link" aria-label="🐛 Bug Fix的直接链接" title="🐛 Bug Fix的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="bug-bug-fix">🐛 Bug Fix<a href="https://coinsgpt.github.io/zh-CN/changelog/3.6.0#bug-bug-fix" class="hash-link" aria-label="🐛 Bug Fix的直接链接" title="🐛 Bug Fix的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus-bundler</code>, <code>docusaurus</code>
 <ul>
@@ -397,7 +397,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="running-performance">:running: Performance<a href="https://thebestornothing.github.io/zh-CN/changelog/3.6.0#running-performance" class="hash-link" aria-label=":running: Performance的直接链接" title=":running: Performance的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="running-performance">:running: Performance<a href="https://coinsgpt.github.io/zh-CN/changelog/3.6.0#running-performance" class="hash-link" aria-label=":running: Performance的直接链接" title=":running: Performance的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus-bundler</code>, <code>docusaurus-faster</code>
 <ul>
@@ -421,7 +421,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="memo-documentation">📝 Documentation<a href="https://thebestornothing.github.io/zh-CN/changelog/3.6.0#memo-documentation" class="hash-link" aria-label="📝 Documentation的直接链接" title="📝 Documentation的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="memo-documentation">📝 Documentation<a href="https://coinsgpt.github.io/zh-CN/changelog/3.6.0#memo-documentation" class="hash-link" aria-label="📝 Documentation的直接链接" title="📝 Documentation的直接链接">​</a></h2>
 <ul>
 <li>Other
 <ul>
@@ -440,7 +440,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="robot-dependencies">🤖 Dependencies<a href="https://thebestornothing.github.io/zh-CN/changelog/3.6.0#robot-dependencies" class="hash-link" aria-label="🤖 Dependencies的直接链接" title="🤖 Dependencies的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="robot-dependencies">🤖 Dependencies<a href="https://coinsgpt.github.io/zh-CN/changelog/3.6.0#robot-dependencies" class="hash-link" aria-label="🤖 Dependencies的直接链接" title="🤖 Dependencies的直接链接">​</a></h2>
 <ul>
 <li>Other
 <ul>
@@ -462,7 +462,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="wrench-maintenance">🔧 Maintenance<a href="https://thebestornothing.github.io/zh-CN/changelog/3.6.0#wrench-maintenance" class="hash-link" aria-label="🔧 Maintenance的直接链接" title="🔧 Maintenance的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="wrench-maintenance">🔧 Maintenance<a href="https://coinsgpt.github.io/zh-CN/changelog/3.6.0#wrench-maintenance" class="hash-link" aria-label="🔧 Maintenance的直接链接" title="🔧 Maintenance的直接链接">​</a></h2>
 <ul>
 <li>Other
 <ul>
@@ -552,7 +552,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="committers-19">Committers: 19<a href="https://thebestornothing.github.io/zh-CN/changelog/3.6.0#committers-19" class="hash-link" aria-label="Committers: 19的直接链接" title="Committers: 19的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="committers-19">Committers: 19<a href="https://coinsgpt.github.io/zh-CN/changelog/3.6.0#committers-19" class="hash-link" aria-label="Committers: 19的直接链接" title="Committers: 19的直接链接">​</a></h2>
 <ul>
 <li>Andrew Asche (<a href="https://github.com/andrewasche" target="_blank" rel="noopener noreferrer">@andrewasche</a>)</li>
 <li>Boris Depoortere (<a href="https://github.com/B0r1sD" target="_blank" rel="noopener noreferrer">@B0r1sD</a>)</li>
@@ -577,11 +577,11 @@
         </item>
         <item>
             <title><![CDATA[3.5.2]]></title>
-            <link>https://thebestornothing.github.io/zh-CN/changelog/3.5.2</link>
-            <guid>https://thebestornothing.github.io/zh-CN/changelog/3.5.2</guid>
+            <link>https://coinsgpt.github.io/zh-CN/changelog/3.5.2</link>
+            <guid>https://coinsgpt.github.io/zh-CN/changelog/3.5.2</guid>
             <pubDate>Tue, 13 Aug 2024 20:00:00 GMT</pubDate>
             <description><![CDATA[Bug Fix]]></description>
-            <content:encoded><![CDATA[<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="bug-bug-fix">🐛 Bug Fix<a href="https://thebestornothing.github.io/zh-CN/changelog/3.5.2#bug-bug-fix" class="hash-link" aria-label="🐛 Bug Fix的直接链接" title="🐛 Bug Fix的直接链接">​</a></h2>
+            <content:encoded><![CDATA[<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="bug-bug-fix">🐛 Bug Fix<a href="https://coinsgpt.github.io/zh-CN/changelog/3.5.2#bug-bug-fix" class="hash-link" aria-label="🐛 Bug Fix的直接链接" title="🐛 Bug Fix的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus-theme-common</code>
 <ul>
@@ -604,7 +604,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="nail_care-polish">💅 Polish<a href="https://thebestornothing.github.io/zh-CN/changelog/3.5.2#nail_care-polish" class="hash-link" aria-label="💅 Polish的直接链接" title="💅 Polish的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="nail_care-polish">💅 Polish<a href="https://coinsgpt.github.io/zh-CN/changelog/3.5.2#nail_care-polish" class="hash-link" aria-label="💅 Polish的直接链接" title="💅 Polish的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus-theme-classic</code>, <code>docusaurus-theme-common</code>, <code>docusaurus-theme-translations</code>
 <ul>
@@ -612,15 +612,15 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="memo-documentation">📝 Documentation<a href="https://thebestornothing.github.io/zh-CN/changelog/3.5.2#memo-documentation" class="hash-link" aria-label="📝 Documentation的直接链接" title="📝 Documentation的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="memo-documentation">📝 Documentation<a href="https://coinsgpt.github.io/zh-CN/changelog/3.5.2#memo-documentation" class="hash-link" aria-label="📝 Documentation的直接链接" title="📝 Documentation的直接链接">​</a></h2>
 <ul>
 <li><a href="https://github.com/facebook/docusaurus/pull/10393" target="_blank" rel="noopener noreferrer">#10393</a> docs(showcase): remove sites not using Docusaurus anymore (<a href="https://github.com/GatienBoquet" target="_blank" rel="noopener noreferrer">@GatienBoquet</a>)</li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="robot-dependencies">🤖 Dependencies<a href="https://thebestornothing.github.io/zh-CN/changelog/3.5.2#robot-dependencies" class="hash-link" aria-label="🤖 Dependencies的直接链接" title="🤖 Dependencies的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="robot-dependencies">🤖 Dependencies<a href="https://coinsgpt.github.io/zh-CN/changelog/3.5.2#robot-dependencies" class="hash-link" aria-label="🤖 Dependencies的直接链接" title="🤖 Dependencies的直接链接">​</a></h2>
 <ul>
 <li><a href="https://github.com/facebook/docusaurus/pull/10396" target="_blank" rel="noopener noreferrer">#10396</a> chore(deps): bump github/codeql-action from 3.25.13 to 3.26.0 (<a href="https://github.com/apps/dependabot" target="_blank" rel="noopener noreferrer">@dependabot[bot]</a>)</li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="committers-4">Committers: 4<a href="https://thebestornothing.github.io/zh-CN/changelog/3.5.2#committers-4" class="hash-link" aria-label="Committers: 4的直接链接" title="Committers: 4的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="committers-4">Committers: 4<a href="https://coinsgpt.github.io/zh-CN/changelog/3.5.2#committers-4" class="hash-link" aria-label="Committers: 4的直接链接" title="Committers: 4的直接链接">​</a></h2>
 <ul>
 <li>Christian Stangerup (<a href="https://github.com/cstangerup" target="_blank" rel="noopener noreferrer">@cstangerup</a>)</li>
 <li>Gatien Boquet (<a href="https://github.com/GatienBoquet" target="_blank" rel="noopener noreferrer">@GatienBoquet</a>)</li>
@@ -630,11 +630,11 @@
         </item>
         <item>
             <title><![CDATA[3.5.1]]></title>
-            <link>https://thebestornothing.github.io/zh-CN/changelog/3.5.1</link>
-            <guid>https://thebestornothing.github.io/zh-CN/changelog/3.5.1</guid>
+            <link>https://coinsgpt.github.io/zh-CN/changelog/3.5.1</link>
+            <guid>https://coinsgpt.github.io/zh-CN/changelog/3.5.1</guid>
             <pubDate>Fri, 09 Aug 2024 20:00:00 GMT</pubDate>
             <description><![CDATA[Bug Fix]]></description>
-            <content:encoded><![CDATA[<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="bug-bug-fix">🐛 Bug Fix<a href="https://thebestornothing.github.io/zh-CN/changelog/3.5.1#bug-bug-fix" class="hash-link" aria-label="🐛 Bug Fix的直接链接" title="🐛 Bug Fix的直接链接">​</a></h2>
+            <content:encoded><![CDATA[<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="bug-bug-fix">🐛 Bug Fix<a href="https://coinsgpt.github.io/zh-CN/changelog/3.5.1#bug-bug-fix" class="hash-link" aria-label="🐛 Bug Fix的直接链接" title="🐛 Bug Fix的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus-plugin-content-blog</code>, <code>docusaurus-theme-search-algolia</code>
 <ul>
@@ -647,7 +647,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="committers-2">Committers: 2<a href="https://thebestornothing.github.io/zh-CN/changelog/3.5.1#committers-2" class="hash-link" aria-label="Committers: 2的直接链接" title="Committers: 2的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="committers-2">Committers: 2<a href="https://coinsgpt.github.io/zh-CN/changelog/3.5.1#committers-2" class="hash-link" aria-label="Committers: 2的直接链接" title="Committers: 2的直接链接">​</a></h2>
 <ul>
 <li>Sunghyun Cho (<a href="https://github.com/anaclumos" target="_blank" rel="noopener noreferrer">@anaclumos</a>)</li>
 <li>Sébastien Lorber (<a href="https://github.com/slorber" target="_blank" rel="noopener noreferrer">@slorber</a>)</li>
@@ -655,11 +655,11 @@
         </item>
         <item>
             <title><![CDATA[3.5.0]]></title>
-            <link>https://thebestornothing.github.io/zh-CN/changelog/3.5.0</link>
-            <guid>https://thebestornothing.github.io/zh-CN/changelog/3.5.0</guid>
+            <link>https://coinsgpt.github.io/zh-CN/changelog/3.5.0</link>
+            <guid>https://coinsgpt.github.io/zh-CN/changelog/3.5.0</guid>
             <pubDate>Fri, 09 Aug 2024 19:00:00 GMT</pubDate>
             <description><![CDATA[New Feature]]></description>
-            <content:encoded><![CDATA[<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="rocket-new-feature">🚀 New Feature<a href="https://thebestornothing.github.io/zh-CN/changelog/3.5.0#rocket-new-feature" class="hash-link" aria-label="🚀 New Feature的直接链接" title="🚀 New Feature的直接链接">​</a></h2>
+            <content:encoded><![CDATA[<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="rocket-new-feature">🚀 New Feature<a href="https://coinsgpt.github.io/zh-CN/changelog/3.5.0#rocket-new-feature" class="hash-link" aria-label="🚀 New Feature的直接链接" title="🚀 New Feature的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus-plugin-content-blog</code>
 <ul>
@@ -718,7 +718,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="bug-bug-fix">🐛 Bug Fix<a href="https://thebestornothing.github.io/zh-CN/changelog/3.5.0#bug-bug-fix" class="hash-link" aria-label="🐛 Bug Fix的直接链接" title="🐛 Bug Fix的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="bug-bug-fix">🐛 Bug Fix<a href="https://coinsgpt.github.io/zh-CN/changelog/3.5.0#bug-bug-fix" class="hash-link" aria-label="🐛 Bug Fix的直接链接" title="🐛 Bug Fix的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus-theme-translations</code>
 <ul>
@@ -759,7 +759,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="nail_care-polish">💅 Polish<a href="https://thebestornothing.github.io/zh-CN/changelog/3.5.0#nail_care-polish" class="hash-link" aria-label="💅 Polish的直接链接" title="💅 Polish的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="nail_care-polish">💅 Polish<a href="https://coinsgpt.github.io/zh-CN/changelog/3.5.0#nail_care-polish" class="hash-link" aria-label="💅 Polish的直接链接" title="💅 Polish的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus-theme-translations</code>
 <ul>
@@ -767,7 +767,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="memo-documentation">📝 Documentation<a href="https://thebestornothing.github.io/zh-CN/changelog/3.5.0#memo-documentation" class="hash-link" aria-label="📝 Documentation的直接链接" title="📝 Documentation的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="memo-documentation">📝 Documentation<a href="https://coinsgpt.github.io/zh-CN/changelog/3.5.0#memo-documentation" class="hash-link" aria-label="📝 Documentation的直接链接" title="📝 Documentation的直接链接">​</a></h2>
 <ul>
 <li>Other
 <ul>
@@ -786,7 +786,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="robot-dependencies">🤖 Dependencies<a href="https://thebestornothing.github.io/zh-CN/changelog/3.5.0#robot-dependencies" class="hash-link" aria-label="🤖 Dependencies的直接链接" title="🤖 Dependencies的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="robot-dependencies">🤖 Dependencies<a href="https://coinsgpt.github.io/zh-CN/changelog/3.5.0#robot-dependencies" class="hash-link" aria-label="🤖 Dependencies的直接链接" title="🤖 Dependencies的直接链接">​</a></h2>
 <ul>
 <li><a href="https://github.com/facebook/docusaurus/pull/10330" target="_blank" rel="noopener noreferrer">#10330</a> chore(deps): bump github/codeql-action from 3.25.12 to 3.25.13 (<a href="https://github.com/apps/dependabot" target="_blank" rel="noopener noreferrer">@dependabot[bot]</a>)</li>
 <li><a href="https://github.com/facebook/docusaurus/pull/10299" target="_blank" rel="noopener noreferrer">#10299</a> chore(deps): bump actions/dependency-review-action from 4.3.3 to 4.3.4 (<a href="https://github.com/apps/dependabot" target="_blank" rel="noopener noreferrer">@dependabot[bot]</a>)</li>
@@ -800,7 +800,7 @@
 <li><a href="https://github.com/facebook/docusaurus/pull/10208" target="_blank" rel="noopener noreferrer">#10208</a> chore(deps): bump github/codeql-action from 3.25.7 to 3.25.8 (<a href="https://github.com/apps/dependabot" target="_blank" rel="noopener noreferrer">@dependabot[bot]</a>)</li>
 <li><a href="https://github.com/facebook/docusaurus/pull/10195" target="_blank" rel="noopener noreferrer">#10195</a> chore(deps): bump github/codeql-action from 3.25.6 to 3.25.7 (<a href="https://github.com/apps/dependabot" target="_blank" rel="noopener noreferrer">@dependabot[bot]</a>)</li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="wrench-maintenance">🔧 Maintenance<a href="https://thebestornothing.github.io/zh-CN/changelog/3.5.0#wrench-maintenance" class="hash-link" aria-label="🔧 Maintenance的直接链接" title="🔧 Maintenance的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="wrench-maintenance">🔧 Maintenance<a href="https://coinsgpt.github.io/zh-CN/changelog/3.5.0#wrench-maintenance" class="hash-link" aria-label="🔧 Maintenance的直接链接" title="🔧 Maintenance的直接链接">​</a></h2>
 <ul>
 <li>Other
 <ul>
@@ -828,7 +828,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="committers-25">Committers: 25<a href="https://thebestornothing.github.io/zh-CN/changelog/3.5.0#committers-25" class="hash-link" aria-label="Committers: 25的直接链接" title="Committers: 25的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="committers-25">Committers: 25<a href="https://coinsgpt.github.io/zh-CN/changelog/3.5.0#committers-25" class="hash-link" aria-label="Committers: 25的直接链接" title="Committers: 25的直接链接">​</a></h2>
 <ul>
 <li>Aaron Chen (<a href="https://github.com/pjchender" target="_blank" rel="noopener noreferrer">@pjchender</a>)</li>
 <li>Alice Zhao (<a href="https://github.com/alicelovescake" target="_blank" rel="noopener noreferrer">@alicelovescake</a>)</li>
@@ -859,11 +859,11 @@
         </item>
         <item>
             <title><![CDATA[3.4.0]]></title>
-            <link>https://thebestornothing.github.io/zh-CN/changelog/3.4.0</link>
-            <guid>https://thebestornothing.github.io/zh-CN/changelog/3.4.0</guid>
+            <link>https://coinsgpt.github.io/zh-CN/changelog/3.4.0</link>
+            <guid>https://coinsgpt.github.io/zh-CN/changelog/3.4.0</guid>
             <pubDate>Fri, 31 May 2024 20:00:00 GMT</pubDate>
             <description><![CDATA[New Feature]]></description>
-            <content:encoded><![CDATA[<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="rocket-new-feature">🚀 New Feature<a href="https://thebestornothing.github.io/zh-CN/changelog/3.4.0#rocket-new-feature" class="hash-link" aria-label="🚀 New Feature的直接链接" title="🚀 New Feature的直接链接">​</a></h2>
+            <content:encoded><![CDATA[<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="rocket-new-feature">🚀 New Feature<a href="https://coinsgpt.github.io/zh-CN/changelog/3.4.0#rocket-new-feature" class="hash-link" aria-label="🚀 New Feature的直接链接" title="🚀 New Feature的直接链接">​</a></h2>
 <ul>
 <li><code>create-docusaurus</code>, <code>docusaurus-plugin-content-blog</code>, <code>docusaurus-plugin-content-docs</code>, <code>docusaurus-theme-classic</code>, <code>docusaurus-utils-validation</code>, <code>docusaurus-utils</code>
 <ul>
@@ -887,7 +887,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="bug-bug-fix">🐛 Bug Fix<a href="https://thebestornothing.github.io/zh-CN/changelog/3.4.0#bug-bug-fix" class="hash-link" aria-label="🐛 Bug Fix的直接链接" title="🐛 Bug Fix的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="bug-bug-fix">🐛 Bug Fix<a href="https://coinsgpt.github.io/zh-CN/changelog/3.4.0#bug-bug-fix" class="hash-link" aria-label="🐛 Bug Fix的直接链接" title="🐛 Bug Fix的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus-plugin-content-blog</code>, <code>docusaurus-plugin-content-docs</code>, <code>docusaurus-utils</code>
 <ul>
@@ -939,7 +939,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="memo-documentation">📝 Documentation<a href="https://thebestornothing.github.io/zh-CN/changelog/3.4.0#memo-documentation" class="hash-link" aria-label="📝 Documentation的直接链接" title="📝 Documentation的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="memo-documentation">📝 Documentation<a href="https://coinsgpt.github.io/zh-CN/changelog/3.4.0#memo-documentation" class="hash-link" aria-label="📝 Documentation的直接链接" title="📝 Documentation的直接链接">​</a></h2>
 <ul>
 <li><a href="https://github.com/facebook/docusaurus/pull/10176" target="_blank" rel="noopener noreferrer">#10176</a> docs: add community plugin docusaurus-graph (<a href="https://github.com/Arsero" target="_blank" rel="noopener noreferrer">@Arsero</a>)</li>
 <li><a href="https://github.com/facebook/docusaurus/pull/10173" target="_blank" rel="noopener noreferrer">#10173</a> docs: improve how to use <code>&lt;details&gt;</code> (<a href="https://github.com/tats-u" target="_blank" rel="noopener noreferrer">@tats-u</a>)</li>
@@ -947,13 +947,13 @@
 <li><a href="https://github.com/facebook/docusaurus/pull/10143" target="_blank" rel="noopener noreferrer">#10143</a> docs: recommend users to remove hast-util-is-element in migration to v3 (<a href="https://github.com/tats-u" target="_blank" rel="noopener noreferrer">@tats-u</a>)</li>
 <li><a href="https://github.com/facebook/docusaurus/pull/10124" target="_blank" rel="noopener noreferrer">#10124</a> docs: v3 prepare your site blog post should point users to the upgrade guide (<a href="https://github.com/homotechsual" target="_blank" rel="noopener noreferrer">@homotechsual</a>)</li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="robot-dependencies">🤖 Dependencies<a href="https://thebestornothing.github.io/zh-CN/changelog/3.4.0#robot-dependencies" class="hash-link" aria-label="🤖 Dependencies的直接链接" title="🤖 Dependencies的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="robot-dependencies">🤖 Dependencies<a href="https://coinsgpt.github.io/zh-CN/changelog/3.4.0#robot-dependencies" class="hash-link" aria-label="🤖 Dependencies的直接链接" title="🤖 Dependencies的直接链接">​</a></h2>
 <ul>
 <li><a href="https://github.com/facebook/docusaurus/pull/10155" target="_blank" rel="noopener noreferrer">#10155</a> chore(deps): bump peaceiris/actions-gh-pages from 3 to 4 (<a href="https://github.com/apps/dependabot" target="_blank" rel="noopener noreferrer">@dependabot[bot]</a>)</li>
 <li><a href="https://github.com/facebook/docusaurus/pull/10154" target="_blank" rel="noopener noreferrer">#10154</a> chore(deps): bump github/codeql-action from 2.13.4 to 3.25.6 (<a href="https://github.com/apps/dependabot" target="_blank" rel="noopener noreferrer">@dependabot[bot]</a>)</li>
 <li><a href="https://github.com/facebook/docusaurus/pull/10112" target="_blank" rel="noopener noreferrer">#10112</a> chore(deps): bump actions/dependency-review-action from 4.3.1 to 4.3.2 (<a href="https://github.com/apps/dependabot" target="_blank" rel="noopener noreferrer">@dependabot[bot]</a>)</li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="committers-11">Committers: 11<a href="https://thebestornothing.github.io/zh-CN/changelog/3.4.0#committers-11" class="hash-link" aria-label="Committers: 11的直接链接" title="Committers: 11的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="committers-11">Committers: 11<a href="https://coinsgpt.github.io/zh-CN/changelog/3.4.0#committers-11" class="hash-link" aria-label="Committers: 11的直接链接" title="Committers: 11的直接链接">​</a></h2>
 <ul>
 <li>Azzedine E. (<a href="https://github.com/Arsero" target="_blank" rel="noopener noreferrer">@Arsero</a>)</li>
 <li>CodeDoctor (<a href="https://github.com/CodeDoctorDE" target="_blank" rel="noopener noreferrer">@CodeDoctorDE</a>)</li>
@@ -970,11 +970,11 @@
         </item>
         <item>
             <title><![CDATA[3.3.2]]></title>
-            <link>https://thebestornothing.github.io/zh-CN/changelog/3.3.2</link>
-            <guid>https://thebestornothing.github.io/zh-CN/changelog/3.3.2</guid>
+            <link>https://coinsgpt.github.io/zh-CN/changelog/3.3.2</link>
+            <guid>https://coinsgpt.github.io/zh-CN/changelog/3.3.2</guid>
             <pubDate>Fri, 03 May 2024 20:00:00 GMT</pubDate>
             <description><![CDATA[Bug Fix]]></description>
-            <content:encoded><![CDATA[<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="bug-bug-fix">🐛 Bug Fix<a href="https://thebestornothing.github.io/zh-CN/changelog/3.3.2#bug-bug-fix" class="hash-link" aria-label="🐛 Bug Fix的直接链接" title="🐛 Bug Fix的直接链接">​</a></h2>
+            <content:encoded><![CDATA[<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="bug-bug-fix">🐛 Bug Fix<a href="https://coinsgpt.github.io/zh-CN/changelog/3.3.2#bug-bug-fix" class="hash-link" aria-label="🐛 Bug Fix的直接链接" title="🐛 Bug Fix的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus-module-type-aliases</code>, <code>docusaurus</code>
 <ul>
@@ -982,26 +982,26 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="committers-1">Committers: 1<a href="https://thebestornothing.github.io/zh-CN/changelog/3.3.2#committers-1" class="hash-link" aria-label="Committers: 1的直接链接" title="Committers: 1的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="committers-1">Committers: 1<a href="https://coinsgpt.github.io/zh-CN/changelog/3.3.2#committers-1" class="hash-link" aria-label="Committers: 1的直接链接" title="Committers: 1的直接链接">​</a></h2>
 <ul>
 <li>Sébastien Lorber (<a href="https://github.com/slorber" target="_blank" rel="noopener noreferrer">@slorber</a>)</li>
 </ul>]]></content:encoded>
         </item>
         <item>
             <title><![CDATA[3.3.1]]></title>
-            <link>https://thebestornothing.github.io/zh-CN/changelog/3.3.1</link>
-            <guid>https://thebestornothing.github.io/zh-CN/changelog/3.3.1</guid>
+            <link>https://coinsgpt.github.io/zh-CN/changelog/3.3.1</link>
+            <guid>https://coinsgpt.github.io/zh-CN/changelog/3.3.1</guid>
             <pubDate>Fri, 03 May 2024 19:00:00 GMT</pubDate>
             <description><![CDATA[Failed release]]></description>
             <content:encoded><![CDATA[<p>Failed release</p>]]></content:encoded>
         </item>
         <item>
             <title><![CDATA[3.3.0]]></title>
-            <link>https://thebestornothing.github.io/zh-CN/changelog/3.3.0</link>
-            <guid>https://thebestornothing.github.io/zh-CN/changelog/3.3.0</guid>
+            <link>https://coinsgpt.github.io/zh-CN/changelog/3.3.0</link>
+            <guid>https://coinsgpt.github.io/zh-CN/changelog/3.3.0</guid>
             <pubDate>Fri, 03 May 2024 18:00:00 GMT</pubDate>
             <description><![CDATA[New Feature]]></description>
-            <content:encoded><![CDATA[<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="rocket-new-feature">🚀 New Feature<a href="https://thebestornothing.github.io/zh-CN/changelog/3.3.0#rocket-new-feature" class="hash-link" aria-label="🚀 New Feature的直接链接" title="🚀 New Feature的直接链接">​</a></h2>
+            <content:encoded><![CDATA[<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="rocket-new-feature">🚀 New Feature<a href="https://coinsgpt.github.io/zh-CN/changelog/3.3.0#rocket-new-feature" class="hash-link" aria-label="🚀 New Feature的直接链接" title="🚀 New Feature的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus-plugin-sitemap</code>
 <ul>
@@ -1029,7 +1029,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="bug-bug-fix">🐛 Bug Fix<a href="https://thebestornothing.github.io/zh-CN/changelog/3.3.0#bug-bug-fix" class="hash-link" aria-label="🐛 Bug Fix的直接链接" title="🐛 Bug Fix的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="bug-bug-fix">🐛 Bug Fix<a href="https://coinsgpt.github.io/zh-CN/changelog/3.3.0#bug-bug-fix" class="hash-link" aria-label="🐛 Bug Fix的直接链接" title="🐛 Bug Fix的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus-cssnano-preset</code>, <code>docusaurus-utils</code>, <code>docusaurus</code>
 <ul>
@@ -1079,7 +1079,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="running-performance">:running: Performance<a href="https://thebestornothing.github.io/zh-CN/changelog/3.3.0#running-performance" class="hash-link" aria-label=":running: Performance的直接链接" title=":running: Performance的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="running-performance">:running: Performance<a href="https://coinsgpt.github.io/zh-CN/changelog/3.3.0#running-performance" class="hash-link" aria-label=":running: Performance的直接链接" title=":running: Performance的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus</code>
 <ul>
@@ -1087,7 +1087,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="nail_care-polish">💅 Polish<a href="https://thebestornothing.github.io/zh-CN/changelog/3.3.0#nail_care-polish" class="hash-link" aria-label="💅 Polish的直接链接" title="💅 Polish的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="nail_care-polish">💅 Polish<a href="https://coinsgpt.github.io/zh-CN/changelog/3.3.0#nail_care-polish" class="hash-link" aria-label="💅 Polish的直接链接" title="💅 Polish的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus-theme-classic</code>
 <ul>
@@ -1100,7 +1100,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="memo-documentation">📝 Documentation<a href="https://thebestornothing.github.io/zh-CN/changelog/3.3.0#memo-documentation" class="hash-link" aria-label="📝 Documentation的直接链接" title="📝 Documentation的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="memo-documentation">📝 Documentation<a href="https://coinsgpt.github.io/zh-CN/changelog/3.3.0#memo-documentation" class="hash-link" aria-label="📝 Documentation的直接链接" title="📝 Documentation的直接链接">​</a></h2>
 <ul>
 <li><a href="https://github.com/facebook/docusaurus/pull/10096" target="_blank" rel="noopener noreferrer">#10096</a> docs: Fix <code>déja</code> to <code>déjà</code> in <code>swizzling.mdx</code> (<a href="https://github.com/Zwyx" target="_blank" rel="noopener noreferrer">@Zwyx</a>)</li>
 <li><a href="https://github.com/facebook/docusaurus/pull/10093" target="_blank" rel="noopener noreferrer">#10093</a> docs: Fix dead Typesense links (<a href="https://github.com/kaihoffman" target="_blank" rel="noopener noreferrer">@kaihoffman</a>)</li>
@@ -1112,14 +1112,14 @@
 <li><a href="https://github.com/facebook/docusaurus/pull/10020" target="_blank" rel="noopener noreferrer">#10020</a> docs: Fix wrong path example (<a href="https://github.com/tomy0000000" target="_blank" rel="noopener noreferrer">@tomy0000000</a>)</li>
 <li><a href="https://github.com/facebook/docusaurus/pull/10011" target="_blank" rel="noopener noreferrer">#10011</a> docs: add stormkit as deployment platform (<a href="https://github.com/eldemcan" target="_blank" rel="noopener noreferrer">@eldemcan</a>)</li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="robot-dependencies">🤖 Dependencies<a href="https://thebestornothing.github.io/zh-CN/changelog/3.3.0#robot-dependencies" class="hash-link" aria-label="🤖 Dependencies的直接链接" title="🤖 Dependencies的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="robot-dependencies">🤖 Dependencies<a href="https://coinsgpt.github.io/zh-CN/changelog/3.3.0#robot-dependencies" class="hash-link" aria-label="🤖 Dependencies的直接链接" title="🤖 Dependencies的直接链接">​</a></h2>
 <ul>
 <li><a href="https://github.com/facebook/docusaurus/pull/10097" target="_blank" rel="noopener noreferrer">#10097</a> chore(deps): bump ejs from 3.1.9 to 3.1.10 (<a href="https://github.com/apps/dependabot" target="_blank" rel="noopener noreferrer">@dependabot[bot]</a>)</li>
 <li><a href="https://github.com/facebook/docusaurus/pull/10089" target="_blank" rel="noopener noreferrer">#10089</a> chore(deps): bump actions/dependency-review-action from 4.2.5 to 4.3.1 (<a href="https://github.com/apps/dependabot" target="_blank" rel="noopener noreferrer">@dependabot[bot]</a>)</li>
 <li><a href="https://github.com/facebook/docusaurus/pull/10088" target="_blank" rel="noopener noreferrer">#10088</a> chore(deps): bump preactjs/compressed-size-action from 2.5.0 to 2.6.0 (<a href="https://github.com/apps/dependabot" target="_blank" rel="noopener noreferrer">@dependabot[bot]</a>)</li>
 <li><a href="https://github.com/facebook/docusaurus/pull/10034" target="_blank" rel="noopener noreferrer">#10034</a> chore(deps): bump semver from 7.3.4 to 7.6.0 (<a href="https://github.com/apps/dependabot" target="_blank" rel="noopener noreferrer">@dependabot[bot]</a>)</li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="wrench-maintenance">🔧 Maintenance<a href="https://thebestornothing.github.io/zh-CN/changelog/3.3.0#wrench-maintenance" class="hash-link" aria-label="🔧 Maintenance的直接链接" title="🔧 Maintenance的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="wrench-maintenance">🔧 Maintenance<a href="https://coinsgpt.github.io/zh-CN/changelog/3.3.0#wrench-maintenance" class="hash-link" aria-label="🔧 Maintenance的直接链接" title="🔧 Maintenance的直接链接">​</a></h2>
 <ul>
 <li><code>create-docusaurus</code>, <code>docusaurus-cssnano-preset</code>, <code>docusaurus-logger</code>, <code>docusaurus-mdx-loader</code>, <code>docusaurus-plugin-client-redirects</code>, <code>docusaurus-plugin-content-blog</code>, <code>docusaurus-plugin-content-docs</code>, <code>docusaurus-plugin-content-pages</code>, <code>docusaurus-plugin-debug</code>, <code>docusaurus-plugin-google-analytics</code>, <code>docusaurus-plugin-google-gtag</code>, <code>docusaurus-plugin-google-tag-manager</code>, <code>docusaurus-plugin-ideal-image</code>, <code>docusaurus-plugin-pwa</code>, <code>docusaurus-plugin-sitemap</code>, <code>docusaurus-plugin-vercel-analytics</code>, <code>docusaurus-preset-classic</code>, <code>docusaurus-remark-plugin-npm2yarn</code>, <code>docusaurus-theme-classic</code>, <code>docusaurus-theme-common</code>, <code>docusaurus-theme-live-codeblock</code>, <code>docusaurus-theme-mermaid</code>, <code>docusaurus-theme-search-algolia</code>, <code>docusaurus-theme-translations</code>, <code>docusaurus-utils-common</code>, <code>docusaurus-utils-validation</code>, <code>docusaurus-utils</code>, <code>docusaurus</code>, <code>eslint-plugin</code>, <code>lqip-loader</code>, <code>stylelint-copyright</code>
 <ul>
@@ -1133,7 +1133,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="committers-20">Committers: 20<a href="https://thebestornothing.github.io/zh-CN/changelog/3.3.0#committers-20" class="hash-link" aria-label="Committers: 20的直接链接" title="Committers: 20的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="committers-20">Committers: 20<a href="https://coinsgpt.github.io/zh-CN/changelog/3.3.0#committers-20" class="hash-link" aria-label="Committers: 20的直接链接" title="Committers: 20的直接链接">​</a></h2>
 <ul>
 <li>Abdullah Saud (<a href="https://github.com/Abdullah-03" target="_blank" rel="noopener noreferrer">@Abdullah-03</a>)</li>
 <li>Alexander Sandor (<a href="https://github.com/SandPod" target="_blank" rel="noopener noreferrer">@SandPod</a>)</li>
@@ -1159,11 +1159,11 @@
         </item>
         <item>
             <title><![CDATA[3.2.1]]></title>
-            <link>https://thebestornothing.github.io/zh-CN/changelog/3.2.1</link>
-            <guid>https://thebestornothing.github.io/zh-CN/changelog/3.2.1</guid>
+            <link>https://coinsgpt.github.io/zh-CN/changelog/3.2.1</link>
+            <guid>https://coinsgpt.github.io/zh-CN/changelog/3.2.1</guid>
             <pubDate>Thu, 04 Apr 2024 20:00:00 GMT</pubDate>
             <description><![CDATA[Bug Fix]]></description>
-            <content:encoded><![CDATA[<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="bug-bug-fix">🐛 Bug Fix<a href="https://thebestornothing.github.io/zh-CN/changelog/3.2.1#bug-bug-fix" class="hash-link" aria-label="🐛 Bug Fix的直接链接" title="🐛 Bug Fix的直接链接">​</a></h2>
+            <content:encoded><![CDATA[<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="bug-bug-fix">🐛 Bug Fix<a href="https://coinsgpt.github.io/zh-CN/changelog/3.2.1#bug-bug-fix" class="hash-link" aria-label="🐛 Bug Fix的直接链接" title="🐛 Bug Fix的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus</code>
 <ul>
@@ -1171,17 +1171,17 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="memo-documentation">📝 Documentation<a href="https://thebestornothing.github.io/zh-CN/changelog/3.2.1#memo-documentation" class="hash-link" aria-label="📝 Documentation的直接链接" title="📝 Documentation的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="memo-documentation">📝 Documentation<a href="https://coinsgpt.github.io/zh-CN/changelog/3.2.1#memo-documentation" class="hash-link" aria-label="📝 Documentation的直接链接" title="📝 Documentation的直接链接">​</a></h2>
 <ul>
 <li><a href="https://github.com/facebook/docusaurus/pull/9980" target="_blank" rel="noopener noreferrer">#9980</a> docs: remove old github action description (<a href="https://github.com/OzakIOne" target="_blank" rel="noopener noreferrer">@OzakIOne</a>)</li>
 <li><a href="https://github.com/facebook/docusaurus/pull/10014" target="_blank" rel="noopener noreferrer">#10014</a> docs(website): fix SEO docs headTags example (<a href="https://github.com/OzakIOne" target="_blank" rel="noopener noreferrer">@OzakIOne</a>)</li>
 <li><a href="https://github.com/facebook/docusaurus/pull/10004" target="_blank" rel="noopener noreferrer">#10004</a> docs(website): Announce v3.2 on website/homepage (<a href="https://github.com/slorber" target="_blank" rel="noopener noreferrer">@slorber</a>)</li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="robot-dependencies">🤖 Dependencies<a href="https://thebestornothing.github.io/zh-CN/changelog/3.2.1#robot-dependencies" class="hash-link" aria-label="🤖 Dependencies的直接链接" title="🤖 Dependencies的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="robot-dependencies">🤖 Dependencies<a href="https://coinsgpt.github.io/zh-CN/changelog/3.2.1#robot-dependencies" class="hash-link" aria-label="🤖 Dependencies的直接链接" title="🤖 Dependencies的直接链接">​</a></h2>
 <ul>
 <li><a href="https://github.com/facebook/docusaurus/pull/10006" target="_blank" rel="noopener noreferrer">#10006</a> chore(deps): bump actions/dependency-review-action from 4.2.4 to 4.2.5 (<a href="https://github.com/apps/dependabot" target="_blank" rel="noopener noreferrer">@dependabot[bot]</a>)</li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="committers-2">Committers: 2<a href="https://thebestornothing.github.io/zh-CN/changelog/3.2.1#committers-2" class="hash-link" aria-label="Committers: 2的直接链接" title="Committers: 2的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="committers-2">Committers: 2<a href="https://coinsgpt.github.io/zh-CN/changelog/3.2.1#committers-2" class="hash-link" aria-label="Committers: 2的直接链接" title="Committers: 2的直接链接">​</a></h2>
 <ul>
 <li>Sébastien Lorber (<a href="https://github.com/slorber" target="_blank" rel="noopener noreferrer">@slorber</a>)</li>
 <li>ozaki (<a href="https://github.com/OzakIOne" target="_blank" rel="noopener noreferrer">@OzakIOne</a>)</li>
@@ -1189,11 +1189,11 @@
         </item>
         <item>
             <title><![CDATA[3.2.0]]></title>
-            <link>https://thebestornothing.github.io/zh-CN/changelog/3.2.0</link>
-            <guid>https://thebestornothing.github.io/zh-CN/changelog/3.2.0</guid>
+            <link>https://coinsgpt.github.io/zh-CN/changelog/3.2.0</link>
+            <guid>https://coinsgpt.github.io/zh-CN/changelog/3.2.0</guid>
             <pubDate>Fri, 29 Mar 2024 20:00:00 GMT</pubDate>
             <description><![CDATA[New Feature]]></description>
-            <content:encoded><![CDATA[<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="rocket-new-feature">🚀 New Feature<a href="https://thebestornothing.github.io/zh-CN/changelog/3.2.0#rocket-new-feature" class="hash-link" aria-label="🚀 New Feature的直接链接" title="🚀 New Feature的直接链接">​</a></h2>
+            <content:encoded><![CDATA[<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="rocket-new-feature">🚀 New Feature<a href="https://coinsgpt.github.io/zh-CN/changelog/3.2.0#rocket-new-feature" class="hash-link" aria-label="🚀 New Feature的直接链接" title="🚀 New Feature的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus-plugin-content-blog</code>, <code>docusaurus-plugin-content-docs</code>, <code>docusaurus-plugin-content-pages</code>, <code>docusaurus-plugin-sitemap</code>, <code>docusaurus-types</code>, <code>docusaurus-utils</code>, <code>docusaurus</code>
 <ul>
@@ -1242,7 +1242,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="bug-bug-fix">🐛 Bug Fix<a href="https://thebestornothing.github.io/zh-CN/changelog/3.2.0#bug-bug-fix" class="hash-link" aria-label="🐛 Bug Fix的直接链接" title="🐛 Bug Fix的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="bug-bug-fix">🐛 Bug Fix<a href="https://coinsgpt.github.io/zh-CN/changelog/3.2.0#bug-bug-fix" class="hash-link" aria-label="🐛 Bug Fix的直接链接" title="🐛 Bug Fix的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus-mdx-loader</code>
 <ul>
@@ -1294,7 +1294,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="running-performance">:running: Performance<a href="https://thebestornothing.github.io/zh-CN/changelog/3.2.0#running-performance" class="hash-link" aria-label=":running: Performance的直接链接" title=":running: Performance的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="running-performance">:running: Performance<a href="https://coinsgpt.github.io/zh-CN/changelog/3.2.0#running-performance" class="hash-link" aria-label=":running: Performance的直接链接" title=":running: Performance的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus-types</code>, <code>docusaurus-utils</code>, <code>docusaurus</code>
 <ul>
@@ -1322,7 +1322,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="nail_care-polish">💅 Polish<a href="https://thebestornothing.github.io/zh-CN/changelog/3.2.0#nail_care-polish" class="hash-link" aria-label="💅 Polish的直接链接" title="💅 Polish的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="nail_care-polish">💅 Polish<a href="https://coinsgpt.github.io/zh-CN/changelog/3.2.0#nail_care-polish" class="hash-link" aria-label="💅 Polish的直接链接" title="💅 Polish的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus-plugin-content-blog</code>, <code>docusaurus-plugin-content-docs</code>, <code>docusaurus-theme-classic</code>, <code>docusaurus-theme-common</code>
 <ul>
@@ -1340,7 +1340,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="memo-documentation">📝 Documentation<a href="https://thebestornothing.github.io/zh-CN/changelog/3.2.0#memo-documentation" class="hash-link" aria-label="📝 Documentation的直接链接" title="📝 Documentation的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="memo-documentation">📝 Documentation<a href="https://coinsgpt.github.io/zh-CN/changelog/3.2.0#memo-documentation" class="hash-link" aria-label="📝 Documentation的直接链接" title="📝 Documentation的直接链接">​</a></h2>
 <ul>
 <li><a href="https://github.com/facebook/docusaurus/pull/9937" target="_blank" rel="noopener noreferrer">#9937</a> docs: use official GitHub Action to deploy to GitHub Pages (<a href="https://github.com/vlad-nestorov" target="_blank" rel="noopener noreferrer">@vlad-nestorov</a>)</li>
 <li><a href="https://github.com/facebook/docusaurus/pull/9971" target="_blank" rel="noopener noreferrer">#9971</a> docs: replace VuePress by VitePress on tool comparison section (<a href="https://github.com/sunkanmii" target="_blank" rel="noopener noreferrer">@sunkanmii</a>)</li>
@@ -1351,7 +1351,7 @@
 <li><a href="https://github.com/facebook/docusaurus/pull/9845" target="_blank" rel="noopener noreferrer">#9845</a> docs: typo (<a href="https://github.com/OzakIOne" target="_blank" rel="noopener noreferrer">@OzakIOne</a>)</li>
 <li><a href="https://github.com/facebook/docusaurus/pull/9816" target="_blank" rel="noopener noreferrer">#9816</a> docs: Add docs for Mermaid Component (<a href="https://github.com/Its-Just-Nans" target="_blank" rel="noopener noreferrer">@Its-Just-Nans</a>)</li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="robot-dependencies">🤖 Dependencies<a href="https://thebestornothing.github.io/zh-CN/changelog/3.2.0#robot-dependencies" class="hash-link" aria-label="🤖 Dependencies的直接链接" title="🤖 Dependencies的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="robot-dependencies">🤖 Dependencies<a href="https://coinsgpt.github.io/zh-CN/changelog/3.2.0#robot-dependencies" class="hash-link" aria-label="🤖 Dependencies的直接链接" title="🤖 Dependencies的直接链接">​</a></h2>
 <ul>
 <li><a href="https://github.com/facebook/docusaurus/pull/9981" target="_blank" rel="noopener noreferrer">#9981</a> chore(deps): bump actions/dependency-review-action from 4.1.3 to 4.2.4 (<a href="https://github.com/apps/dependabot" target="_blank" rel="noopener noreferrer">@dependabot[bot]</a>)</li>
 <li><a href="https://github.com/facebook/docusaurus/pull/9982" target="_blank" rel="noopener noreferrer">#9982</a> chore(deps): bump katex from 0.16.8 to 0.16.10 (<a href="https://github.com/apps/dependabot" target="_blank" rel="noopener noreferrer">@dependabot[bot]</a>)</li>
@@ -1365,7 +1365,7 @@
 <li><a href="https://github.com/facebook/docusaurus/pull/9824" target="_blank" rel="noopener noreferrer">#9824</a> chore(deps): bump treosh/lighthouse-ci-action from 10.1.0 to 11.4.0 (<a href="https://github.com/apps/dependabot" target="_blank" rel="noopener noreferrer">@dependabot[bot]</a>)</li>
 <li><a href="https://github.com/facebook/docusaurus/pull/9823" target="_blank" rel="noopener noreferrer">#9823</a> chore(deps): bump marocchino/sticky-pull-request-comment from 2.8.0 to 2.9.0 (<a href="https://github.com/apps/dependabot" target="_blank" rel="noopener noreferrer">@dependabot[bot]</a>)</li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="wrench-maintenance">🔧 Maintenance<a href="https://thebestornothing.github.io/zh-CN/changelog/3.2.0#wrench-maintenance" class="hash-link" aria-label="🔧 Maintenance的直接链接" title="🔧 Maintenance的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="wrench-maintenance">🔧 Maintenance<a href="https://coinsgpt.github.io/zh-CN/changelog/3.2.0#wrench-maintenance" class="hash-link" aria-label="🔧 Maintenance的直接链接" title="🔧 Maintenance的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus-plugin-client-redirects</code>, <code>docusaurus-plugin-content-docs</code>, <code>docusaurus-utils-common</code>, <code>docusaurus-utils-validation</code>, <code>docusaurus-utils</code>, <code>docusaurus</code>
 <ul>
@@ -1384,7 +1384,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="committers-22">Committers: 22<a href="https://thebestornothing.github.io/zh-CN/changelog/3.2.0#committers-22" class="hash-link" aria-label="Committers: 22的直接链接" title="Committers: 22的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="committers-22">Committers: 22<a href="https://coinsgpt.github.io/zh-CN/changelog/3.2.0#committers-22" class="hash-link" aria-label="Committers: 22的直接链接" title="Committers: 22的直接链接">​</a></h2>
 <ul>
 <li>Aolin (<a href="https://github.com/Oreoxmt" target="_blank" rel="noopener noreferrer">@Oreoxmt</a>)</li>
 <li>Anatoly Kopyl (<a href="https://github.com/anatolykopyl" target="_blank" rel="noopener noreferrer">@anatolykopyl</a>)</li>
@@ -1412,11 +1412,11 @@
         </item>
         <item>
             <title><![CDATA[3.1.1]]></title>
-            <link>https://thebestornothing.github.io/zh-CN/changelog/3.1.1</link>
-            <guid>https://thebestornothing.github.io/zh-CN/changelog/3.1.1</guid>
+            <link>https://coinsgpt.github.io/zh-CN/changelog/3.1.1</link>
+            <guid>https://coinsgpt.github.io/zh-CN/changelog/3.1.1</guid>
             <pubDate>Fri, 26 Jan 2024 20:00:00 GMT</pubDate>
             <description><![CDATA[Bug Fix]]></description>
-            <content:encoded><![CDATA[<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="bug-bug-fix">🐛 Bug Fix<a href="https://thebestornothing.github.io/zh-CN/changelog/3.1.1#bug-bug-fix" class="hash-link" aria-label="🐛 Bug Fix的直接链接" title="🐛 Bug Fix的直接链接">​</a></h2>
+            <content:encoded><![CDATA[<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="bug-bug-fix">🐛 Bug Fix<a href="https://coinsgpt.github.io/zh-CN/changelog/3.1.1#bug-bug-fix" class="hash-link" aria-label="🐛 Bug Fix的直接链接" title="🐛 Bug Fix的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus-types</code>, <code>docusaurus</code>
 <ul>
@@ -1455,7 +1455,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="running-performance">:running: Performance<a href="https://thebestornothing.github.io/zh-CN/changelog/3.1.1#running-performance" class="hash-link" aria-label=":running: Performance的直接链接" title=":running: Performance的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="running-performance">:running: Performance<a href="https://coinsgpt.github.io/zh-CN/changelog/3.1.1#running-performance" class="hash-link" aria-label=":running: Performance的直接链接" title=":running: Performance的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus</code>
 <ul>
@@ -1463,7 +1463,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="nail_care-polish">💅 Polish<a href="https://thebestornothing.github.io/zh-CN/changelog/3.1.1#nail_care-polish" class="hash-link" aria-label="💅 Polish的直接链接" title="💅 Polish的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="nail_care-polish">💅 Polish<a href="https://coinsgpt.github.io/zh-CN/changelog/3.1.1#nail_care-polish" class="hash-link" aria-label="💅 Polish的直接链接" title="💅 Polish的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus-theme-classic</code>
 <ul>
@@ -1471,7 +1471,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="committers-6">Committers: 6<a href="https://thebestornothing.github.io/zh-CN/changelog/3.1.1#committers-6" class="hash-link" aria-label="Committers: 6的直接链接" title="Committers: 6的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="committers-6">Committers: 6<a href="https://coinsgpt.github.io/zh-CN/changelog/3.1.1#committers-6" class="hash-link" aria-label="Committers: 6的直接链接" title="Committers: 6的直接链接">​</a></h2>
 <ul>
 <li>Jack Robson (<a href="https://github.com/jack-robson" target="_blank" rel="noopener noreferrer">@jack-robson</a>)</li>
 <li>Sanjaiyan Parthipan (<a href="https://github.com/sanjaiyan-dev" target="_blank" rel="noopener noreferrer">@sanjaiyan-dev</a>)</li>
@@ -1483,11 +1483,11 @@
         </item>
         <item>
             <title><![CDATA[3.1.0]]></title>
-            <link>https://thebestornothing.github.io/zh-CN/changelog/3.1.0</link>
-            <guid>https://thebestornothing.github.io/zh-CN/changelog/3.1.0</guid>
+            <link>https://coinsgpt.github.io/zh-CN/changelog/3.1.0</link>
+            <guid>https://coinsgpt.github.io/zh-CN/changelog/3.1.0</guid>
             <pubDate>Fri, 05 Jan 2024 20:00:00 GMT</pubDate>
             <description><![CDATA[New Feature]]></description>
-            <content:encoded><![CDATA[<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="rocket-new-feature">🚀 New Feature<a href="https://thebestornothing.github.io/zh-CN/changelog/3.1.0#rocket-new-feature" class="hash-link" aria-label="🚀 New Feature的直接链接" title="🚀 New Feature的直接链接">​</a></h2>
+            <content:encoded><![CDATA[<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="rocket-new-feature">🚀 New Feature<a href="https://coinsgpt.github.io/zh-CN/changelog/3.1.0#rocket-new-feature" class="hash-link" aria-label="🚀 New Feature的直接链接" title="🚀 New Feature的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus-mdx-loader</code>, <code>docusaurus-module-type-aliases</code>, <code>docusaurus-theme-classic</code>, <code>docusaurus-types</code>, <code>docusaurus-utils</code>, <code>docusaurus</code>
 <ul>
@@ -1515,7 +1515,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="bug-bug-fix">🐛 Bug Fix<a href="https://thebestornothing.github.io/zh-CN/changelog/3.1.0#bug-bug-fix" class="hash-link" aria-label="🐛 Bug Fix的直接链接" title="🐛 Bug Fix的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="bug-bug-fix">🐛 Bug Fix<a href="https://coinsgpt.github.io/zh-CN/changelog/3.1.0#bug-bug-fix" class="hash-link" aria-label="🐛 Bug Fix的直接链接" title="🐛 Bug Fix的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus-theme-classic</code>, <code>docusaurus-theme-live-codeblock</code>
 <ul>
@@ -1563,7 +1563,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="nail_care-polish">💅 Polish<a href="https://thebestornothing.github.io/zh-CN/changelog/3.1.0#nail_care-polish" class="hash-link" aria-label="💅 Polish的直接链接" title="💅 Polish的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="nail_care-polish">💅 Polish<a href="https://coinsgpt.github.io/zh-CN/changelog/3.1.0#nail_care-polish" class="hash-link" aria-label="💅 Polish的直接链接" title="💅 Polish的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus-theme-common</code>
 <ul>
@@ -1571,7 +1571,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="wrench-maintenance">🔧 Maintenance<a href="https://thebestornothing.github.io/zh-CN/changelog/3.1.0#wrench-maintenance" class="hash-link" aria-label="🔧 Maintenance的直接链接" title="🔧 Maintenance的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="wrench-maintenance">🔧 Maintenance<a href="https://coinsgpt.github.io/zh-CN/changelog/3.1.0#wrench-maintenance" class="hash-link" aria-label="🔧 Maintenance的直接链接" title="🔧 Maintenance的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus-theme-search-algolia</code>
 <ul>
@@ -1579,7 +1579,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="committers-8">Committers: 8<a href="https://thebestornothing.github.io/zh-CN/changelog/3.1.0#committers-8" class="hash-link" aria-label="Committers: 8的直接链接" title="Committers: 8的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="committers-8">Committers: 8<a href="https://coinsgpt.github.io/zh-CN/changelog/3.1.0#committers-8" class="hash-link" aria-label="Committers: 8的直接链接" title="Committers: 8的直接链接">​</a></h2>
 <ul>
 <li>Janessa Garrow (<a href="https://github.com/jgarrow" target="_blank" rel="noopener noreferrer">@jgarrow</a>)</li>
 <li>Joshua Chen (<a href="https://github.com/Josh-Cena" target="_blank" rel="noopener noreferrer">@Josh-Cena</a>)</li>
@@ -1593,11 +1593,11 @@
         </item>
         <item>
             <title><![CDATA[3.0.1]]></title>
-            <link>https://thebestornothing.github.io/zh-CN/changelog/3.0.1</link>
-            <guid>https://thebestornothing.github.io/zh-CN/changelog/3.0.1</guid>
+            <link>https://coinsgpt.github.io/zh-CN/changelog/3.0.1</link>
+            <guid>https://coinsgpt.github.io/zh-CN/changelog/3.0.1</guid>
             <pubDate>Thu, 30 Nov 2023 20:00:00 GMT</pubDate>
             <description><![CDATA[Bug Fix]]></description>
-            <content:encoded><![CDATA[<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="bug-bug-fix">🐛 Bug Fix<a href="https://thebestornothing.github.io/zh-CN/changelog/3.0.1#bug-bug-fix" class="hash-link" aria-label="🐛 Bug Fix的直接链接" title="🐛 Bug Fix的直接链接">​</a></h2>
+            <content:encoded><![CDATA[<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="bug-bug-fix">🐛 Bug Fix<a href="https://coinsgpt.github.io/zh-CN/changelog/3.0.1#bug-bug-fix" class="hash-link" aria-label="🐛 Bug Fix的直接链接" title="🐛 Bug Fix的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus-utils</code>
 <ul>
@@ -1626,7 +1626,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="robot-dependencies">🤖 Dependencies<a href="https://thebestornothing.github.io/zh-CN/changelog/3.0.1#robot-dependencies" class="hash-link" aria-label="🤖 Dependencies的直接链接" title="🤖 Dependencies的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="robot-dependencies">🤖 Dependencies<a href="https://coinsgpt.github.io/zh-CN/changelog/3.0.1#robot-dependencies" class="hash-link" aria-label="🤖 Dependencies的直接链接" title="🤖 Dependencies的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus-plugin-debug</code>
 <ul>
@@ -1655,7 +1655,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="committers-6">Committers: 6<a href="https://thebestornothing.github.io/zh-CN/changelog/3.0.1#committers-6" class="hash-link" aria-label="Committers: 6的直接链接" title="Committers: 6的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="committers-6">Committers: 6<a href="https://coinsgpt.github.io/zh-CN/changelog/3.0.1#committers-6" class="hash-link" aria-label="Committers: 6的直接链接" title="Committers: 6的直接链接">​</a></h2>
 <ul>
 <li>Chongyi Zheng (<a href="https://github.com/harryzcy" target="_blank" rel="noopener noreferrer">@harryzcy</a>)</li>
 <li>MCR Studio (<a href="https://github.com/mcrstudio" target="_blank" rel="noopener noreferrer">@mcrstudio</a>)</li>
@@ -1667,11 +1667,11 @@
         </item>
         <item>
             <title><![CDATA[3.0.0]]></title>
-            <link>https://thebestornothing.github.io/zh-CN/changelog/3.0.0</link>
-            <guid>https://thebestornothing.github.io/zh-CN/changelog/3.0.0</guid>
+            <link>https://coinsgpt.github.io/zh-CN/changelog/3.0.0</link>
+            <guid>https://coinsgpt.github.io/zh-CN/changelog/3.0.0</guid>
             <pubDate>Tue, 31 Oct 2023 20:00:00 GMT</pubDate>
             <description><![CDATA[Breaking Change]]></description>
-            <content:encoded><![CDATA[<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="boom-breaking-change">💥 Breaking Change<a href="https://thebestornothing.github.io/zh-CN/changelog/3.0.0#boom-breaking-change" class="hash-link" aria-label="💥 Breaking Change的直接链接" title="💥 Breaking Change的直接链接">​</a></h2>
+            <content:encoded><![CDATA[<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="boom-breaking-change">💥 Breaking Change<a href="https://coinsgpt.github.io/zh-CN/changelog/3.0.0#boom-breaking-change" class="hash-link" aria-label="💥 Breaking Change的直接链接" title="💥 Breaking Change的直接链接">​</a></h2>
 <ul>
 <li><code>create-docusaurus</code>, <code>docusaurus-mdx-loader</code>, <code>docusaurus-plugin-content-blog</code>, <code>docusaurus-remark-plugin-npm2yarn</code>, <code>docusaurus-theme-classic</code>
 <ul>
@@ -1744,7 +1744,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="rocket-new-feature">🚀 New Feature<a href="https://thebestornothing.github.io/zh-CN/changelog/3.0.0#rocket-new-feature" class="hash-link" aria-label="🚀 New Feature的直接链接" title="🚀 New Feature的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="rocket-new-feature">🚀 New Feature<a href="https://coinsgpt.github.io/zh-CN/changelog/3.0.0#rocket-new-feature" class="hash-link" aria-label="🚀 New Feature的直接链接" title="🚀 New Feature的直接链接">​</a></h2>
 <ul>
 <li><code>create-docusaurus</code>, <code>docusaurus-mdx-loader</code>, <code>docusaurus-plugin-content-blog</code>, <code>docusaurus-remark-plugin-npm2yarn</code>, <code>docusaurus-theme-classic</code>
 <ul>
@@ -1845,7 +1845,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="bug-bug-fix">🐛 Bug Fix<a href="https://thebestornothing.github.io/zh-CN/changelog/3.0.0#bug-bug-fix" class="hash-link" aria-label="🐛 Bug Fix的直接链接" title="🐛 Bug Fix的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="bug-bug-fix">🐛 Bug Fix<a href="https://coinsgpt.github.io/zh-CN/changelog/3.0.0#bug-bug-fix" class="hash-link" aria-label="🐛 Bug Fix的直接链接" title="🐛 Bug Fix的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus-theme-common</code>
 <ul>
@@ -1967,7 +1967,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="running-performance">:running: Performance<a href="https://thebestornothing.github.io/zh-CN/changelog/3.0.0#running-performance" class="hash-link" aria-label=":running: Performance的直接链接" title=":running: Performance的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="running-performance">:running: Performance<a href="https://coinsgpt.github.io/zh-CN/changelog/3.0.0#running-performance" class="hash-link" aria-label=":running: Performance的直接链接" title=":running: Performance的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus</code>
 <ul>
@@ -1981,7 +1981,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="nail_care-polish">💅 Polish<a href="https://thebestornothing.github.io/zh-CN/changelog/3.0.0#nail_care-polish" class="hash-link" aria-label="💅 Polish的直接链接" title="💅 Polish的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="nail_care-polish">💅 Polish<a href="https://coinsgpt.github.io/zh-CN/changelog/3.0.0#nail_care-polish" class="hash-link" aria-label="💅 Polish的直接链接" title="💅 Polish的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus-theme-classic</code>
 <ul>
@@ -2021,7 +2021,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="memo-documentation">📝 Documentation<a href="https://thebestornothing.github.io/zh-CN/changelog/3.0.0#memo-documentation" class="hash-link" aria-label="📝 Documentation的直接链接" title="📝 Documentation的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="memo-documentation">📝 Documentation<a href="https://coinsgpt.github.io/zh-CN/changelog/3.0.0#memo-documentation" class="hash-link" aria-label="📝 Documentation的直接链接" title="📝 Documentation的直接链接">​</a></h2>
 <ul>
 <li>Other
 <ul>
@@ -2139,7 +2139,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="robot-dependencies">🤖 Dependencies<a href="https://thebestornothing.github.io/zh-CN/changelog/3.0.0#robot-dependencies" class="hash-link" aria-label="🤖 Dependencies的直接链接" title="🤖 Dependencies的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="robot-dependencies">🤖 Dependencies<a href="https://coinsgpt.github.io/zh-CN/changelog/3.0.0#robot-dependencies" class="hash-link" aria-label="🤖 Dependencies的直接链接" title="🤖 Dependencies的直接链接">​</a></h2>
 <ul>
 <li>Other
 <ul>
@@ -2264,7 +2264,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="wrench-maintenance">🔧 Maintenance<a href="https://thebestornothing.github.io/zh-CN/changelog/3.0.0#wrench-maintenance" class="hash-link" aria-label="🔧 Maintenance的直接链接" title="🔧 Maintenance的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="wrench-maintenance">🔧 Maintenance<a href="https://coinsgpt.github.io/zh-CN/changelog/3.0.0#wrench-maintenance" class="hash-link" aria-label="🔧 Maintenance的直接链接" title="🔧 Maintenance的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus-migrate</code>
 <ul>
@@ -2310,7 +2310,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="committers-132">Committers: 132<a href="https://thebestornothing.github.io/zh-CN/changelog/3.0.0#committers-132" class="hash-link" aria-label="Committers: 132的直接链接" title="Committers: 132的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="committers-132">Committers: 132<a href="https://coinsgpt.github.io/zh-CN/changelog/3.0.0#committers-132" class="hash-link" aria-label="Committers: 132的直接链接" title="Committers: 132的直接链接">​</a></h2>
 <ul>
 <li>0x24Karthick (<a href="https://github.com/KarthickSakthi" target="_blank" rel="noopener noreferrer">@KarthickSakthi</a>)</li>
 <li>Abhinandan Wadhwa (<a href="https://github.com/abhinandanwadwa" target="_blank" rel="noopener noreferrer">@abhinandanwadwa</a>)</li>
@@ -2448,11 +2448,11 @@
         </item>
         <item>
             <title><![CDATA[2.4.3]]></title>
-            <link>https://thebestornothing.github.io/zh-CN/changelog/2.4.3</link>
-            <guid>https://thebestornothing.github.io/zh-CN/changelog/2.4.3</guid>
+            <link>https://coinsgpt.github.io/zh-CN/changelog/2.4.3</link>
+            <guid>https://coinsgpt.github.io/zh-CN/changelog/2.4.3</guid>
             <pubDate>Wed, 20 Sep 2023 20:00:00 GMT</pubDate>
             <description><![CDATA[Bug Fix]]></description>
-            <content:encoded><![CDATA[<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="bug-bug-fix">🐛 Bug Fix<a href="https://thebestornothing.github.io/zh-CN/changelog/2.4.3#bug-bug-fix" class="hash-link" aria-label="🐛 Bug Fix的直接链接" title="🐛 Bug Fix的直接链接">​</a></h2>
+            <content:encoded><![CDATA[<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="bug-bug-fix">🐛 Bug Fix<a href="https://coinsgpt.github.io/zh-CN/changelog/2.4.3#bug-bug-fix" class="hash-link" aria-label="🐛 Bug Fix的直接链接" title="🐛 Bug Fix的直接链接">​</a></h2>
 <ul>
 <li><code>docusaurus-plugin-content-docs</code>
 <ul>
@@ -2472,7 +2472,7 @@
 </ul>
 </li>
 </ul>
-<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="committers-4">Committers: 4<a href="https://thebestornothing.github.io/zh-CN/changelog/2.4.3#committers-4" class="hash-link" aria-label="Committers: 4的直接链接" title="Committers: 4的直接链接">​</a></h2>
+<h2 class="anchor anchorWithHideOnScrollNavbar_SSbb" id="committers-4">Committers: 4<a href="https://coinsgpt.github.io/zh-CN/changelog/2.4.3#committers-4" class="hash-link" aria-label="Committers: 4的直接链接" title="Committers: 4的直接链接">​</a></h2>
 <ul>
 <li>Mikey O'Toole (<a href="https://github.com/homotechsual" target="_blank" rel="noopener noreferrer">@homotechsual</a>)</li>
 <li>Ori Shalom (<a href="https://github.com/ori-shalom" target="_blank" rel="noopener noreferrer">@ori-shalom</a>)</li>
@@ -2482,8 +2482,8 @@
         </item>
         <item>
             <title><![CDATA[2.4.2]]></title>
-            <link>https://thebestornothing.github.io/zh-CN/changelog/2.4.2</link>
-            <guid>https://thebestornothing.github.io/zh-CN/changelog/2.4.2</guid>
+            <link>https://coinsgpt.github.io/zh-CN/changelog/2.4.2</link>
+            <guid>https://coinsgpt.github.io/zh-CN/changelog/2.4.2</guid>
             <pubDate>Wed, 20 Sep 2023 19:00:00 GMT</pubDate>
             <description><![CDATA[Bad npm publish, please use 2.4.3]]></description>
             <content:encoded><![CDATA[<p>Bad npm publish, please use 2.4.3</p>]]></content:encoded>
