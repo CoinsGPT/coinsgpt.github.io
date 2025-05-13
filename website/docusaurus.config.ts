@@ -157,11 +157,11 @@ export default async function createConfigAsync() {
   return {
     title: 'CoinsGPT',
     tagline: getLocalizedConfigValue('tagline'),
-    organizationName: 'TheBestOrNothing',
-    projectName: 'thebestornothing.github.io',
+    organizationName: 'CoinsGPT',
+    projectName: 'coinsgpt.github.io',
     baseUrl,
     baseUrlIssueBanner: true,
-    url: 'https://thebestornothing.github.io',
+    url: 'https://coinsgpt.github.io',
     future: {
       v4: !isSlower, // Not accurate, but good enough
       experimental_faster: !isSlower,
@@ -315,7 +315,7 @@ export default async function createConfigAsync() {
             if (locale !== defaultLocale) {
               return `https://crowdin.com/project/docusaurus-v2/${locale}`;
             }
-            return `https://github.com/TheBestOrNothing/thebestornothing.github.io/edit/main/website/${versionDocsDirPath}/${docPath}`;
+            return `https://github.com/coinsgpt/coinsgpt.github.io/edit/main/website/${versionDocsDirPath}/${docPath}`;
           },
           remarkPlugins: [npm2yarn],
           editCurrentVersion: true,
@@ -450,7 +450,7 @@ export default async function createConfigAsync() {
               // We want users to submit updates to the upstream/next version!
               // Otherwise we risk losing the update on the next release.
               const nextVersionDocsDirPath = 'docs';
-              return `https://github.com/TheBestOrNothing/thebestornothing.github.io/edit/main/website/${nextVersionDocsDirPath}/${docPath}`;
+              return `https://github.com/coinsgpt/coinsgpt.github.io/edit/main/website/${nextVersionDocsDirPath}/${docPath}`;
             },
             admonitions: {
               keywords: ['my-custom-admonition'],
@@ -495,7 +495,7 @@ export default async function createConfigAsync() {
               if (locale !== defaultLocale) {
                 return `https://crowdin.com/project/docusaurus-v2/${locale}`;
               }
-              return `https://github.com/TheBestOrNothing/thebestornothing.github.io/edit/main/website/${blogDirPath}/${blogPath}`;
+              return `https://github.com/coinsgpt/coinsgpt.github.io/edit/main/website/${blogDirPath}/${blogPath}`;
             },
             remarkPlugins: [npm2yarn],
             postsPerPage: 5,
@@ -525,7 +525,7 @@ export default async function createConfigAsync() {
               if (locale !== defaultLocale) {
                 return `https://crowdin.com/project/docusaurus-v2/${locale}`;
               }
-              return `https://github.com/TheBestOrNothing/thebestornothing.github.io/edit/main/website/src/pages/${pagesPath}`;
+              return `https://github.com/coinsgpt/coinsgpt.github.io/edit/main/website/src/pages/${pagesPath}`;
             },
             showLastUpdateAuthor: true,
             showLastUpdateTime: true,
@@ -577,7 +577,7 @@ export default async function createConfigAsync() {
       },
       announcementBar: {
         id: `announcementBar-v${announcedVersion}`,
-        // content: `⭐️ If you like Docusaurus, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/TheBestOrNothing/thebestornothing.github.io">GitHub</a> and follow us on <a target="_blank" rel="noopener noreferrer" href="https://x.com/docusaurus">X ${TwitterSvg}</a>`,
+        // content: `⭐️ If you like Docusaurus, give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/coinsgpt/coinsgpt.github.io">GitHub</a> and follow us on <a target="_blank" rel="noopener noreferrer" href="https://x.com/docusaurus">X ${TwitterSvg}</a>`,
         content: `🎉️ <b><a target="_blank" href="https://docusaurus.io/blog/releases/${announcedVersion}">Docusaurus v${announcedVersion}</a> is out!</b> 🥳️`,
       },
       prism: {
@@ -721,7 +721,7 @@ export default async function createConfigAsync() {
             ],
           },
           {
-            href: 'https://github.com/TheBestOrNothing/thebestornothing.github.io',
+            href: 'https://github.com/coinsgpt/coinsgpt.github.io',
             position: 'right',
             className: 'header-github-link',
             'aria-label': 'GitHub repository',
@@ -786,7 +786,7 @@ export default async function createConfigAsync() {
               },
               {
                 label: 'GitHub',
-                href: 'https://github.com/TheBestOrNothing/thebestornothing.github.io',
+                href: 'https://github.com/coinsgpt/coinsgpt.github.io',
               },
               {
                 label: 'X',
