@@ -5,7 +5,7 @@ In this guide, we’ll simulate a use case for managing Bitcoin-related streamin
 
 ---
 
-## 🚀 Scenario: Stream Bitcoin Blocks and Transactions
+## Scenario: Stream Bitcoin Blocks and Transactions
 
 You’re building a Kafka-based data pipeline for Bitcoin. You’ll:
 
@@ -17,7 +17,7 @@ You’re building a Kafka-based data pipeline for Bitcoin. You’ll:
 
 ---
 
-## ✅ 1. Create Kafka Topics
+## 1. Create Kafka Topics
 
 Topics are the core abstraction for message streams. You create them using `kafka-topics.sh`.
 
@@ -41,7 +41,7 @@ kafka-topics.sh \
   --replication-factor 1
 ```
 
-### 🔍 Verify that the topics were created:
+Verify that the topics were created:
 
 ```bash
 # List all existing Kafka topics
@@ -52,9 +52,9 @@ kafka-topics.sh \
 
 ---
 
-## ✅ 2. Produce and Consume Messages
+## 2. Produce and Consume Messages
 
-### 🔄 Produce messages into a topic:
+Produce messages into a topic:
 
 ```bash
 # Start a producer to the 'transactions' topic
@@ -65,7 +65,7 @@ kafka-console-producer.sh \
 
 Type messages in the terminal after this command runs.
 
-### 📥 Consume messages from the beginning:
+Consume messages from the beginning:
 
 ```bash
 # Start a consumer to read all messages from the beginning of the topic
@@ -77,7 +77,7 @@ kafka-console-consumer.sh \
 
 ---
 
-## ✅ 3. Create and Use Consumer Groups
+## 3. Create and Use Consumer Groups
 
 Consumer groups are created **implicitly** when a consumer subscribes to a topic with a unique `--group`.
 
@@ -101,9 +101,9 @@ Now the group `bitcoin-group` is created and tracks offsets for each consumer.
 
 ---
 
-## ✅ 4. Monitor Consumer Groups
+## 4. Monitor Consumer Groups
 
-### 📋 List all consumer groups:
+List all consumer groups:
 
 ```bash
 kafka-consumer-groups.sh \
@@ -111,7 +111,7 @@ kafka-consumer-groups.sh \
   --list
 ```
 
-### 📊 Describe group state (offsets, lag, assignments):
+Describe group state (offsets, lag, assignments):
 
 ```bash
 kafka-consumer-groups.sh \
@@ -120,7 +120,7 @@ kafka-consumer-groups.sh \
   --bootstrap-server localhost:9092
 ```
 
-#### 🧾 Sample Output:
+Sample Output:
 
 ```
 TOPIC       PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG  CONSUMER-ID     HOST             CLIENT-ID
@@ -130,7 +130,7 @@ transactions 1         110             140             30   consumer-1-xyz  /192
 
 ---
 
-## ✅ 5. Configure Log Retention (to prevent disk overflow)
+## 5. Configure Log Retention (to prevent disk overflow)
 
 You can configure how long Kafka retains messages or how much disk space it uses per topic.
 
@@ -154,7 +154,7 @@ kafka-configs.sh \
   --add-config retention.ms=86400000,retention.bytes=1073741824,cleanup.policy=delete
 ```
 
-### 🧠 Explanation:
+Explanation:
 
 * `retention.ms=86400000`: retain messages for 1 day.
 * `retention.bytes=1073741824`: max 1 GB per partition.
@@ -164,7 +164,7 @@ kafka-configs.sh \
 
 ---
 
-## ✅ 6. Describe a Kafka Topic (to check configs)
+## 6. Describe a Kafka Topic (to check configs)
 
 ```bash
 # View details of the 'transactions' topic
@@ -176,7 +176,7 @@ kafka-topics.sh \
 
 ---
 
-## 📌 Summary
+## Summary
 
 | Task                      | Command                                                |
 | ------------------------- | ------------------------------------------------------ |
@@ -191,5 +191,3 @@ kafka-topics.sh \
 | Configure topic retention | `kafka-configs.sh --alter --add-config`                |
 
 ---
-
-Let me know if you’d like a **visual diagram** or an **automated script** to initialize everything!

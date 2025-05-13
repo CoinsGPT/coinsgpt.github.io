@@ -2,11 +2,9 @@
 
 ---
 
-## 🔧 1. **Enable Pruned Mode** (to save disk space)
+## 1. **Enable Pruned Mode** (to save disk space)
 
-Pruned mode keeps only the latest blocks to save storage.
-
-### Edit `bitcoin.conf`:
+Pruned mode keeps only the latest blocks to save storage. Edit `bitcoin.conf`:
 
 ```bash
 nano ~/.bitcoin/bitcoin.conf
@@ -22,11 +20,9 @@ prune=550  # Keep ~550 MB of recent blocks
 
 ---
 
-## 📡 2. **Enable ZMQ** (for real-time block and transaction stream)
+## 2. **Enable ZMQ** (for real-time block and transaction stream)
 
-ZMQ allows real-time access to new transactions and blocks.
-
-### In `bitcoin.conf`, add:
+ZMQ allows real-time access to new transactions and blocks. In `bitcoin.conf`, add:
 
 ```ini
 zmqpubrawblock=tcp://127.0.0.1:28333
@@ -42,11 +38,9 @@ You can subscribe using a Python library like `pyzmq` or `bitcoin-rpc`.
 
 ---
 
-## 🔐 3. **Enable Remote RPC Access** (if needed)
+## 3. **Enable Remote RPC Access** (if needed)
 
-If you want to connect to `bitcoind` remotely:
-
-### Edit `bitcoin.conf`:
+If you want to connect to `bitcoind` remotely: Edit `bitcoin.conf`:
 
 ```ini
 rpcbind=0.0.0.0
@@ -58,9 +52,7 @@ rpcport=8332
 
 ---
 
-## 🧪 4. **Test Your Setup**
-
-Run:
+## 4. **Test Your Setup**
 
 ```bash
 bitcoin-cli -rpcuser=bitcoinrpc -rpcpassword=strongpassword getblockchaininfo
@@ -74,7 +66,7 @@ bitcoin-cli -rpcconnect=YOUR_NODE_IP -rpcport=8332 ...
 
 ---
 
-## 📂 Bonus: Check ZMQ Events with Python (optional)
+## Bonus: Check ZMQ Events with Python (optional)
 
 Install Python dependencies:
 

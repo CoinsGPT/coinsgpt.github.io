@@ -5,7 +5,7 @@ Here's a step-by-step guide to setting up a full Bitcoin node (`bitcoind`) on Ub
 
 ---
 
-## ✅ Prerequisites
+## Prerequisites
 
 * **Operating System:** Ubuntu 22.04+ (64-bit recommended)
 * **Disk space:** ≥ **1 T** (preferably SSD)
@@ -15,7 +15,7 @@ Here's a step-by-step guide to setting up a full Bitcoin node (`bitcoind`) on Ub
 
 ---
 
-## 🧩 Step 1: Install Dependencies
+## 1: Install Dependencies
 
 Open your terminal and run:
 
@@ -25,7 +25,7 @@ sudo apt update
 
 ---
 
-## 📥 Step 2: Download and Install `bitcoind`
+## 2: Download and Install `bitcoind`
 
 ### Option A: Use Prebuilt Binaries (Recommended)
 
@@ -41,13 +41,9 @@ tar -xvf bitcoin-26.0-x86_64-linux-gnu.tar.gz
 sudo install -m 0755 -o root -g root -t /usr/local/bin bitcoin-26.0/bin/*
 ```
 
-### Option B: Compile from Source (Advanced)
-
-Let me know if you prefer this and I’ll give exact steps.
-
 ---
 
-## ⚙️ Step 3: Configure Bitcoin Node
+## ️3: Configure Bitcoin Node
 
 Create a config directory and a basic config file:
 
@@ -72,7 +68,7 @@ You can add `prune=550` to save space by not storing full history (if not a full
 
 ---
 
-## 🚀 Step 4: Run `bitcoind`
+## 4: Run `bitcoind`
 
 ```bash
 bitcoind -daemon
@@ -86,7 +82,7 @@ bitcoin-cli getblockchaininfo
 
 ---
 
-## 📦 Optional: Enable at Boot
+## Optional: Enable at Boot
 
 To enable `bitcoind` to start on boot, create a systemd service:
 
@@ -124,5 +120,3 @@ sudo systemctl start bitcoind
 ```
 
 ---
-
-Would you like instructions on running it in **pruned mode**, setting up **ZMQ**, or enabling **RPC access** remotely?

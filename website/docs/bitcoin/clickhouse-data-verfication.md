@@ -1,3 +1,5 @@
+# Bitcoin Data Verification Process
+
 To **verify that Bitcoin block and transaction data is complete in ClickHouse**, you need to ensure:
 
 1. **No missing blocks**
@@ -7,9 +9,7 @@ To **verify that Bitcoin block and transaction data is complete in ClickHouse**,
 
 ---
 
-### Step-by-step Verification Process
-
-#### **1. Check block height continuity**
+## **1. Check block height continuity**
 
 Run this to detect missing block numbers:
 
@@ -33,7 +33,7 @@ If this query returns rows, those block numbers are missing.
 
 ---
 
-#### **2. Check for duplicate blocks**
+## **2. Check for duplicate blocks**
 
 Check for duplicate block numbers (heights):
 
@@ -53,7 +53,7 @@ OPTIMIZE TABLE blocks FINAL;
 ```
 ---
 
-#### **3. Check transaction consistency per block**
+## **3. Check transaction consistency per block**
 
 If your `blocks` table has a `transaction_count` field, compare it to actual transaction counts:
 
@@ -73,7 +73,7 @@ This checks if the number of transactions recorded in each block matches what’
 
 ---
 
-#### **4. Check for duplicate transactions**
+## **4. Check for duplicate transactions**
 
 ```sql
 SELECT hash, count() AS cnt
@@ -86,7 +86,7 @@ Again, this should return no rows.
 
 ---
 
-#### **5. Check block range coverage**
+## **5. Check block range coverage**
 
 Ensure your data starts from the genesis block (height = 0):
 
@@ -102,4 +102,3 @@ Expected:
 
 ---
 
-Would you like a script to automate these checks in one run?
