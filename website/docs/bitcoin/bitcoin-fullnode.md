@@ -5,8 +5,6 @@
 
 Here's a step-by-step guide to setting up a full Bitcoin node (`bitcoind`) on Ubuntu:
 
----
-
 ## Prerequisites
 
 * **Operating System:** Ubuntu 22.04+ (64-bit recommended)
@@ -15,7 +13,6 @@ Here's a step-by-step guide to setting up a full Bitcoin node (`bitcoind`) on Ub
 * **Internet connection:** No bandwidth limits; at least **50 GB/month**
 * **Open port:** `8333` for inbound connections (optional but recommended)
 
----
 
 ## 1: Install Dependencies
 
@@ -24,8 +21,6 @@ Open your terminal and run:
 ```bash
 sudo apt update
 ```
-
----
 
 ## 2: Download and Install `bitcoind`
 
@@ -73,8 +68,6 @@ Check status:
 ```bash
 bitcoin-cli getblockchaininfo
 ```
-
----
 
 ## Optional: Enable at Boot
 

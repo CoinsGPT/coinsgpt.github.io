@@ -12,7 +12,6 @@ Here's a professional and concise summary of the changes introduced in [commit `
 **Author:** [@amitrahav](https://github.com/amitrahav)
 **Purpose:** Enable streaming of parsed Bitcoin data (blocks and transactions) directly to Apache Kafka topics.
 
----
 
 ## Key Additions
 

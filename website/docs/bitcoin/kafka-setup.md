@@ -52,8 +52,6 @@ kafka-topics.sh \
   --bootstrap-server localhost:9092
 ```
 
----
-
 ## 2. Produce and Consume Messages
 
 Produce messages into a topic:
@@ -76,8 +74,6 @@ kafka-console-consumer.sh \
   --from-beginning \
   --bootstrap-server localhost:9092
 ```
-
----
 
 ## 3. Create and Use Consumer Groups
 
@@ -130,8 +126,6 @@ blocks      0          120             150             30   consumer-1-xyz  /192
 transactions 1         110             140             30   consumer-1-xyz  /192.168.0.2     consumer-1
 ```
 
----
-
 ## 5. Configure Log Retention (to prevent disk overflow)
 
 You can configure how long Kafka retains messages or how much disk space it uses per topic.
@@ -164,8 +158,6 @@ Explanation:
 
 > Kafka will delete log segments when **either** of the conditions is met.
 
----
-
 ## 6. Describe a Kafka Topic (to check configs)
 
 ```bash
@@ -175,8 +167,6 @@ kafka-topics.sh \
   --topic transactions \
   --bootstrap-server localhost:9092
 ```
-
----
 
 ## Summary
 
@@ -192,4 +182,3 @@ kafka-topics.sh \
 | Describe consumer group   | `kafka-consumer-groups.sh --describe --group my-group` |
 | Configure topic retention | `kafka-configs.sh --alter --add-config`                |
 
----

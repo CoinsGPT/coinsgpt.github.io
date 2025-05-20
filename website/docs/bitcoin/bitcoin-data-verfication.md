@@ -7,8 +7,6 @@ To **verify that Bitcoin block and transaction data is complete in ClickHouse**,
 3. **No duplicate block heights**
 4. **Transaction counts match block metadata**
 
----
-
 ## **1. block height continuity**
 
 Run this to detect missing block numbers:
@@ -27,11 +25,8 @@ FROM seq
 LEFT JOIN blocks AS b ON seq.number = b.number
 WHERE b.number != seq.number
 
-```
-
 If this query returns rows, those block numbers are missing.
 
----
 
 ## **2. Check for duplicate blocks**
 
@@ -51,7 +46,6 @@ if the count of one block is bigger than 1, please use final command to deduplic
 ```shell
 OPTIMIZE TABLE blocks FINAL;
 ```
----
 
 ## **3. transaction consistency per block**
 
@@ -71,8 +65,6 @@ HAVING expected_count != actual_count
 
 This checks if the number of transactions recorded in each block matches what’s stored in the `transactions` table.
 
----
-
 ## **4. duplicate transactions**
 
 ```sql
@@ -83,8 +75,6 @@ HAVING cnt > 1
 ```
 
 Again, this should return no rows.
-
----
 
 ## **5. block range coverage**
 
@@ -100,5 +90,4 @@ Expected:
 * `max(number)` equals the current block height in the full node
 * `count()` equals `max - min + 1`
 
----
 
