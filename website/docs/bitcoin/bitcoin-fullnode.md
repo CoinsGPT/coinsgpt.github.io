@@ -3,7 +3,7 @@
 
 ![](/img/bitcoin/bitcoin_data_pipeline.png)
 
-Here's a step-by-step guide to setting up a full Bitcoin node (`bitcoind`) on Ubuntu:
+Here's a step-by-step guide to setting up a full Bitcoin node (bitcoind) on Ubuntu:
 
 ## Prerequisites
 
@@ -22,9 +22,8 @@ Open your terminal and run:
 sudo apt update
 ```
 
-## 2: Download and Install `bitcoind`
+## 2: Download and Install bitcoind
 
-### Option A: Use Prebuilt Binaries (Recommended)
 
 1. **Go to** [https://bitcoincore.org/en/download/](https://bitcoincore.org/en/download/)
 
@@ -57,7 +56,7 @@ rpcpassword=strongpassword
 rpcallowip=127.0.0.1
 ```
 
-## 4: Run `bitcoind`
+## 4: Run bitcoind
 
 ```bash
 bitcoind -daemon
@@ -71,7 +70,7 @@ bitcoin-cli getblockchaininfo
 
 ## Optional: Enable at Boot
 
-To enable `bitcoind` to start on boot, create a systemd service:
+To enable bitcoind to start on boot, create a systemd service:
 
 ```bash
 sudo nano /etc/systemd/system/bitcoind.service

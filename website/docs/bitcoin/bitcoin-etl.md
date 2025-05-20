@@ -5,7 +5,7 @@
 Here's a professional and concise summary of the changes introduced in [commit `42dd40d`](https://github.com/blockchain-etl/bitcoin-etl/pull/72/commits/42dd40d0255d243cc3bb9d5229b5b4087a638c37) to add Kafka export functionality to `bitcoin-etl`:
 
 
-## Summary: Add Kafka Export Functionality to `bitcoin-etl`
+## Add Kafka Export to bitcoin-etl
 
 **Commit:** [`42dd40d`](https://github.com/blockchain-etl/bitcoin-etl/pull/72/commits/42dd40d0255d243cc3bb9d5229b5b4087a638c37)
 **PR:** [#72](https://github.com/blockchain-etl/bitcoin-etl/pull/72)

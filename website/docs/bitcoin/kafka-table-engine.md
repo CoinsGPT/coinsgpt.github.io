@@ -1,9 +1,3 @@
----
-description: 'Using the Kafka Table Engine'
-title: 'Using the Kafka table engine'
----
-
-
 # 05 Kafka Table Engine 
 
 ![](/img/bitcoin/bitcoin_data_pipeline.png)

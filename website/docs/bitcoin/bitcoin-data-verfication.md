@@ -7,7 +7,7 @@ To **verify that Bitcoin block and transaction data is complete in ClickHouse**,
 3. **No duplicate block heights**
 4. **Transaction counts match block metadata**
 
-## **1. block height continuity**
+## 1. block height continuity
 
 Run this to detect missing block numbers:
 
@@ -47,7 +47,7 @@ if the count of one block is bigger than 1, please use final command to deduplic
 OPTIMIZE TABLE blocks FINAL;
 ```
 
-## **3. transaction consistency per block**
+## 3. transaction consistency per block
 
 If your `blocks` table has a `transaction_count` field, compare it to actual transaction counts:
 
@@ -65,7 +65,7 @@ HAVING expected_count != actual_count
 
 This checks if the number of transactions recorded in each block matches what’s stored in the `transactions` table.
 
-## **4. duplicate transactions**
+## 4. duplicate transactions
 
 ```sql
 SELECT hash, count() AS cnt
@@ -76,7 +76,7 @@ HAVING cnt > 1
 
 Again, this should return no rows.
 
-## **5. block range coverage**
+## 5. block range coverage
 
 Ensure your data starts from the genesis block (height = 0):
 
