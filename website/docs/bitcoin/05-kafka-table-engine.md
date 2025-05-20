@@ -4,7 +4,9 @@ title: 'Using the Kafka table engine'
 ---
 
 
-# Kafka to ClickHouse 
+# 05 Kafka Table Engine 
+
+![](/img/bitcoin/bitcoin_data_pipeline.png)
 
 ```info
 https://clickhouse.com/docs/integrations/kafka/kafka-table-engine

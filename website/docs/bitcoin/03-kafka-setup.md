@@ -1,5 +1,7 @@
 
-# Managing Kafka Topics and Consumer Groups
+# 03 Create Kafka Topics and Consumer Groups
+
+![](/img/bitcoin/bitcoin_data_pipeline.png)
 
 In this guide, we’ll simulate a use case for managing Bitcoin-related streaming data using **Apache Kafka**. We'll cover how to create topics, manage consumers, observe consumption status, and configure retention policies.
 

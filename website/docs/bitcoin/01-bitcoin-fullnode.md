@@ -1,5 +1,7 @@
 
-# Fullnode setup
+# 01 Bitcoin Fullnode Setup
+
+![](/img/bitcoin/bitcoin_data_pipeline.png)
 
 Here's a step-by-step guide to setting up a full Bitcoin node (`bitcoind`) on Ubuntu:
 
@@ -41,8 +43,6 @@ tar -xvf bitcoin-26.0-x86_64-linux-gnu.tar.gz
 sudo install -m 0755 -o root -g root -t /usr/local/bin bitcoin-26.0/bin/*
 ```
 
----
-
 ## ️3: Configure Bitcoin Node
 
 Create a config directory and a basic config file:
@@ -60,13 +60,7 @@ txindex=1
 rpcuser=bitcoinrpc
 rpcpassword=strongpassword
 rpcallowip=127.0.0.1
-zmqpubrawtx=tcp://127.0.0.1:28332
-zmqpubrawblock=tcp://127.0.0.1:28333
 ```
-
-You can add `prune=550` to save space by not storing full history (if not a full archival node).
-
----
 
 ## 4: Run `bitcoind`
 
@@ -118,5 +112,3 @@ sudo systemctl daemon-reexec
 sudo systemctl enable bitcoind
 sudo systemctl start bitcoind
 ```
-
----

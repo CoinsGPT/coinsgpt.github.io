@@ -180,11 +180,12 @@ const sidebars: SidebarsConfig = {
     },
   ],
   bitcoin: [
-    'bitcoin/bitcoin-fullnode',
-    'bitcoin/bitcoin-etl',
-    'bitcoin/kafka',
-    'bitcoin/kafka-table-engine',
-    'bitcoin/clickhouse-data-verfication'
+    'bitcoin/01-bitcoin-fullnode',
+    'bitcoin/02-bitcoin-etl',
+    'bitcoin/03-kafka-setup',
+    'bitcoin/04-clickhouse-setup',
+    'bitcoin/05-kafka-table-engine',
+    'bitcoin/06-bitcoin-data-verfication'
   ],
 };
 
