@@ -1,6 +1,6 @@
 # Import the Bitcoin into Tigergraph
 
-![Screenshot of the blockchain in the tigergraph browser.](images/bitcoin/tigergraph-bitcoin.png)
+![Screenshot of the blockchain in the tigergraph browser.](/img/bitcoin/tigergraph-bitcoin.png)
 
 This guide runs through the _basic_ steps for **importing the bitcoin blockchain in to a tigergraph graph database**.
 
@@ -8,7 +8,7 @@ The whole process is just about taking data from one format (blockchain data), a
 
 however, once you have imported the blockchain in to tigergraph, you can perform analysis on the graph database that would not be possible with SQL databases. For example, you can **follow the path of bitcoins to see if two different addresses are connected**:
 
-![Screenshot of connected Bitcoin addresses in the tigergraph browser.](images/bitcoin/tigergraph-connected-addresses.png)
+![Screenshot of connected Bitcoin addresses in the tigergraph browser.](/img/bitcoin/tigergraph-connected-addresses.png)
 
 In this guide I will cover:
 
@@ -22,7 +22,7 @@ Bitcoin is a computer program.
 
 It's a bit like uTorrent; you run the program, it _connects to other computers_ running the same program, and it _shares a file_. However, the cool thing about Bitcoin is that _anyone can add data_ to this shared file, and any data already written to the file _cannot be tampered with_.
 
-![](images/bitcoin/bitcoin-network.gif)
+![](/img/bitcoin/bitcoin-network.gif)
 
 As a result, Bitcoin creates a **secure file** that is shared on a **distributed network**.
 
@@ -32,14 +32,14 @@ Well, in Bitcoin, each piece of data that gets added to this file is a **transac
 
 This ledger is called **the blockchain**.
 
-![](images/bitcoin/bitcoin-file.gif)
+![](/img/bitcoin/bitcoin-file.gif)
 
 
 ## 2. What does the blockchain look like?
 
 The [blk.dat](https://learnmeabitcoin.com/technical/blkdat) files contain serialized data of **blocks** and **transactions**.
 
-![](images/bitcoin/blockchain.png)
+![](/img/bitcoin/blockchain.png)
 
 ### Blocks
 
@@ -47,7 +47,7 @@ Blocks are separated by [magic bytes](https://learnmeabitcoin.com/technical/magi
 
 Each block then begins with a [block header](https://learnmeabitcoin.com/technical/block-header):
 
-![A block is basically a container for a list of transactions. The header is like the meta-data at the top.](images/bitcoin/blockchain-block.png)
+![A block is basically a container for a list of transactions. The header is like the meta-data at the top.](/img/bitcoin/blockchain-block.png)
 
 #### Block Header Example:
 
@@ -68,7 +68,7 @@ After the block header, there is a byte that tells you the upcoming number of tr
 
 A [transaction](https://learnmeabitcoin.com/technical/transaction-data) is just another piece of code again, but they are more structurally interesting.
 
-![](images/bitcoin/blockchain-transaction.png)
+![](/img/bitcoin/blockchain-transaction.png)
 
 Each transaction has the same pattern:
 
@@ -79,7 +79,7 @@ Each transaction has the same pattern:
 
 So after a series of transactions, you have a transaction structure that looks like something this:
 
-![This is a simplified diagram of what the blockchain looks like. As you can see, it looks like a graph.](images/bitcoin/blockchain-transactions.png)
+![This is a simplified diagram of what the blockchain looks like. As you can see, it looks like a graph.](/img/bitcoin/blockchain-transactions.png)
 
 
 #### Transaction Example:
@@ -126,7 +126,7 @@ Here's a visual guide to how I represent **Blocks**, **Transactions**, and **Add
 
 ### Blocks
 
-![](images/bitcoin/import-block.gif)
+![](/img/bitcoin/import-block.gif)
 
 1. CREATE a `:block` node, and connect it to the previous block it builds upon.
     * SET each field from the **block header** as _properties_ on this node.
@@ -135,7 +135,7 @@ Here's a visual guide to how I represent **Blocks**, **Transactions**, and **Add
 
 ### Transactions
 
-![](images/bitcoin/import-transaction.gif)
+![](/img/bitcoin/import-transaction.gif)
 
 1. CREATE a `:tx` node, and connect it to the `:block` we had just created.
     * SET properties (**version**, **locktime**) on this node.
@@ -148,7 +148,7 @@ Here's a visual guide to how I represent **Blocks**, **Transactions**, and **Add
 
 If the **locking** code on an `:output` contains an address...
 
-![](images/bitcoin/import-address.gif)
+![](/img/bitcoin/import-address.gif)
 
 1. CREATE an `:address` node, and connect the output node to it.
     * SET the **address** as a property on this node.
@@ -263,7 +263,7 @@ If you have inserted the blocks and transactions using the cypher queries above,
 
 ### Block
 
-![](images/bitcoin/results-block.png)
+![](/img/bitcoin/results-block.png)
 
 ```sql
 INTERPRET QUERY () FOR GRAPH BitcoinGraph {
@@ -282,7 +282,7 @@ INTERPRET QUERY () FOR GRAPH BitcoinGraph {
 
 ### Transaction
 
-![](images/bitcoin/results-transaction.png)
+![](/img/bitcoin/results-transaction.png)
 
 ```sql
 INTERPRET QUERY () FOR GRAPH BitcoinGraph {
@@ -312,7 +312,7 @@ INTERPRET QUERY () FOR GRAPH BitcoinGraph {
 
 ### Address
 
-![](images/bitcoin/results-address.png)
+![](/img/bitcoin/results-address.png)
 
 ```sql
 INTERPRET QUERY () FOR GRAPH BitcoinGraph {
@@ -336,7 +336,7 @@ Finding paths between transactions and addresses is probably the most interestin
 
 #### Between Outputs
 
-![](images/bitcoin/results-path-output.png)
+![](/img/bitcoin/results-path-output.png)
 
 ```sql
 INTERPRET QUERY () FOR GRAPH BitcoinGraph {
@@ -361,7 +361,7 @@ INTERPRET QUERY () FOR GRAPH BitcoinGraph {
 
 #### Between Addresses
 
-![](images/bitcoin/results-path-address.png)
+![](/img/bitcoin/results-path-address.png)
 
 
 ```sql
