@@ -1,4 +1,4 @@
-# TigerGraph Schema for Bitcoin
+# 08 TigerGraph Schema for Bitcoin
 
 ## Vertex Definitions
 

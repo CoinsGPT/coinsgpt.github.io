@@ -1,5 +1,12 @@
 # Import the Bitcoin into Tigergraph
 
+:::info REFERENCE 
+
+bitcoin-to-neo4j: https://github.com/in3rsha/bitcoin-to-neo4j/blob/master/docs/how.md
+bitcoin-to-tigergraph: https://github.com/tigergraph/bitcoin-to-tigergraph
+
+:::
+
 ![Screenshot of the blockchain in the tigergraph browser.](/img/bitcoin/tigergraph-bitcoin.png)
 
 This guide runs through the _basic_ steps for **importing the bitcoin blockchain in to a tigergraph graph database**.
@@ -35,7 +42,7 @@ This ledger is called **the blockchain**.
 ![](/img/bitcoin/bitcoin-file.gif)
 
 
-## 2. What does the blockchain look like?
+## 2. What does the bitcoin look like?
 
 The [blk.dat](https://learnmeabitcoin.com/technical/blkdat) files contain serialized data of **blocks** and **transactions**.
 
@@ -112,7 +119,7 @@ So after a series of transactions, you have a transaction structure that looks l
 }
 ```
 
-## 3. How to import the blockchain in to tigergraph.
+## 3. How to import bitcoin in to tigergraph.
 
 Well, now we know what the blockchain data represents (and that it looks a lot like a graph), we can go ahead and import it in to tigergraph. We do this by:
 
@@ -153,7 +160,7 @@ If the **locking** code on an `:output` contains an address...
     * _Note: If different outputs are connected to the same address, then they will be connected to the same address node._
 
 
-## 4. Cypher Queries
+## 4. GSQL Queries
 
 Here are some example cypher queries you could use for the basis of inserting blocks and transactions in to tigergraph.
 
