@@ -132,6 +132,7 @@ CREATE DIRECTED EDGE block_chain (
 
 ## Graph Declaration
 
+```sql
 CREATE GRAPH BitcoinGraph (
   Block,
   Transaction,
@@ -143,4 +144,4 @@ CREATE GRAPH BitcoinGraph (
   output_address,
   block_chain
 )
-
+```

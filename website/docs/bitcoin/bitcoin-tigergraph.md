@@ -26,7 +26,7 @@ It's a bit like uTorrent; you run the program, it _connects to other computers_ 
 
 As a result, Bitcoin creates a **secure file** that is shared on a **distributed network**.
 
-### What can you do with this?
+What can you do with this?
 
 Well, in Bitcoin, each piece of data that gets added to this file is a **transaction**. Therefore, this decentralised file is being used as a "ledger" for a _digital currency_.
 
@@ -41,15 +41,13 @@ The [blk.dat](https://learnmeabitcoin.com/technical/blkdat) files contain serial
 
 ![](/img/bitcoin/blockchain.png)
 
-### Blocks
-
-Blocks are separated by [magic bytes](https://learnmeabitcoin.com/technical/magic-bytes), which is then followed by the _size_ of the upcoming block.
+**Blocks** are separated by [magic bytes](https://learnmeabitcoin.com/technical/magic-bytes), which is then followed by the _size_ of the upcoming block.
 
 Each block then begins with a [block header](https://learnmeabitcoin.com/technical/block-header):
 
 ![A block is basically a container for a list of transactions. The header is like the meta-data at the top.](/img/bitcoin/blockchain-block.png)
 
-#### Block Header Example:
+**Block Header Example:**
 
 ```
 {
@@ -62,7 +60,7 @@ Each block then begins with a [block header](https://learnmeabitcoin.com/technic
 }
 ```
 
-### Transactions
+**Transactions**
 
 After the block header, there is a byte that tells you the upcoming number of transactions in the block. After that, you get serialized transaction data, one after the other.
 
@@ -82,7 +80,7 @@ So after a series of transactions, you have a transaction structure that looks l
 ![This is a simplified diagram of what the blockchain looks like. As you can see, it looks like a graph.](/img/bitcoin/blockchain-transactions.png)
 
 
-#### Transaction Example:
+**Transaction Example:**
 
 ```
 {
@@ -124,7 +122,7 @@ Well, now we know what the blockchain data represents (and that it looks a lot l
 
 Here's a visual guide to how I represent **Blocks**, **Transactions**, and **Addresses** in the database:
 
-### Blocks
+**Blocks**
 
 ![](/img/bitcoin/import-block.gif)
 
@@ -133,7 +131,7 @@ Here's a visual guide to how I represent **Blocks**, **Transactions**, and **Add
 3. CREATE a `:coinbase` node coming off each block, as this represents the "new" bitcoins being made available by the block.
     * SET a **value** property on this node, which is equal to the block reward for this block.
 
-### Transactions
+**Transactions**
 
 ![](/img/bitcoin/import-transaction.gif)
 
@@ -144,7 +142,7 @@ Here's a visual guide to how I represent **Blocks**, **Transactions**, and **Add
 3. CREATE new `:output` nodes that this transaction creates.
     * SET the respective **values** and **locking** codes on these nodes.
 
-#### Addresses
+**Addresses**
 
 If the **locking** code on an `:output` contains an address...
 
@@ -161,7 +159,7 @@ Here are some example cypher queries you could use for the basis of inserting bl
 
 **NOTE:** You will need to decode the **block headers** and **transaction data** to get the _parameters_ for the cypher queries.
 
-### Block
+**Block**
 
 ```sql
 CREATE VERTEX Block (
@@ -179,7 +177,7 @@ CREATE VERTEX Block (
 )
 ```
 
-#### Parameters (example):
+**Parameters (example):**
 ```json
 {
     "blockhash": "00000000000003e690288380c9b27443b86e5a5ff0f8ed2473efbfdacb3014f3",
@@ -194,7 +192,7 @@ CREATE VERTEX Block (
 }
 ```
 
-### Transaction
+**Transaction**
 
 ```sql
 CREATE VERTEX Transaction (
@@ -214,7 +212,7 @@ CREATE VERTEX Transaction (
 
 _Note: This query uses the [FOREACH hack](http://www.markhneedham.com/blog/2016/10/30/tigergraph-create-dynamic-relationship-type/), which acts as a conditional and will only create the `:address` nodes if the `$addresses` parameter actually contains an address (i.e. is not empty)._
 
-#### Parameters (example):
+**Parameters (example):**
 
 ```json
 {
@@ -261,7 +259,7 @@ _Note: This query uses the [FOREACH hack](http://www.markhneedham.com/blog/2016/
 
 If you have inserted the blocks and transactions using the cypher queries above, then these are some examples the kind of results you can get out of the graph database.
 
-### Block
+**Block**
 
 ![](/img/bitcoin/results-block.png)
 
@@ -280,7 +278,7 @@ INTERPRET QUERY () FOR GRAPH BitcoinGraph {
 }
 ```
 
-### Transaction
+**Transaction**
 
 ![](/img/bitcoin/results-transaction.png)
 
@@ -310,7 +308,7 @@ INTERPRET QUERY () FOR GRAPH BitcoinGraph {
 }
 ```
 
-### Address
+**Address**
 
 ![](/img/bitcoin/results-address.png)
 
@@ -330,11 +328,11 @@ INTERPRET QUERY () FOR GRAPH BitcoinGraph {
 }
 ```
 
-### Paths
+**Paths**
 
 Finding paths between transactions and addresses is probably the most interesting thing you can do with a graph database of the bitcoin blockchain, so here are some examples of cypher queries for that:
 
-#### Between Outputs
+**Between Outputs**
 
 ![](/img/bitcoin/results-path-output.png)
 
@@ -359,7 +357,7 @@ INTERPRET QUERY () FOR GRAPH BitcoinGraph {
 }
 ```
 
-#### Between Addresses
+**Between Addresses**
 
 ![](/img/bitcoin/results-path-address.png)
 
