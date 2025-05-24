@@ -20,7 +20,7 @@ In this tutorial, I will walk you through how to **stream Bitcoin blockchain dat
 
 We begin with a fully normalized schema that models Bitcoin’s **block**, **transaction**, **output**, and **address**, along with their relationships:
 
-### Vertex Types
+**Vertex Types**
 
 ```gsql
 CREATE VERTEX Block (
@@ -67,7 +67,7 @@ CREATE VERTEX Address (
 )
 ```
 
-### Edge Types
+**Edge Types**
 
 ```gsql
 CREATE DIRECTED EDGE txn_block (FROM Transaction, TO Block) WITH REVERSE_EDGE="block_txn"
@@ -81,7 +81,7 @@ CREATE DIRECTED EDGE block_chain (FROM Block, TO Block) WITH REVERSE_EDGE="rever
 
 Kafka producers should publish **fully populated JSON** messages. Below are examples for each vertex and edge, based on **realistic** blockchain data.
 
-### Vertex: Block (`block_topic`)
+Vertex: Block (`block_topic`)
 
 ```json
 {
@@ -99,7 +99,7 @@ Kafka producers should publish **fully populated JSON** messages. Below are exam
 }
 ```
 
-### Vertex: Transaction (`transaction_topic`)
+Vertex: Transaction (`transaction_topic`)
 
 ```json
 {
@@ -117,7 +117,7 @@ Kafka producers should publish **fully populated JSON** messages. Below are exam
 }
 ```
 
-### Vertex: Output (`output_topic`)
+Vertex: Output (`output_topic`)
 
 ```json
 {
@@ -132,7 +132,7 @@ Kafka producers should publish **fully populated JSON** messages. Below are exam
 }
 ```
 
-### Vertex: Address (`address_topic`)
+Vertex: Address (`address_topic`)
 
 ```json
 {
@@ -140,7 +140,7 @@ Kafka producers should publish **fully populated JSON** messages. Below are exam
 }
 ```
 
-### Edge: txn\_block (`txn_block_topic`)
+Edge: txn\_block (`txn_block_topic`)
 
 ```json
 {
