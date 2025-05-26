@@ -23,23 +23,7 @@ To persist this data from a read of the table engine, we need a means of capturi
 If you have data populated on a target topic, you can adapt the following for use in your dataset. Alternatively, a sample Github dataset is provided [here](https://datasets-documentation.s3.eu-west-3.amazonaws.com/kafka/github_all_columns.ndjson). This dataset is used in the examples below and uses a reduced schema and subset of the rows (specifically, we limit to Github events concerning the [ClickHouse repository](https://github.com/ClickHouse/ClickHouse)), compared to the full dataset available [here](https://ghe.clickhouse.tech/), for brevity. This is still sufficient for most of the queries [published with the dataset](https://ghe.clickhouse.tech/) to work.
 
 
-## 2. Optional: Configure ClickHouse {#2-configure-clickhouse}
-
-This step is required if you are connecting to a secure Kafka. These settings cannot be passed through the SQL DDL commands and must be configured in the ClickHouse config.xml. We assume you are connecting to a SASL secured instance. This is the simplest method when interacting with Confluent Cloud.
-
-
-```xml
-<clickhouse>
-   <kafka>
-       <sasl_username>username</sasl_username>
-       <sasl_password>password</sasl_password>
-       <security_protocol>sasl_ssl</security_protocol>
-       <sasl_mechanisms>PLAIN</sasl_mechanisms>
-   </kafka>
-</clickhouse>
-```
-
-Either place the above snippet inside a new file under your conf.d/ directory or merge it into existing configuration files. 
+## 2. Create Database
 
 We're also going to create a database called `bitcoin` to use in this tutorial:
 

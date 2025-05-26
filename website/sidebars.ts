@@ -184,6 +184,8 @@ const sidebars: SidebarsConfig = {
     'bitcoin/bitcoin-etl',
     'bitcoin/kafka-setup',
     'bitcoin/clickhouse-setup',
+    'bitcoin/clickhouse-schema',
+    'bitcoin/clickhouse-schema-evolution',
     'bitcoin/kafka-table-engine',
     'bitcoin/bitcoin-data-verfication',
     'bitcoin/bitcoin-tigergraph',
