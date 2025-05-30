@@ -23,23 +23,6 @@ In production systems, **graceful schema evolution** means:
 
 Below is a **professor-level, zero-downtime-friendly guide** to **safely modify a Kafka-to-ClickHouse pipeline** using your components:
 
-## What You Have Now
-
-* Kafka Engine Table: `blocks_queue`
-* Materialized View: `blocks_mv`
-* Storage Table: `blocks`
-* Kafka Producer: actively pushing JSON to topic `blocks`
-
----
-
-## What You Want to Do
-
-1. Temporarily pause ingestion (`blocks_mv` consuming from `blocks_queue`)
-2. Add new columns to `blocks_queue`, `blocks`, and `blocks_mv`
-3. Resume ingestion without data corruption
-
----
-
 
 ## Step 1: Stop the Kafka Producer
 
@@ -48,77 +31,81 @@ Below is a **professor-level, zero-downtime-friendly guide** to **safely modify 
 ```bash
 # Stop the producer app or its Kafka client (Ctrl + C)
 python3 bitcoinetl.py stream -p http://bitcoin:password@localhost:8332 --output kafka/localhost:9092 --period-seconds 0 -b 100 -B 1000 --log-file log --enrich True -l last_synced_block.txt
+
+DETACH blocks_queue
 ```
 
-## Step 2: Detach the Materialized View (`blocks_mv`)
 
-> This stops the automatic flow of data **from Kafka to `blocks`**, but keeps all data in Kafka **unconsumed**.
+## Step 2: Add new Attributes in Producer(ETL)
 
-```sql
-DETACH TABLE blocks_mv;
-```
+Add previous_block_hash, difficulty and nTx. [This commit mainly focuses on adding block-only streaming support, improving block metadata handling, and enhancing Kafka/ClickHouse integration and documentation.](https://github.com/CoinsGPT/bitcoin-etl/commit/3435d582d3c54f5b1db134f9e87f678635a22804)
 
-The view is paused, but the Kafka offsets in `blocks_queue` are **not committed**. So when reattached, it picks up where it left off.
-
-## Step 3: Update the Kafka Engine Table (`blocks_queue`)
+## Step 3: Create new Kafka Engine Table (`blocks_queue_v1`)
 
 ```sql
-ALTER TABLE blocks_queue
-ADD COLUMN previousblockhash String;
-
-ALTER TABLE blocks_queue
-ADD COLUMN transactions Array(String);
-
-ALTER TABLE blocks_queue
-ADD COLUMN nTx UInt32;
+CREATE TABLE blocks_queue_v1
+(
+  hash String,
+  size UInt64,
+  stripped_size UInt64,
+  weight UInt64,
+  number UInt64,
+  version UInt64,
+  merkle_root String,
+  timestamp DateTime,
+  nonce String,
+  bits String,
+  coinbase_param String,
+  transaction_count UInt64,
+  previous_block_hash String,
+  difficulty Float64,
+  nTx UInt64,
+  transactions Array(String)
+)
+ENGINE = Kafka('localhost:9092', 'blocks', 'bitcoin-group', 'JSONEachRow') settings kafka_thread_per_consumer = 0, kafka_num_consumers = 3;
 ```
 
 > If unsure all messages will have these fields, use `Nullable(...)`.
 
 
-## Step 4: Update the MergeTree Table (`blocks`)
+## Step 4: Create new MergeTree Table (`blocks_v1`)
 
 ```sql
-ALTER TABLE blocks
-ADD COLUMN previousblockhash String;
-
-ALTER TABLE blocks
-ADD COLUMN transactions Array(String);
-
-ALTER TABLE blocks
-ADD COLUMN nTx UInt32;
+CREATE TABLE blocks_v1
+(
+  hash String,
+  size UInt64,
+  stripped_size UInt64,
+  weight UInt64,
+  number UInt64,
+  version UInt64,
+  merkle_root String,
+  timestamp DateTime,
+  timestamp_month Date,
+  nonce String,
+  bits String,
+  coinbase_param String,
+  transaction_count UInt64,
+  previous_block_hash String,
+  difficulty Float64,
+  nTx UInt64,
+  transactions Array(String)
+)
+ENGINE = ReplacingMergeTree()
+PRIMARY KEY (hash)
+PARTITION BY toYYYYMM(timestamp_month)
+ORDER BY hash;
 ```
 
-## Step 5: Drop the Old Materialized View (`blocks_mv`)
-
-You must **drop** (not alter) the materialized view to reflect the new columns.
+## Step 5: Recreate the Materialized View (`blocks_mv_v1`)
 
 ```sql
-DROP TABLE blocks_mv;
-```
-
-## Step 6: Recreate the Materialized View (`blocks_mv`)
-
-```sql
-CREATE MATERIALIZED VIEW blocks_mv
-TO blocks
+CREATE MATERIALIZED VIEW blocks_mv_v1 TO blocks_v1
 AS
 SELECT
-    hash,
-    height,
-    version,
-    versionHex,
-    merkleroot,
-    time,
-    mediantime,
-    nonce,
-    bits,
-    difficulty,
-    chainwork,
-    previousblockhash,
-    transactions,
-    nTx
-FROM blocks_queue;
+    *,
+    toStartOfMonth(timestamp) AS timestamp_month
+FROM blocks_queue_v1;
 ```
 
 ## Step 7: Resume the Kafka Producer
@@ -127,7 +114,7 @@ Now that the pipeline is upgraded, **restart** the producer:
 
 ```bash
 # Restart your Kafka producer
-python3 bitcoinetl.py stream -p http://bitcoin:passw0rd@localhost:8332 --output kafka/localhost:9092 --period-seconds 0 -b 100 -B 1000 --log-file log --enrich True -l last_synced_block.txt
+python3 bitcoinetl.py stream_block -p http://bitcoin:passw0rd@localhost:8332 --output kafka/localhost:9092 --period-seconds 0 -b 100 -B 500 --enrich false --start-block 0
 ```
 
 ## Step 8: Validate End-to-End
@@ -144,19 +131,3 @@ LIMIT 10;
 ```
 
 Ensure everything flows correctly.
-
-## ✅ Summary: Schema Evolution Plan
-
-| Step | Action                                   |
-| ---- | ---------------------------------------- |
-| 1    | Stop Kafka Producer                      |
-| 2    | `DETACH TABLE blocks_mv`                 |
-| 3    | `ALTER TABLE blocks_queue` (add columns) |
-| 4    | `ALTER TABLE blocks` (add columns)       |
-| 5    | `DROP TABLE blocks_mv`                   |
-| 6    | `CREATE MATERIALIZED VIEW blocks_mv`     |
-| 7    | Restart Kafka Producer                   |
-| 8    | Validate new data in `blocks`            |
-
-
-
