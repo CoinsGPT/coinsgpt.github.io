@@ -40,7 +40,7 @@ DETACH blocks_queue
 
 Add previous_block_hash, difficulty and nTx. [This commit mainly focuses on adding block-only streaming support, improving block metadata handling, and enhancing Kafka/ClickHouse integration and documentation.](https://github.com/CoinsGPT/bitcoin-etl/commit/3435d582d3c54f5b1db134f9e87f678635a22804)
 
-## Step 3: Create new Kafka Engine Table (`blocks_queue_v1`)
+## Step 3: Create new Kafka Engine Table
 
 ```sql
 CREATE TABLE blocks_queue_v1
@@ -68,7 +68,7 @@ ENGINE = Kafka('localhost:9092', 'blocks', 'bitcoin-group', 'JSONEachRow') setti
 > If unsure all messages will have these fields, use `Nullable(...)`.
 
 
-## Step 4: Create new MergeTree Table (`blocks_v1`)
+## Step 4: Create new MergeTree Table
 
 ```sql
 CREATE TABLE blocks_v1
@@ -97,7 +97,7 @@ PARTITION BY toYYYYMM(timestamp_month)
 ORDER BY hash;
 ```
 
-## Step 5: Recreate the Materialized View (`blocks_mv_v1`)
+## Step 5: Recreate the Materialized View
 
 ```sql
 CREATE MATERIALIZED VIEW blocks_mv_v1 TO blocks_v1
@@ -108,7 +108,7 @@ SELECT
 FROM blocks_queue_v1;
 ```
 
-## Step 7: Resume the Kafka Producer
+## Step 6: Resume the Kafka Producer
 
 Now that the pipeline is upgraded, **restart** the producer:
 
@@ -117,7 +117,7 @@ Now that the pipeline is upgraded, **restart** the producer:
 python3 bitcoinetl.py stream_block -p http://bitcoin:passw0rd@localhost:8332 --output kafka/localhost:9092 --period-seconds 0 -b 100 -B 500 --enrich false --start-block 0
 ```
 
-## Step 8: Validate End-to-End
+## Step 7: Validate End-to-End
 
 ```sql
 SELECT
