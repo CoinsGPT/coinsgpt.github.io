@@ -24,7 +24,7 @@ In production systems, **graceful schema evolution** means:
 Below is a **professor-level, zero-downtime-friendly guide** to **safely modify a Kafka-to-ClickHouse pipeline** using your components:
 
 
-## Step 1: Stop the Kafka Producer
+## Kafka 1: Stop the Kafka Producer
 
 > Pause the source application producing data to the `blocks` Kafka topic to prevent in-flight writes while you upgrade schema.
 
@@ -36,11 +36,11 @@ DETACH blocks_queue
 ```
 
 
-## Step 2: Add new Attributes in Producer(ETL)
+## Kafka 2: Add new Attributes in Producer(ETL)
 
 Add previous_block_hash, difficulty and nTx. [This commit mainly focuses on adding block-only streaming support, improving block metadata handling, and enhancing Kafka/ClickHouse integration and documentation.](https://github.com/CoinsGPT/bitcoin-etl/commit/3435d582d3c54f5b1db134f9e87f678635a22804)
 
-## Step 3: Create new Kafka Engine Table
+## Blocks 3: Create new Kafka Engine Table
 
 ```sql
 CREATE TABLE blocks_queue_v1
@@ -68,10 +68,10 @@ ENGINE = Kafka('localhost:9092', 'blocks', 'bitcoin-group', 'JSONEachRow') setti
 > If unsure all messages will have these fields, use `Nullable(...)`.
 
 
-## Step 4: Create new MergeTree Table
+## Blocks 4: Create new MergeTree Table
 
 ```sql
-CREATE TABLE blocks_v1
+CREATE TABLE blocks_fat
 (
   hash String,
   size UInt64,
@@ -96,16 +96,159 @@ PRIMARY KEY (hash)
 PARTITION BY toYYYYMM(timestamp_month)
 ORDER BY hash;
 ```
-
-## Step 5: Recreate the Materialized View
+## Blocks 5: Recreate the Materialized View
 
 ```sql
-CREATE MATERIALIZED VIEW blocks_mv_v1 TO blocks_v1
+CREATE MATERIALIZED VIEW blocks_mv_v1 TO blocks_fat
 AS
 SELECT
     *,
     toStartOfMonth(timestamp) AS timestamp_month
 FROM blocks_queue_v1;
+```
+
+## Blocks 5: Create Materialized View 
+
+CREATE TABLE blocks
+(
+  hash String,
+  size UInt64,
+  stripped_size UInt64,
+  weight UInt64,
+  number UInt64,
+  version UInt64,
+  merkle_root String,
+  timestamp DateTime,
+  timestamp_month Date,
+  nonce String,
+  bits String,
+  coinbase_param String,
+  transaction_count UInt64,
+  previous_block_hash String,
+  difficulty Float64,
+  nTx UInt64,
+)
+ENGINE = MergeTree()
+PRIMARY KEY (hash)
+PARTITION BY toYYYYMM(timestamp_month)
+ORDER BY hash;
+```
+
+
+```sql
+CREATE MATERIALIZED VIEW mv_blocks
+TO blocks
+AS
+SELECT
+  hash,
+  size,
+  stripped_size,
+  weight,
+  number,
+  version,
+  merkle_root,
+  timestamp,
+  timestamp_month,
+  nonce,
+  bits,
+  coinbase_param,
+  transaction_count,
+  previous_block_hash,
+  difficulty,
+  nTx 
+FROM blocks_fat;
+```
+
+```sql
+SET max_partitions_per_insert_block = 500;
+```
+
+Manual Backfill to blocks
+
+```sql
+INSERT INTO blocks
+SELECT
+  hash,
+  size,
+  stripped_size,
+  weight,
+  number,
+  version,
+  merkle_root,
+  timestamp,
+  timestamp_month,
+  nonce,
+  bits,
+  coinbase_param,
+  transaction_count,
+  previous_block_hash,
+  difficulty,
+  nTx
+FROM blocks_fat;
+```
+
+
+## Tnx 1: Fat row include Array 
+
+```sql
+CREATE TABLE transactions_fat
+(
+  hash String,
+  size UInt64,
+  virtual_size UInt64,
+  version UInt64,
+  lock_time UInt64,
+  block_hash String,
+  block_number UInt64,
+  block_timestamp DateTime,
+  block_timestamp_month Date,
+  input_count UInt64,
+  output_count UInt64,
+  input_value Float64,
+  output_value Float64,
+  is_coinbase BOOL,
+  fee Float64,
+  inputs Array(Tuple(index UInt64, spent_transaction_hash String, spent_output_index UInt64, script_asm String, script_hex String, sequence UInt64, required_signatures UInt64, type String, addresses Array(String), value Float64)),
+  outputs Array(Tuple(index UInt64, script_asm String, script_hex String, required_signatures UInt64, type String, addresses Array(String), value Float64))
+)
+ENGINE = ReplacingMergeTree()
+PRIMARY KEY (hash)
+PARTITION BY toYYYYMM(block_timestamp_month)
+ORDER BY (hash);
+```
+
+```sql
+INSERT INTO transactions_fat (
+  hash, size, virtual_size, version, lock_time,
+  block_hash, block_number,
+  input_count, output_count,
+  input_value, output_value,
+  is_coinbase, fee,
+  inputs, outputs,
+  block_timestamp, block_timestamp_month
+)
+SELECT
+  hash, size, virtual_size, version, lock_time,
+  block_hash, block_number,
+  input_count, output_count,
+  input_value, output_value,
+  is_coinbase, fee,
+  inputs, outputs,
+  b.timestamp AS block_timestamp,
+  b.timestamp_month AS block_timestamp_month
+FROM transactions_v1
+INNER JOIN blocks AS b ON block_hash = b.hash;
+```
+
+```sql
+SELECT
+    partition,
+    count()
+FROM system.parts
+WHERE table = 'transactions_fat'
+  AND active
+GROUP BY partition
+ORDER BY partition;
 ```
 
 ## Step 6: Resume the Kafka Producer

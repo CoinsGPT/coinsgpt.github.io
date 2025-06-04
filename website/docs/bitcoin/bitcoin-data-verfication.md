@@ -24,11 +24,12 @@ SELECT seq.number AS missing_block_number
 FROM seq
 LEFT JOIN blocks AS b ON seq.number = b.number
 WHERE b.number != seq.number
+```
 
 If this query returns rows, those block numbers are missing.
 
 
-## **2. Check for duplicate blocks**
+## 2. Check for duplicate blocks
 
 Check for duplicate block numbers (heights):
 
@@ -45,6 +46,31 @@ if the count of one block is bigger than 1, please use final command to deduplic
 
 ```shell
 OPTIMIZE TABLE blocks FINAL;
+```
+
+## 3.Transactions Missing 
+
+whether any transaction listed in the blocks_v1.transactions array is missing from the transactions table.
+
+```sql
+WITH flattened AS (
+  SELECT
+    hash as block_hash,
+    tx_hash
+  FROM blocks_v1
+  ARRAY JOIN blocks_v1.transactions AS tx_hash
+  -- block_hash = hash of the block
+  -- tx_hash = each transaction hash in the array
+)
+
+SELECT
+  flattened.block_hash,
+  flattened.tx_hash
+FROM flattened
+LEFT JOIN transactions ON flattened.tx_hash = transactions.hash
+WHERE transactions.hash IS NULL
+LIMIT 100;
+
 ```
 
 ## 3. transaction consistency per block
