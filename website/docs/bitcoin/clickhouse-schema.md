@@ -2,7 +2,228 @@
 
 ![](/img/bitcoin/bitcoin_data_pipeline.png)
 
-## Bitcoin Schema Design
+
+"Create Fat First, Then Make Tight" Strategy
+
+This design pattern—**"create fat, then make tight"**—is a **staging + optimization approach** for database schema design and data modeling. It's useful when:
+
+* You're importing raw, nested, or complex data (e.g. from JSON, APIs, blockchain)
+* You want fast ingestion first, and optimized queries later
+
+
+## Fat ➝ Tight in Practice
+
+Step 1: **Create Fat Table (Staging Table)**
+
+Start by creating a **fat schema** that mirrors your input data structure with nested arrays or wide fields.
+
+Example (ClickHouse – Bitcoin Transactions):
+
+```sql
+CREATE TABLE transactions_fat (
+  txid String,
+  block_hash String,
+  inputs Array(Tuple(
+    index UInt64,
+    prev_txid String,
+    prev_vout UInt64,
+    script_sig String,
+    sequence UInt64,
+    value Float64,
+    addresses Array(String)
+  )),
+  outputs Array(Tuple(
+    index UInt64,
+    script_pubkey String,
+    value Float64,
+    addresses Array(String)
+  )),
+  block_time DateTime
+) ENGINE = MergeTree()
+ORDER BY (block_time);
+```
+
+
+Step 2: **Extract & Normalize into Tight Tables**
+
+After the data is loaded, **flatten and normalize** into "tight" tables:
+
+* Store one row per input/output/transaction
+* Extract key fields
+* Optimize for analytic queries
+
+Example: Inputs Table
+
+```sql
+CREATE TABLE tx_inputs (
+  txid String,
+  index UInt64,
+  prev_txid String,
+  prev_vout UInt64,
+  script_sig String,
+  sequence UInt64,
+  value Float64,
+  address String,
+  block_time DateTime
+) ENGINE = MergeTree()
+ORDER BY (block_time);
+```
+
+Transform from fat ➝ tight
+
+```sql
+INSERT INTO tx_inputs
+SELECT
+  txid,
+  i.index,
+  i.prev_txid,
+  i.prev_vout,
+  i.script_sig,
+  i.sequence,
+  i.value,
+  addr AS address,
+  block_time
+FROM transactions_fat
+ARRAY JOIN inputs AS i
+ARRAY JOIN i.addresses AS addr;
+```
+
+> This flattens nested arrays and creates a fast, queryable structure.
+
+
+Why This Pattern Works
+
+| Step            | Goal                                                             |
+| --------------- | ---------------------------------------------------------------- |
+| **Fat table**   | Fast bulk insert, raw data integrity                             |
+| **Tight table** | Optimized query performance, indexed structure                   |
+| **Split later** | Post-ingestion transformation lets you adapt based on real usage |
+
+
+Optional Enhancements
+
+* Use **materialized views** to automate tight-table generation
+* Use **Kafka + ClickHouse** with JSON ingestion for real-time fat ➝ tight
+* Add **partitions** by block height or time in tight tables
+
+
+## Enhance "fat ➝ tight" model
+
+Let’s enhance the "fat ➝ tight" model using **Materialized Views in ClickHouse**, so that **flattened “tight” tables are auto-populated** from the fat raw data.
+
+We have a **fat table** storing Bitcoin transactions with nested arrays for inputs/outputs.
+
+* **Fast ingestion** into the fat table (from JSON, Kafka, etc.)
+* **Auto-generated tight tables** (e.g., `tx_inputs`) for querying, updated in real-time
+
+
+Step-by-Step: Fat ➝ Tight via Materialized View
+
+step 1. Fat Table (Staging)
+
+```sql
+CREATE TABLE transactions_fat (
+  txid String,
+  block_hash String,
+  inputs Array(Tuple(
+    index UInt64,
+    prev_txid String,
+    prev_vout UInt64,
+    script_sig String,
+    sequence UInt64,
+    value Float64,
+    addresses Array(String)
+  )),
+  outputs Array(Tuple(
+    index UInt64,
+    script_pubkey String,
+    value Float64,
+    addresses Array(String)
+  )),
+  block_time DateTime
+) ENGINE = MergeTree()
+ORDER BY (block_time);
+```
+
+
+setp 2. Tight Table for Inputs
+
+```sql
+CREATE TABLE tx_inputs (
+  txid String,
+  index UInt64,
+  prev_txid String,
+  prev_vout UInt64,
+  script_sig String,
+  sequence UInt64,
+  value Float64,
+  address String,
+  block_time DateTime
+) ENGINE = MergeTree()
+ORDER BY (block_time);
+```
+
+setp 3. Materialized View (Fat ➝ Inputs)
+
+```sql
+CREATE MATERIALIZED VIEW mv_tx_inputs
+TO tx_inputs AS
+SELECT
+  txid,
+  i.index,
+  i.prev_txid,
+  i.prev_vout,
+  i.script_sig,
+  i.sequence,
+  i.value,
+  addr AS address,
+  block_time
+FROM transactions_fat
+ARRAY JOIN inputs AS i
+ARRAY JOIN i.addresses AS addr;
+```
+
+How It Works
+
+* Every `INSERT` into `transactions_fat` **automatically triggers** `mv_tx_inputs`
+* The view flattens nested inputs and inserts rows into `tx_inputs`
+* No need for separate transformation queries or batch jobs
+
+## Block Design
+
+To ETL the raw data of block from (Bitcoin Core)[https://bitcoincore.org/en/doc/29.0.0/rpc/blockchain/getblock/] as blocks_fat.  
+
+```sql
+CREATE TABLE blocks_fat
+(
+  hash String,
+  size UInt64,
+  stripped_size UInt64,
+  weight UInt64,
+  number UInt64,
+  version UInt64,
+  merkle_root String,
+  timestamp DateTime,
+  timestamp_month Date,
+  nonce String,
+  bits String,
+  coinbase_param String,
+  previous_block_hash String,
+  difficulty Float64,
+  transaction_count UInt64,
+  transactions Array(String)
+)
+ENGINE = ReplacingMergeTree()
+PRIMARY KEY (hash)
+PARTITION BY toYYYYMM(timestamp_month)
+ORDER BY hash;
+```
+
+To create a **tight `blocks` table** without the `transactions` array from your `blocks_fat` table using a **Materialized View**, follow this plan:
+
+* Excluding the `transactions` array
+* Keeping all other atomic block attributes
+* Auto-populating the tight table on insert
 
 ```sql
 CREATE TABLE blocks
@@ -19,13 +240,49 @@ CREATE TABLE blocks
   nonce String,
   bits String,
   coinbase_param String,
+  previous_block_hash String,
+  difficulty Float64,
   transaction_count UInt64
 )
-ENGINE = ReplacingMergeTree()
-PRIMARY KEY (hash)
+ENGINE = MergeTree()
 PARTITION BY toYYYYMM(timestamp_month)
 ORDER BY hash;
 ```
+
+Create the Materialized View from `blocks_fat` ➝ `blocks`
+
+```sql
+CREATE MATERIALIZED VIEW mv_blocks_tight
+TO blocks AS
+SELECT
+  hash,
+  size,
+  stripped_size,
+  weight,
+  number,
+  version,
+  merkle_root,
+  timestamp,
+  timestamp_month,
+  nonce,
+  bits,
+  coinbase_param,
+  previous_block_hash,
+  difficulty,
+  nTx
+FROM blocks_fat;
+```
+
+Summary::w
+
+| Component         | Purpose                         |
+| ----------------- | ------------------------------- |
+| `blocks_fat`      | Full raw block data (with txs)  |
+| `blocks`    | Optimized analytic structure    |
+| `mv_blocks_tight` | Materialized View (fat ➝ tight) |
+
+
+## Transaction Design
 
 ```sql
 CREATE TABLE transactions

@@ -24,7 +24,6 @@ You’re building a Kafka-based data pipeline for Bitcoin. You’ll:
 Topics are the core abstraction for message streams. You create them using `kafka-topics.sh`.
 
 ```bash
-# Create the 'blocks' topic with 3 partitions and replication factor 1
 kafka-topics.sh \
   --create \
   --topic blocks \
@@ -34,7 +33,6 @@ kafka-topics.sh \
 ```
 
 ```bash
-# Create the 'transactions' topic with 3 partitions and replication factor 1
 kafka-topics.sh \
   --create \
   --topic transactions \
@@ -46,7 +44,6 @@ kafka-topics.sh \
 Verify that the topics were created:
 
 ```bash
-# List all existing Kafka topics
 kafka-topics.sh \
   --list \
   --bootstrap-server localhost:9092
@@ -57,7 +54,6 @@ kafka-topics.sh \
 Produce messages into a topic:
 
 ```bash
-# Start a producer to the 'transactions' topic
 kafka-console-producer.sh \
   --topic transactions \
   --bootstrap-server localhost:9092
@@ -68,7 +64,6 @@ Type messages in the terminal after this command runs.
 Consume messages from the beginning:
 
 ```bash
-# Start a consumer to read all messages from the beginning of the topic
 kafka-console-consumer.sh \
   --topic transactions \
   --from-beginning \
@@ -80,7 +75,6 @@ kafka-console-consumer.sh \
 Consumer groups are created **implicitly** when a consumer subscribes to a topic with a unique `--group`.
 
 ```bash
-# Consume from 'blocks' with consumer group 'bitcoin-group'
 kafka-console-consumer.sh \
   --bootstrap-server localhost:9092 \
   --topic blocks \
@@ -88,7 +82,6 @@ kafka-console-consumer.sh \
 ```
 
 ```bash
-# Consume from 'transactions' with the same group
 kafka-console-consumer.sh \
   --bootstrap-server localhost:9092 \
   --topic transactions \

@@ -1,4 +1,4 @@
-# 05 Kafka Table Engine 
+# 05 ClickHouse Kafka Engine 
 
 ![](/img/bitcoin/bitcoin_data_pipeline.png)
 
@@ -42,7 +42,7 @@ USE bitcoin;
 Prepare your destination table. In the example below we use the reduced GitHub schema for purposes of brevity. Note that although we use a MergeTree table engine, this example could easily be adapted for any member of the MergeTree family.
 
 ```sql
-CREATE TABLE blocks
+CREATE TABLE blocks_fat
 (
   hash String,
   size UInt64,
@@ -56,7 +56,10 @@ CREATE TABLE blocks
   nonce String,
   bits String,
   coinbase_param String,
-  transaction_count UInt64
+  previous_block_hash String,
+  difficulty Float64,
+  transaction_count UInt64,
+  transactions Array(String)
 )
 ENGINE = ReplacingMergeTree()
 PRIMARY KEY (hash)
@@ -65,7 +68,7 @@ ORDER BY hash;
 ```
 
 ```sql
-CREATE TABLE transactions
+CREATE TABLE transactions_fat
 (
   hash String,
   size UInt64,
@@ -76,19 +79,19 @@ CREATE TABLE transactions
   block_number UInt64,
   block_timestamp DateTime,
   block_timestamp_month Date,
+  is_coinbase BOOL,
   input_count UInt64,
   output_count UInt64,
   input_value Float64,
   output_value Float64,
-  is_coinbase BOOL,
   fee Float64,
   inputs Array(Tuple(index UInt64, spent_transaction_hash String, spent_output_index UInt64, script_asm String, script_hex String, sequence UInt64, required_signatures UInt64, type String, addresses Array(String), value Float64)),
   outputs Array(Tuple(index UInt64, script_asm String, script_hex String, required_signatures UInt64, type String, addresses Array(String), value Float64))
 )
 ENGINE = ReplacingMergeTree()
-PRIMARY KEY (block_hash, hash)
+PRIMARY KEY (hash)
 PARTITION BY toYYYYMM(block_timestamp_month)
-ORDER BY (block_hash, hash);
+ORDER BY (hash);
 ```
 
 ## 4. Create and populate the topic {#4-create-and-populate-the-topic}
@@ -148,11 +151,13 @@ CREATE TABLE blocks_queue
   version UInt64,
   merkle_root String,
   timestamp DateTime,
-  timestamp_month Date,
   nonce String,
   bits String,
   coinbase_param String,
-  transaction_count UInt64
+  previous_block_hash String,
+  difficulty Float64,
+  transaction_count UInt64,
+  transactions Array(String)
 )
 ENGINE = Kafka('localhost:9092', 'blocks', 'bitcoin-group', 'JSONEachRow') settings kafka_thread_per_consumer = 0, kafka_num_consumers = 3;
 ```
@@ -168,12 +173,11 @@ CREATE TABLE transactions_queue
   block_hash String,
   block_number UInt64,
   block_timestamp DateTime,
-  block_timestamp_month Date,
+  is_coinbase BOOL,
   input_count UInt64,
   output_count UInt64,
   input_value Float64,
   output_value Float64,
-  is_coinbase BOOL,
   fee Float64,
   inputs Array(Tuple(index UInt64, spent_transaction_hash String, spent_output_index UInt64, script_asm String, script_hex String, sequence UInt64, required_signatures UInt64, type String, addresses Array(String), value Float64)),
   outputs Array(Tuple(index UInt64, script_asm String, script_hex String, required_signatures UInt64, type String, addresses Array(String), value Float64))
@@ -189,14 +193,20 @@ We discuss engine settings and performance tuning below. At this point, a simple
 The materialized view will connect the two previously created tables, reading data from the Kafka table engine and inserting it into the target merge tree table. We can do a number of data transformations. We will do a simple read and insert. The use of * assumes column names are identical (case sensitive).
 
 ```sql
-CREATE MATERIALIZED VIEW blocks_mv TO blocks AS
-SELECT *
+CREATE MATERIALIZED VIEW blocks_fat_mv TO blocks_fat
+AS
+SELECT
+    *,
+    toStartOfMonth(timestamp) AS timestamp_month
 FROM blocks_queue;
 ```
 
 ```sql
-CREATE MATERIALIZED VIEW transactions_mv TO transactions AS
-SELECT *
+CREATE MATERIALIZED VIEW transactions_fat_mv TO transactions_fat 
+AS
+SELECT
+    *,
+    toStartOfMonth(block_timestamp) AS block_timestamp_month
 FROM transactions_queue;
 ```
 
@@ -207,8 +217,8 @@ At the point of creation, the materialized view connects to the Kafka engine and
 Confirm data exists in the target table:
 
 ```sql
-SELECT count() FROM blocks;
-SELECT count() FROM transactions;
+SELECT count() FROM blocks_fat;
+SELECT count() FROM transactions_fat;
 ```
 
 
