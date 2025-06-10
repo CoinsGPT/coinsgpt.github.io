@@ -252,7 +252,7 @@ ORDER BY hash;
 Create the Materialized View from `blocks_fat` ➝ `blocks`
 
 ```sql
-CREATE MATERIALIZED VIEW mv_blocks_tight
+CREATE MATERIALIZED VIEW blocks_tight_mv
 TO blocks AS
 SELECT
   hash,
@@ -269,7 +269,7 @@ SELECT
   coinbase_param,
   previous_block_hash,
   difficulty,
-  nTx
+  transaction_count
 FROM blocks_fat;
 ```
 
