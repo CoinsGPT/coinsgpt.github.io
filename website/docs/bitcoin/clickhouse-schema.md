@@ -285,7 +285,7 @@ Summary::w
 ## Transaction Design
 
 ```sql
-CREATE TABLE transactions
+CREATE TABLE transactions_fat
 (
   hash String,
   size UInt64,
@@ -296,50 +296,102 @@ CREATE TABLE transactions
   block_number UInt64,
   block_timestamp DateTime,
   block_timestamp_month Date,
+  is_coinbase BOOL,
   input_count UInt64,
   output_count UInt64,
   input_value Float64,
   output_value Float64,
-  is_coinbase BOOL,
   fee Float64,
   inputs Array(Tuple(index UInt64, spent_transaction_hash String, spent_output_index UInt64, script_asm String, script_hex String, sequence UInt64, required_signatures UInt64, type String, addresses Array(String), value Float64)),
   outputs Array(Tuple(index UInt64, script_asm String, script_hex String, required_signatures UInt64, type String, addresses Array(String), value Float64))
 )
 ENGINE = ReplacingMergeTree()
-PRIMARY KEY (block_hash, hash)
+PRIMARY KEY (hash)
 PARTITION BY toYYYYMM(block_timestamp_month)
-ORDER BY (block_hash, hash);
+ORDER BY (hash);
 ```
 
 ```sql
-CREATE VIEW outputs AS
-SELECT
-    hash AS transaction_hash,
-    block_hash,
-    block_number,
-    block_timestamp,
-    output.1 AS index,
-    output.2 AS script_asm,
-    output.3 AS script_hex,
-    output.4 AS required_signatures,
-    output.5 AS type,
-    output.6 AS addresses,
-    output.7 AS value
-FROM transactions
-ARRAY JOIN outputs AS output;
+CREATE TABLE inputs
+(
+    transaction_hash String,
+    input_index UInt64,
+    block_hash String,
+    block_number UInt64,
+    block_timestamp DateTime,
+    spending_transaction_hash String,
+    spending_output_index UInt64,
+    script_asm String,
+    script_hex String,
+    sequence UInt64,
+    required_signatures UInt64,
+    type String,
+    addresses Array(String),
+    value Float64
+)
+ENGINE = MergeTree()
+PARTITION BY toYYYYMM(block_timestamp)
+ORDER BY (transaction_hash, input_index);
 ```
 
+```sql
+CREATE TABLE outputs
+(
+    transaction_hash String,
+    output_index UInt64,
+    block_hash String,
+    block_number UInt64,
+    block_timestamp DateTime,
+    spent_transaction_hash String,
+    spent_input_index UInt64,
+    script_asm String,
+    script_hex String,
+    required_signatures UInt64,
+    type String,
+    addresses Array(String),
+    value Float64,
+)
+ENGINE = MergeTree()
+PARTITION BY toYYYYMM(block_timestamp)
+ORDER BY (transaction_hash, output_index);
+```
 
 ```sql
-CREATE VIEW inputs AS
+DROP TABLE IF EXISTS outputs;
+
+CREATE TABLE outputs
+(
+    transaction_hash String,
+    output_index UInt64,
+    block_hash String,
+    block_number UInt64,
+    block_timestamp DateTime,
+    spent_transaction_hash String,
+    spent_input_index UInt64,
+    script_asm String,
+    script_hex String,
+    required_signatures UInt64,
+    type String,
+    addresses Array(String),
+    value Float64,
+    version DateTime
+)
+ENGINE = ReplacingMergeTree(version)
+PARTITION BY toYYYYMM(block_timestamp)
+ORDER BY (transaction_hash, output_index);
+
+```
+
+```sql
+INSERT INTO inputs
 SELECT
     hash AS transaction_hash,
+    input.1 AS input_index,
     block_hash,
     block_number,
     block_timestamp,
-    input.1 AS index,
-    input.2 AS spent_transaction_hash,
-    input.3 AS spent_output_index,
+    input.2 AS spending_transaction_hash,
+    input.3 AS spending_output_index,
     input.4 AS script_asm,
     input.5 AS script_hex,
     input.6 AS sequence,
@@ -347,9 +399,216 @@ SELECT
     input.8 AS type,
     input.9 AS addresses,
     input.10 AS value
-FROM transactions
-ARRAY JOIN inputs AS input;
+FROM transactions_fat
+ARRAY JOIN inputs AS input
+WHERE block_timestamp >= '2009-01-01' AND block_timestamp < '2012-09-01';
+
 ```
+
+```sql
+INSERT INTO outputs
+SELECT
+    hash AS transaction_hash,
+    output.1 AS output_index,
+    block_hash,
+    block_number,
+    block_timestamp,
+    '' AS spent_transaction_hash,  -- initially empty
+    0 AS spent_input_index,        -- initially zero
+    output.2 AS script_asm,
+    output.3 AS script_hex,
+    output.4 AS required_signatures,
+    output.5 AS type,
+    output.6 AS addresses,
+    output.7 AS value,
+    block_timestamp as version
+FROM transactions_fat
+ARRAY JOIN outputs AS output
+WHERE block_timestamp >= '2009-01-01' AND block_timestamp < '2012-09-01';
+```
+
+```sql
+INSERT INTO outputs
+SELECT
+    i.spending_transaction_hash AS transaction_hash,
+    i.spending_output_index     AS output_index,
+    o.block_hash,
+    o.block_number,
+    o.block_timestamp,
+    i.transaction_hash AS spent_transaction_hash,
+    i.input_index AS spent_input_index,
+    o.script_asm,
+    o.script_hex,
+    o.required_signatures,
+    o.type,
+    o.addresses,
+    o.value,
+    i.block_timestamp AS version  -- new version, replaces older
+FROM inputs AS i
+INNER JOIN outputs AS o
+    ON i.spending_transaction_hash = o.transaction_hash AND
+       i.spending_output_index = o.output_index
+WHERE (toYYYYMM(i.block_timestamp) >= 201001) AND (toYYYYMM(i.block_timestamp) < 201209);
+
+-- WHERE (toYYYYMM(i.block_timestamp) = 200901) ;
+```
+
+```sql
+OPTIMIZE TABLE outputs FINAL;
+```
+
+
+```sql
+CREATE TABLE address_flat
+(
+    transaction_hash String,
+    output_index UInt64,
+    block_hash String,
+    block_number UInt64,
+    block_timestamp DateTime,
+    address String,
+    value Float64,
+    spent_transaction_hash String,
+    spent_input_index UInt64,
+    version DateTime
+)
+ENGINE = ReplacingMergeTree(version)
+PARTITION BY toYYYYMM(block_timestamp)
+ORDER BY (address, transaction_hash, output_index);
+```
+
+```sql
+INSERT INTO address_flat
+SELECT
+    o.transaction_hash,
+    o.output_index,
+    o.block_hash,
+    o.block_number,
+    o.block_timestamp,
+    address,
+    o.value,
+    o.spent_transaction_hash,
+    o.spent_input_index,
+    o.block_timestamp AS version
+FROM outputs AS o
+ARRAY JOIN o.addresses AS address;
+```
+
+```sql
+CREATE MATERIALIZED VIEW outputs_to_address_mv
+TO address_flat
+AS
+SELECT
+    o.transaction_hash,
+    o.output_index,
+    o.block_hash,
+    o.block_number,
+    o.block_timestamp,
+    address,
+    o.value,
+    o.spent_transaction_hash,
+    o.spent_input_index,
+    o.block_timestamp AS version
+FROM outputs AS o
+ARRAY JOIN o.addresses AS address;
+```
+
+```sql
+SELECT
+    sum(value) / 100000000.0 AS balance
+FROM address_flat FINAL
+WHERE address = '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa'
+  AND spent_transaction_hash = '';
+
+```
+
+```python
+from clickhouse_driver import Client
+from datetime import datetime
+from dateutil.relativedelta import relativedelta
+
+# === CONFIGURATION ===
+CLICKHOUSE_HOST = 'localhost'
+CLICKHOUSE_PORT = 9000
+CLICKHOUSE_USER = 'default'
+CLICKHOUSE_PASSWORD = 'password'
+DATABASE = 'bitcoin'
+
+# === INIT CLIENT ===
+client = Client(
+    host=CLICKHOUSE_HOST,
+    port=CLICKHOUSE_PORT,
+    user=CLICKHOUSE_USER,
+    password=CLICKHOUSE_PASSWORD,
+    database=DATABASE,
+)
+
+
+#client = Client('localhost')  # configure host/user/password if needed
+
+# Choose the partition
+partition_start = datetime(2009, 1, 1)
+partition_end = partition_start + relativedelta(months=1)
+start_str = partition_start.strftime('%Y-%m-%d')
+end_str = partition_end.strftime('%Y-%m-%d')
+
+# Step 1: Load all inputs in the target partition
+inputs = client.execute(f"""
+SELECT transaction_hash, input_index, spending_transaction_hash, spending_output_index
+FROM inputs
+WHERE block_timestamp >= toDateTime('{start_str}')
+  AND block_timestamp < toDateTime('{end_str}');
+""")
+
+print(f"Loaded {len(inputs)} inputs from partition {start_str} to {end_str}")
+
+# Step 2: For each input, find and update the corresponding output
+for row in inputs:
+    input_tx_hash, input_index, spending_tx_hash, spending_output_index = row
+
+    # Step 2.1: Find the output row that matches
+    matched_outputs = client.execute(f"""
+    SELECT transaction_hash, output_index
+    FROM outputs
+    WHERE transaction_hash = %(spending_tx_hash)s
+      AND output_index = %(spending_output_index)s
+    LIMIT 1;
+    """, {
+        'spending_tx_hash': spending_tx_hash,
+        'spending_output_index': spending_output_index
+    })
+
+    if matched_outputs:
+        # Step 3: Update the output row with spent info
+        client.execute(f"""
+        ALTER TABLE outputs
+        UPDATE
+            spent_transaction_hash = %(input_tx_hash)s,
+            spent_input_index = %(input_index)s
+        WHERE
+            transaction_hash = %(spending_tx_hash)s
+            AND output_index = %(spending_output_index)s;
+        """, {
+            'input_tx_hash': input_tx_hash,
+            'input_index': input_index,
+            'spending_tx_hash': spending_tx_hash,
+            'spending_output_index': spending_output_index
+        })
+
+print("All relevant outputs updated.")
+
+```
+
+```sql
+select * from outputs where spent_transaction_hash != '' and block_timestamp < '2009-01-31'
+```
+The ouput of the sql will be 123 same as {len(inputs)} 
+
+
+```python
+
+```
+
 
 ## JSON type
 
