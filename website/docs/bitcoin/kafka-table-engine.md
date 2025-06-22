@@ -182,7 +182,8 @@ CREATE TABLE transactions_queue
   inputs Array(Tuple(index UInt64, spent_transaction_hash String, spent_output_index UInt64, script_asm String, script_hex String, sequence UInt64, required_signatures UInt64, type String, addresses Array(String), value Float64)),
   outputs Array(Tuple(index UInt64, script_asm String, script_hex String, required_signatures UInt64, type String, addresses Array(String), value Float64))
 )
-ENGINE = Kafka('localhost:9092', 'transactions', 'bitcoin-group', 'JSONEachRow') settings kafka_thread_per_consumer = 0, kafka_num_consumers = 3;
+ENGINE = Kafka('localhost:9092', 'transactions', 'bitcoin-group', 'JSONEachRow') 
+settings kafka_thread_per_consumer = 0, kafka_num_consumers = 3, kafka_skip_broken_messages = 1;
 ```
 
 

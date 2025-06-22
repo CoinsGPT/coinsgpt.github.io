@@ -335,30 +335,30 @@ ORDER BY (transaction_hash, input_index);
 ```
 
 ```sql
-CREATE TABLE outputs
+CREATE TABLE inputs
 (
     transaction_hash String,
-    output_index UInt64,
+    input_index UInt64,
     block_hash String,
     block_number UInt64,
     block_timestamp DateTime,
-    spent_transaction_hash String,
-    spent_input_index UInt64,
+    spending_transaction_hash String,
+    spending_output_index UInt64,
     script_asm String,
     script_hex String,
+    sequence UInt64,
     required_signatures UInt64,
     type String,
     addresses Array(String),
     value Float64,
+    version DateTime
 )
-ENGINE = MergeTree()
+ENGINE = MergeTree(version)
 PARTITION BY toYYYYMM(block_timestamp)
-ORDER BY (transaction_hash, output_index);
+ORDER BY (transaction_hash, input_index);
 ```
 
 ```sql
-DROP TABLE IF EXISTS outputs;
-
 CREATE TABLE outputs
 (
     transaction_hash String,
@@ -383,6 +383,33 @@ ORDER BY (transaction_hash, output_index);
 ```
 
 ```sql
+CREATE TABLE outputs
+(
+    transaction_hash String,
+    output_index UInt64,
+    block_hash String,
+    block_number UInt64,
+    block_timestamp DateTime,
+    spent_transaction_hash String,
+    spent_input_index UInt64,
+    spent_block_hash String,
+    spent_block_number UInt64,
+    spent_block_timestamp DateTime,
+    script_asm String,
+    script_hex String,
+    required_signatures UInt64,
+    type String,
+    addresses Array(String),
+    value Float64
+)
+ENGINE = ReplacingMergeTree(spent_block_timestamp)
+PARTITION BY toYYYYMM(block_timestamp)
+ORDER BY (transaction_hash, output_index);
+```
+
+
+
+```sql
 INSERT INTO inputs
 SELECT
     hash AS transaction_hash,
@@ -404,6 +431,30 @@ ARRAY JOIN inputs AS input
 WHERE block_timestamp >= '2009-01-01' AND block_timestamp < '2012-09-01';
 
 ```
+
+```sql
+INSERT INTO inputs
+SELECT
+    hash AS transaction_hash,
+    input.1 AS input_index,
+    block_hash,
+    block_number,
+    block_timestamp,
+    input.2 AS spending_transaction_hash,
+    input.3 AS spending_output_index,
+    input.4 AS script_asm,
+    input.5 AS script_hex,
+    input.6 AS sequence,
+    input.7 AS required_signatures,
+    input.8 AS type,
+    input.9 AS addresses,
+    input.10 AS value
+    block_timestamp as version
+FROM transactions_fat
+ARRAY JOIN inputs AS input
+WHERE block_timestamp >= '2009-01-01' AND block_timestamp < '2012-09-01';
+```
+
 
 ```sql
 INSERT INTO outputs

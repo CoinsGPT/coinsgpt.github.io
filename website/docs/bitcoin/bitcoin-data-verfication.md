@@ -22,8 +22,7 @@ WITH seq AS (
 )
 SELECT seq.number AS missing_block_number
 FROM seq
-LEFT JOIN blocks_fat AS b ON seq.number = b.number
-WHERE b.number != seq.number
+LEFT ANTI JOIN blocks_fat AS b ON seq.number = b.number
 ```
 
 If this query returns rows, those block numbers are missing.
