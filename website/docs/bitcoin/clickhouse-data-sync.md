@@ -3,17 +3,36 @@
 ![](/img/bitcoin/bitcoin_data_pipeline.png)
 
 
-Synchronise and validate Bitcoin block / transaction data held in ClickHouse
 
-Main capabilities
+Data Verification & Synchronization Checklist held in ClickHOuse. Before executing [`clickhouse_sync_data.py`](https://github.com/TheBestOrNothing/bitcoin-etl/blob/master/bitcoinetl/cli/clickhouse_sync_data.py), follow this academic-grade process:
 
-1. **Detect “holes”** (missing blocks or mismatched transactions) in the `blocks_fat` and `transactions_fat` staging tables.
-2. **For hole-free partitions**:
+1. **Inspect the partitions** in `blocks_fat` and `transactions_fat`.
+   - Query min/max block numbers per partition.
+   - Check for duplicate or orphaned entries.
 
-   * Optimise `transactions_fat`.
-   * Explode nested arrays into the `inputs` and `outputs` tables.
-   * Back-fill spent-output metadata in `outputs`.
-3. **CLI support** so operators can start scanning from a chosen **YYYYMM** partition.
+2. Run [`clickhouse_block_hole_finding.py`](https://github.com/TheBestOrNothing/bitcoin-etl/blob/master/bitcoinetl/cli/clickhouse_block_hole_finding.py)
+   - Identify gaps in block sequence.
+   - Save results to a log or CSV.
+
+3. Run [`clickhouse_block_hole_fixing.py`](https://github.com/TheBestOrNothing/bitcoin-etl/blob/master/bitcoinetl/cli/clickhouse_block_hole_fixing.py)
+   - Backfill missing blocks.
+   - Confirm inserted blocks match canonical Bitcoin data.
+
+4. Run [`clickhouse_transaction_hole_finding.py`](https://github.com/TheBestOrNothing/bitcoin-etl/blob/master/bitcoinetl/cli/clickhouse_transaction_hole_finding.py) 
+   - Verify each block has its full set of transactions.
+   - Validate counts and structure.
+
+5. Run [`clickhouse_transaction_hole_fixing.py`](https://github.com/TheBestOrNothing/bitcoin-etl/blob/master/bitcoinetl/cli/clickhouse_transaction_hole_fixing.py)
+   - Backfill missing transactions.
+   - Re-index and refresh ClickHouse partitions.
+
+6. Run `OPTIMIZE TABLE` on each partition.
+   - Ensure ClickHouse merges and deduplicates entries efficiently.
+
+7. Run [`clickhouse_sync_data.py`](https://github.com/TheBestOrNothing/bitcoin-etl/blob/master/bitcoinetl/cli/clickhouse_sync_data.py)
+   - Explode `transactions_fat.inputs[]` into the `inputs` table for a given partition.
+   - Explode `transactions_fat.outputs[]` into placeholder rows in the `outputs` table.
+   - Update `outputs` with spent details by joining against `inputs`.
 
 
 | Function                            | Purpose                                                                                       |
