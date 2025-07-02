@@ -19,6 +19,15 @@ You’re building a Kafka-based data pipeline for Bitcoin. You’ll:
 
 ---
 
+## 0. Common Command
+
+```bash
+kafka-consumer-groups.sh \
+  --describe \
+  --group bitcoin-group \
+  --bootstrap-server localhost:9092
+```
+
 ## 1. Create Kafka Topics
 
 Topics are the core abstraction for message streams. You create them using `kafka-topics.sh`.
@@ -151,7 +160,44 @@ Explanation:
 
 > Kafka will delete log segments when **either** of the conditions is met.
 
-## 6. Describe a Kafka Topic (to check configs)
+
+## 6. Enlarge Topic Max Message
+
+Apache Kafka has several key limitations and configurable constraints that impact how much data can be produced, buffered, and consumed. Here's a clear breakdown of the main types of limitations:
+- Message Size Limitations
+- Buffering & Memory Limits
+- Log & Retention Limits
+- Consumer Fetch & Processing Limits
+- Connection & Network Limits
+
+To **enlarge your Kafka topic `transactions` to support messages up to 90MB**, you must:
+1. **Update the topic** config (`max.message.bytes`)
+2. **Update the broker** config (`message.max.bytes` and `replica.fetch.max.bytes`)
+3. **Update your producer** config (`max.request.size`, `buffer.memory`)
+
+It works after finish the first step to update the transactions topic config. 
+
+```bash
+kafka-configs.sh --bootstrap-server localhost:9092 \
+  --entity-type topics \
+  --entity-name transactions \
+  --alter \
+  --add-config max.message.bytes=94371840
+```
+
+```bash
+kafka-configs.sh --bootstrap-server localhost:9092   --entity-type topics --entity-name transactions   --describe
+```
+
+```
+Dynamic configs for topic transactions are:
+  cleanup.policy=delete sensitive=false synonyms={DYNAMIC_TOPIC_CONFIG:cleanup.policy=delete, DEFAULT_CONFIG:log.cleanup.policy=delete}
+  max.message.bytes=94371840 sensitive=false synonyms={DYNAMIC_TOPIC_CONFIG:max.message.bytes=94371840, DEFAULT_CONFIG:message.max.bytes=1048588}
+  retention.bytes=1073741824 sensitive=false synonyms={DYNAMIC_TOPIC_CONFIG:retention.bytes=1073741824, DEFAULT_CONFIG:log.retention.bytes=-1}
+  retention.ms=86400000 sensitive=false synonyms={DYNAMIC_TOPIC_CONFIG:retention.ms=86400000}
+```
+
+## 7. Describe a Kafka Topic (to check configs)
 
 ```bash
 # View details of the 'transactions' topic

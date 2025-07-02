@@ -83,13 +83,83 @@ ON flattened.tx_hash = t.hash
 WHERE t.hash != flattened.tx_hash;
 ```
 
+The missing transaction examples
+
+```
+Block: 364773  Missing TX: 9fdbcf0ef9d8d00f66e47917f67cc5d78aec1ac786e2abb8d2facb4e4790aad6
+Block: 364784  Missing TX: 9c667c64fcbb484b44dcce638f69130bbf1a4dd0fbb4423f58ceff92af4219ec
+Block: 367885  Missing TX: 30b3b19b4d14fae79b5d55516e93f7399e7eccd87403b8dc048ea4f49130595a
+Block: 367906  Missing TX: dd6067e71c04cb62f8e5aa52ecc99b01ffcd551a52727d046a2fabb14eb39b4d
+Block: 367904  Missing TX: 740ac533882221099e7202bbdafbb99ec589c6e74fd2fe7ca1274b46ea4f0a96
+Block: 367899  Missing TX: f2e197a6d8d088b13afd0f99d4027da36a9413b9f3d7730ba5278132ebc950a7
+Block: 367886  Missing TX: cf1032c2213e6faea04f1813aa6890e7f588bb378cb98e7425aec83c11d4457c
+Block: 367877  Missing TX: 52539a56b1eb890504b775171923430f0355eb836a57134ba598170a2f8980c1
+Block: 367911  Missing TX: 5f4d2593c859833db2e2d25c672a46e98f7f8564b991af9642a8b37e88af62bc
+Block: 367897  Missing TX: 8dabbf51f78c1e7286866af1de403118c5ddbe57ca93b54859245916d2bf1063
+Block: 367891  Missing TX: c9fe64681c9a12795586a3ae7c5e94b585032f67847c7f9c42e1b979a1e2959b
+Block: 367906  Missing TX: dd6067e71c04cb62f8e5aa52ecc99b01ffcd551a52727d046a2fabb14eb39b4d
+Block: 367904  Missing TX: 740ac533882221099e7202bbdafbb99ec589c6e74fd2fe7ca1274b46ea4f0a96
+Block: 367899  Missing TX: f2e197a6d8d088b13afd0f99d4027da36a9413b9f3d7730ba5278132ebc950a7
+Block: 367885  Missing TX: 30b3b19b4d14fae79b5d55516e93f7399e7eccd87403b8dc048ea4f49130595a
+Block: 367906  Missing TX: dd6067e71c04cb62f8e5aa52ecc99b01ffcd551a52727d046a2fabb14eb39b4d
+Block: 367904  Missing TX: 740ac533882221099e7202bbdafbb99ec589c6e74fd2fe7ca1274b46ea4f0a96
+Block: 367899  Missing TX: f2e197a6d8d088b13afd0f99d4027da36a9413b9f3d7730ba5278132ebc950a7
+Block: 367886  Missing TX: cf1032c2213e6faea04f1813aa6890e7f588bb378cb98e7425aec83c11d4457c
+Block: 367877  Missing TX: 52539a56b1eb890504b775171923430f0355eb836a57134ba598170a2f8980c1
+Block: 367911  Missing TX: 5f4d2593c859833db2e2d25c672a46e98f7f8564b991af9642a8b37e88af62bc
+Block: 367897  Missing TX: 8dabbf51f78c1e7286866af1de403118c5ddbe57ca93b54859245916d2bf1063
+Block: 367891  Missing TX: c9fe64681c9a12795586a3ae7c5e94b585032f67847c7f9c42e1b979a1e2959b
+Block: 367885  Missing TX: 30b3b19b4d14fae79b5d55516e93f7399e7eccd87403b8dc048ea4f49130595a
+Block: 367911  Missing TX: 5f4d2593c859833db2e2d25c672a46e98f7f8564b991af9642a8b37e88af62bc
+Block: 367877  Missing TX: 52539a56b1eb890504b775171923430f0355eb836a57134ba598170a2f8980c1
+Block: 367897  Missing TX: 8dabbf51f78c1e7286866af1de403118c5ddbe57ca93b54859245916d2bf1063
+Block: 367891  Missing TX: c9fe64681c9a12795586a3ae7c5e94b585032f67847c7f9c42e1b979a1e2959b
+Block: 367886  Missing TX: cf1032c2213e6faea04f1813aa6890e7f588bb378cb98e7425aec83c11d4457c
+```
+
 3. If you find there are transactions missed, please double check whether it contained in the bitcoind
 
 ```
 bitcoin-cli getrawtransaction <txid> true
 ```
 
-## 3.Transactions Missing Reverse
+
+4. Apache Kafka has several key limitations and configurable constraints that impact how much data can be produced, buffered, and consumed. Here's a clear breakdown of the main types of limitations:
+- Message Size Limitations
+- Buffering & Memory Limits
+- Log & Retention Limits
+- Consumer Fetch & Processing Limits
+- Connection & Network Limits
+
+To **enlarge your Kafka topic `transactions` to support messages up to 90MB**, you must:
+1. **Update the topic** config (`max.message.bytes`)
+2. **Update the broker** config (`message.max.bytes` and `replica.fetch.max.bytes`)
+3. **Update your producer** config (`max.request.size`, `buffer.memory`)
+
+It works after finish the first step to update the transactions topic config. 
+
+```bash
+kafka-configs.sh --bootstrap-server localhost:9092 \
+  --entity-type topics \
+  --entity-name transactions \
+  --alter \
+  --add-config max.message.bytes=94371840
+```
+
+```bash
+kafka-configs.sh --bootstrap-server localhost:9092   --entity-type topics --entity-name transactions   --describe
+```
+
+```
+Dynamic configs for topic transactions are:
+  cleanup.policy=delete sensitive=false synonyms={DYNAMIC_TOPIC_CONFIG:cleanup.policy=delete, DEFAULT_CONFIG:log.cleanup.policy=delete}
+  max.message.bytes=94371840 sensitive=false synonyms={DYNAMIC_TOPIC_CONFIG:max.message.bytes=94371840, DEFAULT_CONFIG:message.max.bytes=1048588}
+  retention.bytes=1073741824 sensitive=false synonyms={DYNAMIC_TOPIC_CONFIG:retention.bytes=1073741824, DEFAULT_CONFIG:log.retention.bytes=-1}
+  retention.ms=86400000 sensitive=false synonyms={DYNAMIC_TOPIC_CONFIG:retention.ms=86400000}
+```
+
+
+## 4.Transactions Missing Reverse
 
 To find transactions listed in transactions_fat that are not present in blocks_fat.transactions, partition-by-partition (month-by-month)
 
