@@ -12,7 +12,7 @@
 > • Final tables have smaller rows, sorted keys, and domain-specific indexes that accelerate analytics.
 
 
-## Block Staging Table `blocks_fat`
+## Block Staging Table blocks_fat
 
 *Purpose & Rationale*
 
@@ -47,6 +47,46 @@ PRIMARY KEY (hash)
 PARTITION BY toYYYYMM(timestamp_month)
 ORDER BY hash;
 ```
+
+## Block Revision Table blocks
+
+```sql
+CREATE TABLE blocks
+(
+  hash String,
+  size UInt64,
+  stripped_size UInt64,
+  weight UInt64,
+  number UInt64,
+  version UInt64,
+  merkle_root String,
+  timestamp DateTime,
+  timestamp_month Date,
+  nonce String,
+  bits String,
+  coinbase_param String,
+  previous_block_hash String,
+  difficulty Float64,
+  transaction_count UInt64,
+  transactions Array(String),
+  totalFees Float64,
+  subsidy Float64,
+  reward Float64,
+  avgFee Float64,
+  coinbaseRaw String,
+  coinbaseAddresses Array(String),
+  totalInputNumber UInt64,
+  totalInputValue Float64,
+  totalOutputNumber UInt64,
+  totalOutputValue Float64,
+  revision UInt64
+)
+ENGINE = ReplacingMergeTree(revision)
+PRIMARY KEY (hash)
+PARTITION BY toYYYYMM(timestamp_month)
+ORDER BY hash;
+```
+
 
 ## Transaction Staging Table `transactions_fat`
 
