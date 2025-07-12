@@ -50,6 +50,9 @@ ORDER BY hash;
 
 ## Block Revision Table blocks
 
+The revision column in your blocks table is used to distinguish different versions or revisions of the same data row (keyed by hash) in the ReplacingMergeTree. This enables maintain and update rows over time and identify whether a row is an original copy or has been enriched or modified
+
+
 ```sql
 CREATE TABLE blocks
 (
@@ -69,26 +72,89 @@ CREATE TABLE blocks
   difficulty Float64,
   transaction_count UInt64,
   transactions Array(String),
-  totalFees Float64,
+  total_fees Float64,
   subsidy Float64,
   reward Float64,
-  avgFee Float64,
-  coinbaseRaw String,
-  coinbaseAddresses Array(String),
-  totalInputNumber UInt64,
-  totalInputValue Float64,
-  totalOutputNumber UInt64,
-  totalOutputValue Float64,
+  coinbase_transaction String,
+  coinbase_addresses Array(String),
+  input_count UInt64,
+  input_value Float64,
+  output_count UInt64,
+  output_value Float64,
   revision UInt64
 )
 ENGINE = ReplacingMergeTree(revision)
 PRIMARY KEY (hash)
-PARTITION BY toYYYYMM(timestamp_month)
+PARTITION BY toYYYYMM(timestamp)
 ORDER BY hash;
 ```
 
+Original raw copy from blocks_fat (minimal schema). when copying the original data, default values are added for the extra fields
 
-## Transaction Staging Table `transactions_fat`
+```sql
+    INSERT INTO blocks
+    SELECT
+      hash,
+      size,
+      stripped_size,
+      weight,
+      number,
+      version,
+      merkle_root,
+      timestamp,
+      timestamp_month,
+      nonce,
+      bits,
+      coinbase_param,
+      previous_block_hash,
+      difficulty,
+      transaction_count,
+      transactions,
+      0.0 AS total_fees,
+      0.0 AS subsidy,
+      0.0 AS reward,
+      '' AS coinbase_transaction,
+      [] AS coinbase_addresses,
+      0 AS input_count,
+      0.0 AS input_value,
+      0 AS output_count,
+      0.0 AS output_value,
+      0 AS revision
+    FROM blocks_fat
+    WHERE toYYYYMM(timestamp) = 200901
+```
+
+
+| Column                 | Revision | Description                                                       |
+| ---------------------- | -------- | ----------------------------------------------------------------- |
+| `total_fees`           | ❌       | Sum of all transaction fees in block (input value - output value) |
+| `subsidy`              | ❌       | Block subsidy (depends on height)                                 |
+| `reward`               | ❌       | subsidy + total_fees                                              |
+| `coinbase_transaction` | ❌       | Coinbase TX ID (first transaction)                                |
+| `coinbase_addresses`   | ❌       | Addresses in the coinbase transaction’s outputs                   |
+| `input_count`          | ❌       | Total number of inputs in all transactions                        |
+| `input_value`          | ❌       | Total value of all inputs                                         |
+| `output_count`         | ❌       | Total number of outputs in all transactions                       |
+| `output_value`         | ❌       | Total value of all outputs                                        |
+| `hash`                 | 0        | Block hash (primary key)                                          |
+| `size`                 | 0        | Block size in bytes                                               |
+| `stripped_size`        | 0        | Block size without witness data                                   |
+| `weight`               | 0        | Block weight (segwit)                                             |
+| `number`               | 0        | Block height                                                      |
+| `version`              | 0        | Block version                                                     |
+| `merkle_root`          | 0        | Merkle root of transactions                                       |
+| `timestamp`            | 0        | Timestamp of block                                                |
+| `timestamp_month`      | 0        | Date part (month) of timestamp                                    |
+| `nonce`                | 0        | Nonce used for PoW                                                |
+| `bits`                 | 0        | Difficulty bits format                                            |
+| `coinbase_param`       | 0        | Raw coinbase input script param                                   |
+| `previous_block_hash`  | 0        | Hash of previous block                                            |
+| `difficulty`           | 0        | Difficulty target                                                 |
+| `transaction_count`    | 0        | Number of transactions in block                                   |
+| `transactions`         | 0        | Array of TXIDs in the block                                       |
+
+
+## Transaction Staging Table transactions_fat
 
 *Purpose & Rationale*
 
@@ -124,6 +190,64 @@ PARTITION BY toYYYYMM(block_timestamp_month)
 ORDER BY (hash);
 ```
 
+## Transaction Staging Table transactions
+
+```sql
+CREATE TABLE transactions
+(
+  hash String,
+  size UInt64,
+  virtual_size UInt64,
+  version UInt64,
+  lock_time UInt64,
+  block_hash String,
+  block_number UInt64,
+  block_timestamp DateTime,
+  block_timestamp_month Date,
+  is_coinbase BOOL,
+  input_count UInt64,
+  output_count UInt64,
+  input_value Float64,
+  output_value Float64,
+  fee Float64,
+  inputs Array(Tuple(index UInt64, spent_transaction_hash String, spent_output_index UInt64, script_asm String, script_hex String, sequence UInt64, required_signatures UInt64, type String, addresses Array(String), value Float64)),
+  outputs Array(Tuple(index UInt64, script_asm String, script_hex String, required_signatures UInt64, type String, addresses Array(String), value Float64)),
+  revision UInt64
+)
+ENGINE = ReplacingMergeTree(revision)
+PRIMARY KEY (hash)
+PARTITION BY toYYYYMM(block_timestamp)
+ORDER BY (hash);
+```
+
+Original copy from transactions_fat, Raw import. Field spending_transaction_hash equals spent_transaction_hash, spending_output_index equals spent_output_index. Only add revision filed.
+
+```sql
+INSERT INTO transactions
+SELECT
+  hash,
+  size,
+  virtual_size,
+  version,
+  lock_time,
+  block_hash,
+  block_number,
+  block_timestamp,
+  block_timestamp_month,
+  is_coinbase,
+  input_count,
+  output_count,
+  input_value,
+  output_value,
+  fee,
+  inputs,
+  outputs,
+  0 AS revision
+FROM transactions_fat
+WHERE toYYYYMM(block_timestamp) >= 200901
+  AND toYYYYMM(block_timestamp) < 200903;
+```
+
 ## Normalized Inputs Table `inputs`
 
 *Purpose & Rationale*
@@ -149,9 +273,10 @@ CREATE TABLE inputs
     required_signatures UInt64,
     type String,
     addresses Array(String),
-    value Float64
+    value Float64,
+    revision UInt64
 )
-ENGINE = ReplacingMergeTree(block_timestamp)
+ENGINE = ReplacingMergeTree(revision)
 PARTITION BY toYYYYMM(block_timestamp)
 ORDER BY (transaction_hash, input_index);
 ```
@@ -174,11 +299,12 @@ SELECT
     input.7 AS required_signatures,
     input.8 AS type,
     input.9 AS addresses,
-    input.10 AS value
-FROM transactions_fat AS t
+    input.10 AS value,
+    0 as revision
+FROM transactions AS t
 ARRAY JOIN t.inputs AS input
-WHERE t.block_timestamp >= '2009-01-01'
-  AND t.block_timestamp < '2013-01-01';
+WHERE toYYYYMM(t.block_timestamp) >= 200901
+  AND toYYYYMM(t.block_timestamp) < 200903;
 ```
 
 ## Normalized Outputs Table `outputs`
@@ -208,9 +334,11 @@ CREATE TABLE outputs
     required_signatures UInt64,
     type String,
     addresses Array(String),
-    value Float64
+    value Float64,
+    is_coinbase BOOL,
+    revision UInt64
 )
-ENGINE = ReplacingMergeTree(spent_block_timestamp)
+ENGINE = ReplacingMergeTree(revision)
 PARTITION BY toYYYYMM(block_timestamp)
 ORDER BY (transaction_hash, output_index);
 ```
@@ -235,11 +363,13 @@ SELECT
     output.4 AS required_signatures,
     output.5 AS type,
     output.6 AS addresses,
-    output.7 AS value
-FROM transactions_fat AS t
+    output.7 AS value,
+    t.is_coinbase AS is_coinbase,
+    0 AS revision
+FROM transactions AS t
 ARRAY JOIN t.outputs AS output
-WHERE t.block_timestamp >= '2009-01-01'
-  AND t.block_timestamp < '2013-01-01';
+WHERE toYYYYMM(t.block_timestamp) >= 200901
+  AND toYYYYMM(t.block_timestamp) < 200903;
 ```
 
 *Phase 2: Mark outputs as spent*
@@ -262,14 +392,46 @@ SELECT
     o.required_signatures,
     o.type,
     o.addresses,
-    o.value
+    o.value,
+    o.is_coinbase,
+    1 AS revision
 FROM inputs AS i
 INNER JOIN outputs AS o
     ON i.spending_transaction_hash = o.transaction_hash
    AND i.spending_output_index = o.output_index
 WHERE toYYYYMM(i.block_timestamp) >= 200901
-  AND toYYYYMM(i.block_timestamp) < 201301;
+  AND toYYYYMM(i.block_timestamp) < 200903;
 ```
+
+*Phase 3: Enrich inputs by outputs*
+
+```sql
+INSERT INTO inputs
+SELECT
+    i.transaction_hash,
+    i.input_index,
+    i.block_hash,
+    i.block_number,
+    i.block_timestamp,
+    i.spending_transaction_hash,
+    i.spending_output_index,
+    i.script_asm,
+    i.script_hex,
+    i.sequence,
+    o.required_signatures AS required_signatures,
+    o.type AS type,
+    o.addresses AS addresses,
+    o.value AS value,
+    1 AS revision
+FROM inputs AS i
+INNER JOIN outputs AS o
+    ON i.spending_transaction_hash = o.transaction_hash
+   AND i.spending_output_index = o.output_index
+WHERE toYYYYMM(i.block_timestamp) >= 200901
+  AND toYYYYMM(i.block_timestamp) < 200903;
+```
+
+
 
 *Finalize deduplication*
 
@@ -277,7 +439,7 @@ WHERE toYYYYMM(i.block_timestamp) >= 200901
 OPTIMIZE TABLE outputs FINAL;
 ```
 
-## Address-Level Flat Table address_flat
+## Address-Level Flat Table address
 
 *Purpose & Rationale*
 
@@ -286,7 +448,7 @@ OPTIMIZE TABLE outputs FINAL;
 * A materialized view (`address_flat_mv`) keeps the table automatically synchronized with `outputs`, removing manual ETL.
 
 ```sql
-CREATE TABLE address_flat
+CREATE TABLE address
 (
     transaction_hash String,
     output_index UInt64,
@@ -309,7 +471,7 @@ ORDER BY (address, transaction_hash, output_index);
 *One-off backfill (optional if MV is created first)*
 
 ```sql
-INSERT INTO address_flat
+INSERT INTO address
 SELECT
     o.transaction_hash,
     o.output_index,
@@ -330,8 +492,8 @@ ARRAY JOIN o.addresses AS address;
 *Continuous sync*
 
 ```sql
-CREATE MATERIALIZED VIEW address_flat_mv
-TO address_flat
+CREATE MATERIALIZED VIEW address_mv
+TO address
 AS
 SELECT
     o.transaction_hash,
@@ -353,11 +515,10 @@ ARRAY JOIN o.addresses AS address;
 *Example query: Satoshi’s famously untouched balance*
 
 ```sql
-SELECT
-    sum(value) / 100000000.0 AS balance
-FROM address_flat FINAL
-WHERE address = '1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa'
-  AND spent_transaction_hash = '';
+SELECT sum(value) / 100000000. AS balance
+FROM address
+FINAL
+WHERE (address = '12higDjoCCNXSA95xZMWUdPvXNmkAduhWv') AND (spent_transaction_hash = '')
 ```
 
 ## How the Pieces Fit Together (Logic Recap)
