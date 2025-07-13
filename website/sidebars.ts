@@ -185,6 +185,7 @@ const sidebars: SidebarsConfig = {
     'bitcoin/kafka-setup',
     'bitcoin/clickhouse-setup',
     'bitcoin/clickhouse-schema',
+    'bitcoin/bitcoin-data-consistency',
     'bitcoin/clickhouse-data-sync',
     'bitcoin/kafka-table-engine',
     'bitcoin/bitcoin-data-verfication',
