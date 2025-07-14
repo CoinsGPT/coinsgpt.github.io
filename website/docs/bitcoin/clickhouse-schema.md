@@ -125,12 +125,6 @@ Original raw copy from blocks_fat (minimal schema). when copying the original da
     WHERE toYYYYMM(timestamp) = 200901
 ```
 
-<style>
-table {
-  width: 100%;
-  table-layout: fixed;
-}
-
 | Column                 | Revision | Description                                                       |
 | ---------------------- | -------- | ----------------------------------------------------------------- |
 | `total_fees`           | ❌       | Sum of all transaction fees in block (input value - output value) |
@@ -159,7 +153,6 @@ table {
 | `transaction_count`    | 0        | Number of transactions in block                                   |
 | `transactions`         | 0        | Array of TXIDs in the block                                       |
 
-</style>
 
 ## Transaction_fat Table 
 
