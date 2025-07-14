@@ -309,6 +309,25 @@ WHERE toYYYYMM(t.block_timestamp) >= 200901
   AND toYYYYMM(t.block_timestamp) < 200903;
 ```
 
+| Column                      | Revision | Description                                                 |
+| --------------------------- | -------- | ----------------------------------------------------------- |
+| `transaction_hash`          | 0        | Hash of the transaction this input belongs to               |
+| `input_index`               | 0        | Index of the input in the transaction's input array         |
+| `block_hash`                | 0        | Hash of the block that includes this transaction            |
+| `block_number`              | 0        | Height of the block containing the transaction              |
+| `block_timestamp`           | 0        | Timestamp of the block                                      |
+| `spending_transaction_hash` | 0        | Hash of the previous (spent) transaction                    |
+| `spending_output_index`     | 0        | Index of the output in the previous transaction being spent |
+| `script_asm`                | 0        | Script in human-readable ASM format                         |
+| `script_hex`                | 0        | Script in hexadecimal format                                |
+| `sequence`                  | 0        | Sequence number of the input                                |
+| `required_signatures`       | ❌        | Number of required signatures to spend this input           |
+| `type`                      | ❌        | Script type (e.g., `pubkeyhash`, `multisig`)                |
+| `addresses`                 | ❌        | Array of decoded Bitcoin addresses related to this input    |
+| `value`                     | ❌        | Value of the input in BTC                                   |
+| `revision`                  | 0        | Revision number for `ReplacingMergeTree` version control    |
+
+
 ## Outputs Table
 
 *Purpose & Rationale*
@@ -375,6 +394,28 @@ WHERE toYYYYMM(t.block_timestamp) >= 200901
   AND toYYYYMM(t.block_timestamp) < 200903;
 ```
 
+| Column                   | Revision | Description                                                       |
+| ------------------------ | -------- | ----------------------------------------------------------------- |
+| `transaction_hash`       | 0        | Hash of the transaction this output belongs to                    |
+| `output_index`           | 0        | Index of the output within the transaction                        |
+| `block_hash`             | 0        | Hash of the block containing this transaction                     |
+| `block_number`           | 0        | Height of the block containing the transaction                    |
+| `block_timestamp`        | 0        | Timestamp of the block                                            |
+| `spent_transaction_hash` | ❌        | Hash of the transaction that spent this output                    |
+| `spent_input_index`      | ❌        | Input index in the spending transaction that consumed this output |
+| `spent_block_hash`       | ❌        | Hash of the block where the output was spent                      |
+| `spent_block_number`     | ❌        | Height of the block where the output was spent                    |
+| `spent_block_timestamp`  | ❌        | Timestamp of the block where the output was spent                 |
+| `script_asm`             | 0        | Script in human-readable ASM format                               |
+| `script_hex`             | 0        | Script in hexadecimal format                                      |
+| `required_signatures`    | 0        | Number of required signatures to spend this output                |
+| `type`                   | 0        | Output script type (e.g., `pubkeyhash`, `nulldata`, `multisig`)   |
+| `addresses`              | 0        | Array of decoded Bitcoin addresses this output is associated with |
+| `value`                  | 0        | Value of the output in BTC                                        |
+| `is_coinbase`            | 0        | Whether the output originates from a coinbase transaction         |
+| `revision`               | 0        | Revision number for `ReplacingMergeTree` version control          |
+
+
 *Phase 2: Mark outputs as spent*
 
 ```sql
@@ -406,6 +447,28 @@ WHERE toYYYYMM(i.block_timestamp) >= 200901
   AND toYYYYMM(i.block_timestamp) < 200903;
 ```
 
+| Column                   | Revision | Description                                                       |
+| ------------------------ | -------- | ----------------------------------------------------------------- |
+| `transaction_hash`       | 0        | Hash of the transaction this output belongs to                    |
+| `output_index`           | 0        | Index of the output within the transaction                        |
+| `block_hash`             | 0        | Hash of the block containing this transaction                     |
+| `block_number`           | 0        | Height of the block containing the transaction                    |
+| `block_timestamp`        | 0        | Timestamp of the block                                            |
+| `spent_transaction_hash` | 1        | Hash of the transaction that spent this output                    |
+| `spent_input_index`      | 1        | Input index in the spending transaction that consumed this output |
+| `spent_block_hash`       | 1        | Hash of the block where the output was spent                      |
+| `spent_block_number`     | 1        | Height of the block where the output was spent                    |
+| `spent_block_timestamp`  | 1        | Timestamp of the block where the output was spent                 |
+| `script_asm`             | 0        | Script in human-readable ASM format                               |
+| `script_hex`             | 0        | Script in hexadecimal format                                      |
+| `required_signatures`    | 0        | Number of required signatures to spend this output                |
+| `type`                   | 0        | Output script type (e.g., `pubkeyhash`, `nulldata`, `multisig`)   |
+| `addresses`              | 0        | Array of decoded Bitcoin addresses this output is associated with |
+| `value`                  | 0        | Value of the output in BTC                                        |
+| `is_coinbase`            | 0        | Whether the output originates from a coinbase transaction         |
+| `revision`               | 1        | Revision number for `ReplacingMergeTree` version control          |
+
+
 *Phase 3: Enrich inputs by outputs*
 
 ```sql
@@ -433,6 +496,24 @@ INNER JOIN outputs AS o
 WHERE toYYYYMM(i.block_timestamp) >= 200901
   AND toYYYYMM(i.block_timestamp) < 200903;
 ```
+
+| Column                      | Revision | Description                                                 |
+| --------------------------- | -------- | ----------------------------------------------------------- |
+| `transaction_hash`          | 0        | Hash of the transaction this input belongs to               |
+| `input_index`               | 0        | Index of the input in the transaction's input array         |
+| `block_hash`                | 0        | Hash of the block that includes this transaction            |
+| `block_number`              | 0        | Height of the block containing the transaction              |
+| `block_timestamp`           | 0        | Timestamp of the block                                      |
+| `spending_transaction_hash` | 0        | Hash of the previous (spent) transaction                    |
+| `spending_output_index`     | 0        | Index of the output in the previous transaction being spent |
+| `script_asm`                | 0        | Script in human-readable ASM format                         |
+| `script_hex`                | 0        | Script in hexadecimal format                                |
+| `sequence`                  | 0        | Sequence number of the input                                |
+| `required_signatures`       | 1        | Number of required signatures to spend this input           |
+| `type`                      | 1        | Script type (e.g., `pubkeyhash`, `multisig`)                |
+| `addresses`                 | 1        | Array of decoded Bitcoin addresses related to this input    |
+| `value`                     | 1        | Value of the input in BTC                                   |
+| `revision`                  | 1        | Revision number for `ReplacingMergeTree` version control    |
 
 
 
@@ -528,7 +609,7 @@ FINAL
 WHERE (address = '12higDjoCCNXSA95xZMWUdPvXNmkAduhWv') AND (spent_transaction_hash = '')
 ```
 
-## How the Pieces Fit Together (Logic Recap)
+## How the Pieces Fit Together
 
 1. **Raw ingestion** happens once into `blocks_fat` and `transactions_fat`.
 2. Arrays are **exploded** into `inputs` and `outputs`, bringing UTXO granularity.
