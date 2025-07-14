@@ -130,7 +130,6 @@ table {
   width: 100%;
   table-layout: fixed;
 }
-</style>
 
 | Column                 | Revision | Description                                                       |
 | ---------------------- | -------- | ----------------------------------------------------------------- |
@@ -160,6 +159,7 @@ table {
 | `transaction_count`    | 0        | Number of transactions in block                                   |
 | `transactions`         | 0        | Array of TXIDs in the block                                       |
 
+</style>
 
 ## Transaction_fat Table 
 
