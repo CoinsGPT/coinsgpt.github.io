@@ -125,6 +125,12 @@ Original raw copy from blocks_fat (minimal schema). when copying the original da
     WHERE toYYYYMM(timestamp) = 200901
 ```
 
+<style>
+table {
+  width: 100%;
+  table-layout: fixed;
+}
+</style>
 
 | Column                 | Revision | Description                                                       |
 | ---------------------- | -------- | ----------------------------------------------------------------- |
