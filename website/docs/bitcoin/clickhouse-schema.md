@@ -3,16 +3,17 @@
 ![](/img/bitcoin/bitcoin_data_pipeline.png)
 
 
-## “Create Fat First, Then Make Tight” ― Overall Strategy
+##  Overall Strategy
 
+> Create Fat First, Then Make Tight
 > **Concept:** Ingest raw blockchain data into **wide, append-only staging tables** (“fat” tables). Once the data is complete and deduplicated, **transform and load** it into **narrow, query-optimized tables** (“tight” tables).
 > **Benefits:**
-> • Simple, resilient ETL—raw arrays are stored exactly once.
-> • Historical re-processing is unnecessary; transformations are repeatable.
-> • Final tables have smaller rows, sorted keys, and domain-specific indexes that accelerate analytics.
+> Simple, resilient ETL—raw arrays are stored exactly once.
+> Historical re-processing is unnecessary; transformations are repeatable.
+> Final tables have smaller rows, sorted keys, and domain-specific indexes that accelerate analytics.
 
 
-## Block Staging Table blocks_fat
+## Block_fat Table 
 
 *Purpose & Rationale*
 
@@ -48,7 +49,7 @@ PARTITION BY toYYYYMM(timestamp_month)
 ORDER BY hash;
 ```
 
-## Block Revision Table blocks
+## Block Table 
 
 The revision column in your blocks table is used to distinguish different versions or revisions of the same data row (keyed by hash) in the ReplacingMergeTree. This enables maintain and update rows over time and identify whether a row is an original copy or has been enriched or modified
 
@@ -154,7 +155,7 @@ Original raw copy from blocks_fat (minimal schema). when copying the original da
 | `transactions`         | 0        | Array of TXIDs in the block                                       |
 
 
-## Transaction Staging Table transactions_fat
+## Transaction_fat Table 
 
 *Purpose & Rationale*
 
@@ -190,7 +191,7 @@ PARTITION BY toYYYYMM(block_timestamp_month)
 ORDER BY (hash);
 ```
 
-## Transaction Staging Table transactions
+## Transaction Table 
 
 ```sql
 CREATE TABLE transactions
@@ -248,7 +249,7 @@ WHERE toYYYYMM(block_timestamp) >= 200901
   AND toYYYYMM(block_timestamp) < 200903;
 ```
 
-## Normalized Inputs Table `inputs`
+## Inputs Table
 
 *Purpose & Rationale*
 
@@ -278,6 +279,7 @@ CREATE TABLE inputs
 )
 ENGINE = ReplacingMergeTree(revision)
 PARTITION BY toYYYYMM(block_timestamp)
+PRIMARY KEY (transaction_hash, input_index)
 ORDER BY (transaction_hash, input_index);
 ```
 
@@ -307,7 +309,7 @@ WHERE toYYYYMM(t.block_timestamp) >= 200901
   AND toYYYYMM(t.block_timestamp) < 200903;
 ```
 
-## Normalized Outputs Table `outputs`
+## Outputs Table
 
 *Purpose & Rationale*
 
@@ -340,6 +342,7 @@ CREATE TABLE outputs
 )
 ENGINE = ReplacingMergeTree(revision)
 PARTITION BY toYYYYMM(block_timestamp)
+PRIMARY KEY (transaction_hash, output_index)
 ORDER BY (transaction_hash, output_index);
 ```
 
@@ -439,7 +442,7 @@ WHERE toYYYYMM(i.block_timestamp) >= 200901
 OPTIMIZE TABLE outputs FINAL;
 ```
 
-## Address-Level Flat Table address
+## Addresses Table 
 
 *Purpose & Rationale*
 
@@ -448,7 +451,7 @@ OPTIMIZE TABLE outputs FINAL;
 * A materialized view (`address_flat_mv`) keeps the table automatically synchronized with `outputs`, removing manual ETL.
 
 ```sql
-CREATE TABLE address
+CREATE TABLE addresses
 (
     transaction_hash String,
     output_index UInt64,
@@ -462,16 +465,18 @@ CREATE TABLE address
     spent_block_hash String,
     spent_block_number UInt64,
     spent_block_timestamp DateTime,
+    revision UInt64
 )
-ENGINE = ReplacingMergeTree(spent_block_timestamp)
+ENGINE = ReplacingMergeTree(revision)
 PARTITION BY toYYYYMM(block_timestamp)
+PRIMARY KEY (address, transaction_hash, output_index)
 ORDER BY (address, transaction_hash, output_index);
 ```
 
 *One-off backfill (optional if MV is created first)*
 
 ```sql
-INSERT INTO address
+INSERT INTO addresses
 SELECT
     o.transaction_hash,
     o.output_index,
@@ -485,6 +490,7 @@ SELECT
     o.spent_block_hash,
     o.spent_block_number,
     o.spent_block_timestamp,
+    o.revision
 FROM outputs AS o
 ARRAY JOIN o.addresses AS address;
 ```
@@ -492,8 +498,8 @@ ARRAY JOIN o.addresses AS address;
 *Continuous sync*
 
 ```sql
-CREATE MATERIALIZED VIEW address_mv
-TO address
+CREATE MATERIALIZED VIEW addresses_mv
+TO addresses
 AS
 SELECT
     o.transaction_hash,
@@ -507,16 +513,17 @@ SELECT
     o.spent_input_index,
     o.spent_block_hash,
     o.spent_block_number,
-    o.spent_block_timestamp
+    o.spent_block_timestamp,
+    o.revision
 FROM outputs AS o
-ARRAY JOIN o.addresses AS address;
+ARRAY JOIN o.addresses AS address
 ```
 
 *Example query: Satoshi’s famously untouched balance*
 
 ```sql
 SELECT sum(value) / 100000000. AS balance
-FROM address
+FROM addresses
 FINAL
 WHERE (address = '12higDjoCCNXSA95xZMWUdPvXNmkAduhWv') AND (spent_transaction_hash = '')
 ```
