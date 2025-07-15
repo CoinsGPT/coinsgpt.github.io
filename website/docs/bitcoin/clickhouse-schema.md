@@ -415,28 +415,97 @@ WHERE toYYYYMM(t.block_timestamp) >= 200901
 | `revision`               | 0        | Revision number for `ReplacingMergeTree` version control          |
 
 
-*Phase 2: Mark outputs as spent*
+
+## Table inputs_outputs 
+
+Perform the INNER JOIN only once, store the merged data into an intermediate table (inputs_outputs), and then insert into inputs and outputs from that table.
 
 ```sql
-INSERT INTO outputs
+CREATE TABLE inputs_outputs
+(
+    -- Inputs fields
+    i_transaction_hash String,
+    i_input_index UInt64,
+    i_block_hash String,
+    i_block_number UInt64,
+    i_block_timestamp DateTime,
+    i_spending_transaction_hash String,
+    i_spending_output_index UInt64,
+    i_script_asm String,
+    i_script_hex String,
+    i_sequence UInt64,
+    i_required_signatures UInt64,
+    i_type String,
+    i_addresses Array(String),
+    i_value Float64,
+
+    -- Outputs fields
+    o_transaction_hash String,
+    o_output_index UInt64,
+    o_block_hash String,
+    o_block_number UInt64,
+    o_block_timestamp DateTime,
+    o_spent_transaction_hash String,
+    o_spent_input_index UInt64,
+    o_spent_block_hash String,
+    o_spent_block_number UInt64,
+    o_spent_block_timestamp DateTime,
+    o_script_asm String,
+    o_script_hex String,
+    o_required_signatures UInt64,
+    o_type String,
+    o_addresses Array(String),
+    o_value Float64,
+    o_is_coinbase BOOL,
+
+    revision UInt64
+)
+ENGINE = MergeTree()
+PARTITION BY toYYYYMM(i_block_timestamp)
+PRIMARY KEY (i_transaction_hash, i_input_index)
+ORDER BY (i_transaction_hash, i_input_index);
+```
+
+*Phase 1: Insert Data into inputs_outputs (One JOIN Only)*
+
+```sql
+INSERT INTO inputs_outputs
 SELECT
-    o.transaction_hash,
-    o.output_index,
-    o.block_hash,
-    o.block_number,
-    o.block_timestamp,
-    i.transaction_hash          AS spent_transaction_hash,
-    i.input_index               AS spent_input_index,
-    i.block_hash                AS spent_block_hash,
-    i.block_number              AS spent_block_number,
-    i.block_timestamp           AS spent_block_timestamp,
-    o.script_asm,
-    o.script_hex,
-    o.required_signatures,
-    o.type,
-    o.addresses,
-    o.value,
-    o.is_coinbase,
+    -- Inputs fields (after join)
+    i.transaction_hash AS i_transaction_hash,
+    i.input_index AS i_input_index,
+    i.block_hash AS i_block_hash,
+    i.block_number AS i_block_number,
+    i.block_timestamp AS i_block_timestamp,
+    i.spending_transaction_hash AS i_spending_transaction_hash,
+    i.spending_output_index AS i_spending_output_index,
+    i.script_asm AS i_script_asm,
+    i.script_hex AS i_script_hex,
+    i.sequence AS i_sequence,
+    o.required_signatures AS i_required_signatures,
+    o.type AS i_type,
+    o.addresses AS i_addresses,
+    o.value AS i_value,
+
+    -- Outputs fields (after join)
+    o.transaction_hash AS o_transaction_hash,
+    o.output_index AS o_output_index,
+    o.block_hash AS o_block_hash,
+    o.block_number AS o_block_number,
+    o.block_timestamp AS o_block_timestamp,
+    i.transaction_hash AS o_spent_transaction_hash,  -- updated values
+    i.input_index AS o_spent_input_index,
+    i.block_hash AS o_spent_block_hash,
+    i.block_number AS o_spent_block_number,
+    i.block_timestamp AS o_spent_block_timestamp,
+    o.script_asm AS o_script_asm,
+    o.script_hex AS o_script_hex,
+    o.required_signatures AS o_required_signatures,
+    o.type AS o_type,
+    o.addresses AS o_addresses,
+    o.value AS o_value,
+    o.is_coinbase AS o_is_coinbase,
+
     1 AS revision
 FROM inputs AS i
 INNER JOIN outputs AS o
@@ -444,6 +513,34 @@ INNER JOIN outputs AS o
    AND i.spending_output_index = o.output_index
 WHERE toYYYYMM(i.block_timestamp) >= 200901
   AND toYYYYMM(i.block_timestamp) < 200903;
+```
+
+*Phase 2: Mark outputs as spent*
+
+```sql
+INSERT INTO outputs
+SELECT
+    o_transaction_hash AS transaction_hash,
+    o_output_index AS output_index,
+    o_block_hash AS block_hash,
+    o_block_number AS block_number,
+    o_block_timestamp AS block_timestamp,
+    o_spent_transaction_hash AS spent_transaction_hash,
+    o_spent_input_index AS spent_input_index,
+    o_spent_block_hash AS spent_block_hash,
+    o_spent_block_number AS spent_block_number,
+    o_spent_block_timestamp AS spent_block_timestamp,
+    o_script_asm AS script_asm,
+    o_script_hex AS script_hex,
+    o_required_signatures AS required_signatures,
+    o_type AS type,
+    o_addresses AS addresses,
+    o_value AS value,
+    o_is_coinbase AS is_coinbase,
+    revision
+FROM inputs_outputs;
+WHERE toYYYYMM(i_block_timestamp) >= 200901
+  AND toYYYYMM(i_block_timestamp) < 200903;
 ```
 
 | Column                   | Revision | Description                                                       |
@@ -467,33 +564,29 @@ WHERE toYYYYMM(i.block_timestamp) >= 200901
 | `is_coinbase`            | 0        | Whether the output originates from a coinbase transaction         |
 | `revision`               | 1        | Revision number for `ReplacingMergeTree` version control          |
 
-
 *Phase 3: Enrich inputs by outputs*
 
 ```sql
 INSERT INTO inputs
 SELECT
-    i.transaction_hash,
-    i.input_index,
-    i.block_hash,
-    i.block_number,
-    i.block_timestamp,
-    i.spending_transaction_hash,
-    i.spending_output_index,
-    i.script_asm,
-    i.script_hex,
-    i.sequence,
-    o.required_signatures AS required_signatures,
-    o.type AS type,
-    o.addresses AS addresses,
-    o.value AS value,
-    1 AS revision
-FROM inputs AS i
-INNER JOIN outputs AS o
-    ON i.spending_transaction_hash = o.transaction_hash
-   AND i.spending_output_index = o.output_index
-WHERE toYYYYMM(i.block_timestamp) >= 200901
-  AND toYYYYMM(i.block_timestamp) < 200903;
+    i_transaction_hash AS transaction_hash,
+    i_input_index AS input_index,
+    i_block_hash AS block_hash,
+    i_block_number AS block_number,
+    i_block_timestamp AS block_timestamp,
+    i_spending_transaction_hash AS spending_transaction_hash,
+    i_spending_output_index AS spending_output_index,
+    i_script_asm AS script_asm,
+    i_script_hex AS script_hex,
+    i_sequence AS sequence,
+    i_required_signatures AS required_signatures,
+    i_type AS type,
+    i_addresses AS addresses,
+    i_value AS value,
+    revision
+FROM inputs_outputs;
+WHERE toYYYYMM(i_block_timestamp) >= 200901
+  AND toYYYYMM(i_block_timestamp) < 200903;
 ```
 
 | Column                      | Revision | Description                                                 |
@@ -513,7 +606,6 @@ WHERE toYYYYMM(i.block_timestamp) >= 200901
 | `addresses`                 | 1        | Array of decoded Bitcoin addresses related to this input    |
 | `value`                     | 1        | Value of the input in BTC                                   |
 | `revision`                  | 1        | Revision number for `ReplacingMergeTree` version control    |
-
 
 
 *Finalize deduplication*
