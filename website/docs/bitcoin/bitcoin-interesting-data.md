@@ -78,3 +78,37 @@ FROM inputs_outputs
 WHERE toYYYYMM(i_block_timestamp) = 201403
 GROUP BY toYYYYMM(o_block_timestamp)
 ```
+
+## How many rows with revision 0
+
+```sql
+SELECT count()
+FROM
+(
+    SELECT
+        transaction_hash,
+        input_index
+    FROM inputs
+    WHERE toYYYYMM(block_timestamp) = 201606
+    GROUP BY
+        transaction_hash,
+        input_index
+    HAVING count() = 2
+)
+```
+
+```sql
+SELECT count()
+FROM
+(
+    SELECT
+        transaction_hash,
+        input_index
+    FROM inputs
+    WHERE (toYYYYMM(block_timestamp) = 201606) AND (revision = 0)
+    GROUP BY
+        transaction_hash,
+        input_index
+    HAVING count() = 1
+)
+```
