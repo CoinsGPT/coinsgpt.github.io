@@ -51,3 +51,30 @@ SELECT *
 FROM blocks
 WHERE number = 210319
 ```
+
+## Revision
+
+```sql
+SELECT count()
+FROM
+(
+    SELECT
+        transaction_hash,
+        input_index
+    FROM inputs
+    WHERE (toYYYYMM(block_timestamp) = 201212) AND (revision = 1)
+    GROUP BY
+        transaction_hash,
+        input_index
+    HAVING count() = 2
+)
+```
+
+## What Partition spend by 201403 Partition
+
+```sql
+SELECT min(o_block_timestamp) AS latest_o_block_timestamp
+FROM inputs_outputs
+WHERE toYYYYMM(i_block_timestamp) = 201403
+GROUP BY toYYYYMM(o_block_timestamp)
+```
