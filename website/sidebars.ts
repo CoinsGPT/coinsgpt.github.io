@@ -191,8 +191,8 @@ const sidebars: SidebarsConfig = {
     'bitcoin/bitcoin-data-verfication',
     'bitcoin/bitcoin-interesting-data',
     'bitcoin/bitcoin-tigergraph',
-    'bitcoin/tigergraph-schema-design',
-    'bitcoin/tigergraph-kafka-loader'
+    'bitcoin/janusgraph-schema-design',
+    'bitcoin/janusgraph-bulk-loading'
   ],
 };
 
