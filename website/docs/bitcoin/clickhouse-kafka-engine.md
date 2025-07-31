@@ -94,6 +94,52 @@ PARTITION BY toYYYYMM(block_timestamp_month)
 ORDER BY (hash);
 ```
 
+```sql
+CREATE TABLE inputs_outputs
+(
+    -- Inputs fields
+    i_transaction_hash String,
+    i_input_index UInt64,
+    i_block_hash String,
+    i_block_number UInt64,
+    i_block_timestamp DateTime,
+    i_spending_transaction_hash String,
+    i_spending_output_index UInt64,
+    i_script_asm String,
+    i_script_hex String,
+    i_sequence UInt64,
+    i_required_signatures UInt64,
+    i_type String,
+    i_addresses Array(String),
+    i_value Float64,
+
+    -- Outputs fields
+    o_transaction_hash String,
+    o_output_index UInt64,
+    o_block_hash String,
+    o_block_number UInt64,
+    o_block_timestamp DateTime,
+    o_spent_transaction_hash String,
+    o_spent_input_index UInt64,
+    o_spent_block_hash String,
+    o_spent_block_number UInt64,
+    o_spent_block_timestamp DateTime,
+    o_script_asm String,
+    o_script_hex String,
+    o_required_signatures UInt64,
+    o_type String,
+    o_addresses Array(String),
+    o_value Float64,
+    o_is_coinbase BOOL,
+
+    revision UInt64
+)
+ENGINE = MergeTree()
+PARTITION BY toYYYYMM(i_block_timestamp)
+PRIMARY KEY (i_transaction_hash, i_input_index)
+ORDER BY (i_transaction_hash, i_input_index);
+```
+
 ## 4. Create and populate the topic {#4-create-and-populate-the-topic}
 
 Next, we're going to create a topic. There are several tools that we can use to do this. If we're running Kafka locally on our machine or inside a Docker container, [RPK](https://docs.redpanda.com/current/get-started/rpk-install/) works well. We can create a topic called `blocks` and `transactions` with 3 partitions by running the following command:
@@ -116,6 +162,15 @@ kafka-topics.sh \
   --replication-factor 1
 ```
 
+```bash
+kafka-topics.sh \
+  --create \
+  --topic inputs_outputs \
+  --bootstrap-server localhost:9092 \
+  --partitions 3 \
+  --replication-factor 1
+```
+
 Now we need to add these topics to consumer group. We can run a command similar to the following if we're running Kafka locally with authentication disabled:
 
 You do **not** create consumer groups manually. A consumer group is **automatically created** the first time a consumer subscribes to a topic using a new `--group` (or group.id in code).
@@ -133,6 +188,14 @@ kafka-console-consumer.sh \
   --topic transactions \
   --group bitcoin-group
 ```
+
+```bash
+kafka-console-consumer.sh \
+  --bootstrap-server localhost:9092 \
+  --topic inputs_outputs \
+  --group bitcoin-group
+```
+
 
 This creates the `bitcoin-group` consumer group if it doesn't already exist.
 
@@ -186,6 +249,49 @@ ENGINE = Kafka('localhost:9092', 'transactions', 'bitcoin-group', 'JSONEachRow')
 settings kafka_thread_per_consumer = 0, kafka_num_consumers = 3, kafka_skip_broken_messages = 1;
 ```
 
+```sql
+CREATE TABLE inputs_outputs_queue
+(
+    -- Inputs fields
+    i_transaction_hash String,
+    i_input_index UInt64,
+    i_block_hash String,
+    i_block_number UInt64,
+    i_block_timestamp DateTime,
+    i_spending_transaction_hash String,
+    i_spending_output_index UInt64,
+    i_script_asm String,
+    i_script_hex String,
+    i_sequence UInt64,
+    i_required_signatures UInt64,
+    i_type String,
+    i_addresses Array(String),
+    i_value Float64,
+
+    -- Outputs fields
+    o_transaction_hash String,
+    o_output_index UInt64,
+    o_block_hash String,
+    o_block_number UInt64,
+    o_block_timestamp DateTime,
+    o_spent_transaction_hash String,
+    o_spent_input_index UInt64,
+    o_spent_block_hash String,
+    o_spent_block_number UInt64,
+    o_spent_block_timestamp DateTime,
+    o_script_asm String,
+    o_script_hex String,
+    o_required_signatures UInt64,
+    o_type String,
+    o_addresses Array(String),
+    o_value Float64,
+    o_is_coinbase BOOL,
+
+    revision UInt64
+)
+ENGINE = Kafka('localhost:9092', 'inputs_outputs', 'bitcoin-group', 'JSONEachRow') 
+settings kafka_thread_per_consumer = 0, kafka_num_consumers = 3, kafka_skip_broken_messages = 1;
+```
 
 We discuss engine settings and performance tuning below. At this point, a simple select on the table `blocks_queue` should read some rows.  Note that this will move the consumer offsets forward, preventing these rows from being re-read without a [reset](#common-operations). Note the limit and required parameter `stream_like_engine_allow_direct_select.`
 
@@ -211,6 +317,14 @@ SELECT
 FROM transactions_queue;
 ```
 
+```sql
+CREATE MATERIALIZED VIEW inputs_outputs_mv TO inputs_outputs
+AS
+SELECT
+    *
+FROM inputs_outputs_queue;
+```
+
 At the point of creation, the materialized view connects to the Kafka engine and commences reading: inserting rows into the target table. This process will continue indefinitely, with subsequent message inserts into Kafka being consumed. Feel free to re-run the insertion script to insert further messages to Kafka.
 
 ##### 7. Confirm rows have been inserted {#7-confirm-rows-have-been-inserted}
@@ -220,6 +334,7 @@ Confirm data exists in the target table:
 ```sql
 SELECT count() FROM blocks_fat;
 SELECT count() FROM transactions_fat;
+SELECT count() FROM inputs_outputs;
 ```
 
 

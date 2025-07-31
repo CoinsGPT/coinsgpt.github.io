@@ -1,5 +1,5 @@
 
-# 03 Create Kafka Topics and Consumer Groups
+# 03 Kafka Topics and Groups Setup
 
 ![](/img/bitcoin/bitcoin_data_pipeline.png)
 
@@ -130,10 +130,9 @@ transactions 1         110             140             30   consumer-1-xyz  /192
 
 ## 5. Configure Log Retention (to prevent disk overflow)
 
-You can configure how long Kafka retains messages or how much disk space it uses per topic.
+You can configure how long Kafka retains messages or how much disk space it uses per topic. Set retention to 1 day and max 1GB per partition for blocks, transactions, inputs_outputs.
 
 ```bash
-# Set retention to 1 day and max 1GB per partition for 'blocks'
 kafka-configs.sh \
   --bootstrap-server localhost:9092 \
   --entity-type topics \
@@ -143,11 +142,19 @@ kafka-configs.sh \
 ```
 
 ```bash
-# Same for 'transactions'
 kafka-configs.sh \
   --bootstrap-server localhost:9092 \
   --entity-type topics \
   --entity-name transactions \
+  --alter \
+  --add-config retention.ms=86400000,retention.bytes=1073741824,cleanup.policy=delete
+```
+
+```bash
+kafka-configs.sh \
+  --bootstrap-server localhost:9092 \
+  --entity-type topics \
+  --entity-name inputs_outputs \
   --alter \
   --add-config retention.ms=86400000,retention.bytes=1073741824,cleanup.policy=delete
 ```
