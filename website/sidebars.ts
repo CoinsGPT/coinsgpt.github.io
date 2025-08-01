@@ -170,6 +170,16 @@ const sidebars: SidebarsConfig = {
         'tips/docusaurus-removeLanguageTranslation',
       ],
    },
+  {
+      type: 'category',
+      label: 'Tools',
+      link: {
+        type: 'generated-index',
+      },
+      items: [
+        'tools/cloudflare-tunnel',
+      ],
+   },
   ],
   api: [
     'cli',
