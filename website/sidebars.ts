@@ -190,19 +190,73 @@ const sidebars: SidebarsConfig = {
     },
   ],
   bitcoin: [
-    'bitcoin/bitcoin-fullnode',
-    'bitcoin/bitcoin-etl',
-    'bitcoin/kafka-setup',
-    'bitcoin/clickhouse-setup',
-    'bitcoin/clickhouse-schema',
-    'bitcoin/bitcoin-data-consistency',
-    'bitcoin/clickhouse-data-sync',
-    'bitcoin/clickhouse-kafka-engine',
-    'bitcoin/bitcoin-data-verfication',
-    'bitcoin/bitcoin-interesting-data',
-    'bitcoin/bitcoin-tigergraph',
-    'bitcoin/janusgraph-schema-design',
-    'bitcoin/janusgraph-bulk-loading'
+    'introduction',
+    {
+      type: 'category',
+      label: 'Getting Started',
+      link: {
+        type: 'generated-index',
+      },
+      collapsed: false,
+      items: [
+        'installation',
+        'bitcoin/bitcoin-fullnode',
+        'bitcoin/kafka-setup',
+        'bitcoin/clickhouse-setup',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Data',
+      link: {
+        type: 'generated-index',
+      },
+      collapsed: true,
+      items: [
+        'bitcoin/bitcoin-etl',
+        'bitcoin/bitcoin-data-consistency',
+        'bitcoin/clickhouse-data-sync',
+        'bitcoin/bitcoin-data-verfication',
+        'bitcoin/bitcoin-interesting-data',
+        'bitcoin/clickhouse-kafka-engine',
+        'bitcoin/bitcoin-tigergraph',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Schema',
+      link: {
+        type: 'generated-index',
+      },
+      collapsed: true,
+      items: [
+        'bitcoin/clickhouse-schema',
+        'bitcoin/janusgraph-schema-design',
+        'bitcoin/janusgraph-bulk-loading',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Agentic',
+      link: {
+        type: 'generated-index',
+      },
+      collapsed: true,
+      items: [
+        'bitcoin/clickhouse-kafka-engine',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Representation',
+      link: {
+        type: 'generated-index',
+      },
+      collapsed: true,
+      items: [
+        'bitcoin/clickhouse-kafka-engine',
+      ],
+    },
   ],
 };
 
