@@ -7,10 +7,43 @@ slug: /
 
 ![](/img/bitcoin/ChatBitcoinArch.png)
 
-⚡️ Docusaurus will help you ship a **beautiful documentation site in no time**.
+This architecture represents a **data-to-intelligence pipeline** where:
 
-💸 Building a custom tech stack is expensive. Instead, **focus on your content** and just write Markdown files.
+* Raw data → is unified (Data Layer)
+* Structured into business logic (Semantic Layer)
+* Enriched with reasoning and automation (Agentic Layer)
+* And finally represented visually or conversationally (Representation Layer).
 
-💥 Ready for more? Use **advanced features** like versioning, i18n, search and theme customizations.
+In essence, the system evolves from **data integration → semantic modeling → intelligent reasoning → user interaction**, forming the backbone of **AI-powered analytics and decision support**.
 
-💅 Check the **[best Docusaurus sites](/showcase?tags=favorite)** for inspiration.
+
+### 1. **Data Layer**
+
+* **Purpose:** Collects and integrates data from multiple heterogeneous sources.
+* **Sources shown:** ClickHouse and NebulaGraph.
+* **Role:** Acts as the foundation of the system—aggregating and harmonizing data for further processing.
+
+### 2. **Semantic Layer**
+
+* **Purpose:** Defines business meaning and relationships of the raw data.
+* **Function:** Converts technical data into a business-friendly model (metrics, KPIs, entities).
+* **Outcome:** Provides a unified view of data semantics, enabling consistent understanding across analytics tools.
+
+### 3. **Agentic Layer**
+
+* **Purpose:** Adds intelligence, automation, and reasoning.
+* **Function:** Uses AI agents or rules-based engines to interpret semantics, perform analysis, and execute autonomous data-driven tasks.
+* **Outcome:** Enables proactive insights and contextual decision-making.
+
+### 4. **Representation Layer**
+
+* **Purpose:** Translates agentic insights into user-accessible formats.
+* **Function:** Powers three main output channels:
+
+  * **Embedded Analytics** – integrates analytics directly into applications.
+  * **Dashboards & Reports** – visualizes structured insights for monitoring and analysis.
+  * **Conversational Interface** – enables natural language interactions with data (e.g., chatbots, AI assistants).
+
+
+
+
