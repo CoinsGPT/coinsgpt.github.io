@@ -190,7 +190,7 @@ const sidebars: SidebarsConfig = {
     },
   ],
   bitcoin: [
-    'bitcoin/introduction',
+    'bitcoin/chatbitcoin-arch',
     {
       type: 'category',
       label: 'Getting Started',
