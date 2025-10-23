@@ -190,7 +190,7 @@ const sidebars: SidebarsConfig = {
     },
   ],
   bitcoin: [
-    'introduction',
+    'bitcoin/introduction',
     {
       type: 'category',
       label: 'Getting Started',
