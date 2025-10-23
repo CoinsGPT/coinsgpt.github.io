@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkwebsite=self.webpackChunkwebsite||[]).push([["9317"],{54771:function(t){t.exports=JSON.parse('{"categoryGeneratedIndex":{"title":"Getting Started","slug":"/category/getting-started-1","permalink":"/docs/next/category/getting-started-1","sidebar":"bitcoin","navigation":{"next":{"title":"Installation","permalink":"/docs/next/installation"}}}}')}}]);
